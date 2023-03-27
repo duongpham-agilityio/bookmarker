@@ -10,5 +10,11 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
-  "rules": {}
+  "rules": {
+    "semi": ["error"],
+    "quotes": ["error", "single"],
+    "no-unused-vars": ["error"],
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-empty-function": "off"
+  }
 }
