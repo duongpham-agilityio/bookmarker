@@ -1,0 +1,15 @@
+:root {
+  /* Fonts */
+  --primary-font: 'Lato', sans-serif;
+
+  /* Colors */
+  --primary-color: #fabb18;
+  --secondary-color: #ccc;
+  --success-color: #6ac83c;
+  --warning-color: #c8a93c;
+  --info-color: #3c96c8;
+  --danger-color: #c83c3c;
+
+  /* Texts */
+  --primary-text-color: #b5b5b5;
+}
