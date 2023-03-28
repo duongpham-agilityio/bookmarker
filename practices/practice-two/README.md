@@ -4,7 +4,7 @@
 
 - This is a website that allows users to make purchases. Here users can search for the products they like on the website.
 - Design:
-  - Update to late
+  - Book Marker [here](https://www.figma.com/file/csmgT3kp1rqDqO5IkZnq5A/Book-Marker-v1---Javascript-practice?node-id=0-1&t=fdLZzp2GKNADTxtB-0)
 - Plan: [here](https://docs.google.com/document/d/1L8bW_gIywHV7WLzioBdiIE2B84k7C-ftIM69KlJyE7g/edit?usp=sharing)
 
 ### Targets
@@ -57,7 +57,15 @@
 
 ### Main App Features
 
-- Update to late
+- Home:
+  - View all books
+  - Search and filter books
+  - Create a new book
+  - Delete books
+- Detail:
+  - View detail books
+  - Update book
+  - Delete books
 
 ### Getting Started
 
