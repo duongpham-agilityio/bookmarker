@@ -1,0 +1,29 @@
+.notification {
+  width: 512px;
+  display: flex;
+  box-shadow: 0 0 0 1px var(--light-gray);
+  border-radius: 15px;
+  font-family: var(--primary-font);
+  padding: 10px;
+}
+
+.notification.success {
+  background-color: var(--success-color);
+}
+
+.content {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.message {
+  padding: 10px 0 0;
+}
+
+.notification .icon {
+  width: 20px;
+  align-items: flex-start;
+  background-color: transparent;
+  cursor: pointer;
+  padding: unset;
+}
