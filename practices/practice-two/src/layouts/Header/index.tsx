@@ -1,0 +1,23 @@
+// Styles
+import headerStyles from 'layouts/Header/index.module.css';
+
+// Assets
+import Logo from 'assets/images/Logo.jpg';
+import { Heading } from 'components/commons';
+import { Link } from 'react-router-dom';
+
+const Header = () => {
+  return (
+    <header className={headerStyles.mainHeader}>
+      <Link to="/books">
+        <img src={Logo} alt="logo" />
+      </Link>
+      <Heading
+        label="Hello! Welcome to the Book Marker"
+        className={headerStyles.heading}
+      />
+    </header>
+  );
+};
+
+export default Header;
