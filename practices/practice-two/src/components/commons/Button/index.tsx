@@ -17,7 +17,7 @@ export type ButtonProps = {
   border?: Border;
   size?: Size;
   width?: Width;
-  onClick?: (event: MouseEvent) => void;
+  onClick?: (_event: MouseEvent) => void;
 };
 
 const Button = (props: ButtonProps) => {

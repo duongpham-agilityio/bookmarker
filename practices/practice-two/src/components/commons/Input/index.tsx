@@ -7,7 +7,7 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   leftIcon?: string;
   rightIcon?: string;
   className?: string;
-  onClick?: (event: MouseEvent) => void;
+  onClick?: (_event: MouseEvent) => void;
 };
 
 const Input = (props: InputProps) => {
