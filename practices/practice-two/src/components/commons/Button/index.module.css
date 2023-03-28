@@ -24,18 +24,18 @@
 }
 
 .btn.default {
-  background-color: black;
+  background-color: var(--light-gray);
   color: white;
 }
 
 .btn.primary {
   background-color: var(--primary-color);
-  color: black;
+  color: white;
 }
 
 .btn.secondary {
   background-color: var(--secondary-color);
-  color: white;
+  color: black;
 }
 
 .btn.danger {
