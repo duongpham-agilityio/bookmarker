@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom';
+
+// Components
+import { Heading } from 'components/commons';
+
 // Styles
 import headerStyles from 'layouts/Header/index.module.css';
 
 // Assets
 import Logo from 'assets/images/Logo.jpg';
-import { Heading } from 'components/commons';
-import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
