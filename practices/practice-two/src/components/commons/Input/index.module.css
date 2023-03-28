@@ -3,7 +3,7 @@
   align-items: center;
   gap: 10px;
   border-radius: 20px;
-  background-color: var(--secondary-color);
+  background-color: var(--gray-color);
   font-family: var(--primary-font);
   padding: 10px 20px;
 }
