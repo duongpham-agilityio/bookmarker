@@ -7,6 +7,7 @@ type Variant = 'default' | 'primary' | 'secondary' | 'danger';
 type Size = 'small' | 'medium' | 'large';
 type Border = 'b-md' | 'b-lg';
 type Width = 'w-sm' | 'w-lg';
+type Type = 'button' | 'submit';
 export type ButtonProps = {
   label: string;
   name?: string;
@@ -17,6 +18,7 @@ export type ButtonProps = {
   border?: Border;
   size?: Size;
   width?: Width;
+  type?: Type;
   onClick?: (_event: MouseEvent) => void;
 };
 
@@ -30,6 +32,7 @@ const Button = (props: ButtonProps) => {
     size = 'medium',
     border = 'b-md',
     width = 'w-sm',
+    type = 'button',
     ...rest
   } = props;
 
@@ -38,7 +41,7 @@ const Button = (props: ButtonProps) => {
   ${buttonStyles[width]} ${className}`;
 
   return (
-    <button className={classes} {...rest}>
+    <button className={classes} type={type} {...rest}>
       {leftIcon && (
         <img src={leftIcon} alt="icon action" className={buttonStyles.icon} />
       )}

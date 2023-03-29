@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, MouseEvent } from 'react';
+import { InputHTMLAttributes, MouseEvent, Ref, forwardRef } from 'react';
 
 // Style
 import inputStyles from 'components/commons/Input/index.module.css';
@@ -10,7 +10,7 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   onClick?: (_event: MouseEvent) => void;
 };
 
-const Input = (props: InputProps) => {
+const Input = (props: InputProps, ref: Ref<HTMLInputElement>) => {
   const {
     value = '',
     leftIcon = '',
@@ -42,6 +42,7 @@ const Input = (props: InputProps) => {
         value={value}
         placeholder={placeholder}
         onChange={onChange}
+        ref={ref}
         {...rest}
       />
 
@@ -57,4 +58,4 @@ const Input = (props: InputProps) => {
   );
 };
 
-export default Input;
+export default forwardRef(Input);
