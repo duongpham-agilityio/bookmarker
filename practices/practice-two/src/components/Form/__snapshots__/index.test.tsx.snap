@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormComponent match snapshot 1`] = `
+<DocumentFragment>
+  <section>
+    <form
+      action="#"
+      class="undefined "
+      method="POST"
+    >
+      <h2
+        class="undefined undefined "
+      >
+        Create a new book marker
+      </h2>
+      <div>
+        <div>
+          <div>
+            <label
+              for="bookName"
+            >
+              Book name
+            </label>
+            <div
+              class="undefined "
+            >
+              <input
+                id="bookName"
+                name="name"
+                placeholder="Book name"
+                type="text"
+                value="HTML/CSS"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              for="author"
+            >
+              Author
+            </label>
+            <div
+              class="undefined "
+            >
+              <input
+                name="author"
+                placeholder="Author"
+                type="text"
+                value="John"
+              />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div>
+            <label
+              for="publishedDate"
+            >
+              Published date
+            </label>
+            <div
+              class="undefined "
+            >
+              <input
+                name="publishedDate"
+                placeholder="Enter text..."
+                type="date"
+                value="2023-01-02"
+              />
+            </div>
+          </div>
+          <div
+            class="undefined undefined"
+          >
+            <div>
+              <label
+                for="imageURL"
+              >
+                Upload
+              </label>
+              <input
+                accept=".png,.jpeg"
+                hidden=""
+                id="imageURL"
+                name="imageURL"
+                type="file"
+              />
+              <button
+                class="undefined undefined
+  undefined undefined
+  undefined "
+                type="button"
+              >
+                <img
+                  alt="icon action"
+                  src="assets/icons/upload.svg"
+                />
+                Upload
+              </button>
+            </div>
+            <div>
+              <div />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div>
+            <label
+              for="bookName"
+            >
+              Description
+            </label>
+            <textarea
+              class="undefined "
+              placeholder="Book name"
+            >
+              HTML/CSS with styles
+            </textarea>
+          </div>
+        </div>
+        <div>
+          <button
+            class="undefined undefined
+  undefined undefined
+  undefined "
+            type="button"
+          >
+            Cancel
+          </button>
+          <button
+            class="undefined undefined
+  undefined undefined
+  undefined "
+            type="submit"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+</DocumentFragment>
+`;

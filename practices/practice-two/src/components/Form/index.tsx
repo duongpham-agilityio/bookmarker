@@ -92,15 +92,24 @@ const Form = (props: FormProps) => {
                 </label>
                 {!refImage.current?.files?.length ? (
                   <>
-                    <Input
-                      hidden
+                    {/* <Input
+                      className={styles.input}
+                      type="file"
+                      name="imageURL"
+                      id="imageURL"
+                      accept=".png,.jpeg"
+                      onChange={onChange}
+                    /> */}
+                    <input
                       ref={refImage}
+                      hidden
                       className={styles.input}
                       type="file"
                       name="imageURL"
                       id="imageURL"
                       accept=".png,.jpeg"
                     />
+
                     <Button
                       label="Upload"
                       width="w-lg"
