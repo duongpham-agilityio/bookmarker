@@ -6,6 +6,7 @@
   border-radius: 20px;
   background-color: var(--gray-color);
   color: var(--secondary-text-color);
+  font-family: var(--primary-font);
   padding: 17px;
 }
 
