@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notification match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="undefined undefined undefined"
+  >
+    <div>
+      <h2
+        class="undefined undefined "
+      >
+        Title
+      </h2>
+      <p>
+        message
+      </p>
+    </div>
+    <button
+      class="undefined undefined
+  undefined undefined
+  undefined "
+    >
+      <img
+        alt="icon action"
+        src="assets/icons/x-letter.svg"
+      />
+    </button>
+  </div>
+</DocumentFragment>
+`;
