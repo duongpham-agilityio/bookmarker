@@ -8,7 +8,19 @@
 }
 
 .notification.success {
-  background-color: var(--success-color);
+  background-color: var(--toast-success-color);
+}
+
+.notification.warning {
+  background-color: var(--toast-warning-color);
+}
+
+.notification.error {
+  background-color: var(--toast-error-color);
+}
+
+.notification.info {
+  background-color: var(--toast-info-color);
 }
 
 .content {
