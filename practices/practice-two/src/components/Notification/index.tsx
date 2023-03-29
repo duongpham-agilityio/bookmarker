@@ -18,7 +18,7 @@ const Notification = (props: NotificationProps) => {
   const { title, message, type = 'success' } = props;
 
   return (
-    <div className={`${styles.notification} ${styles[type]}`}>
+    <div className={`${styles.notification} ${styles[type]} ${styles.sideIn}`}>
       <div className={styles.content}>
         <Heading label={title} />
         <p className={styles.message}>{message}</p>

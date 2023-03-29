@@ -1,10 +1,25 @@
+@import url(./animation.module.css);
+
 .notification {
   width: 512px;
+  position: fixed;
+  bottom: 28px;
+  right: -100%;
+  z-index: 99999;
   display: flex;
   box-shadow: 0 0 0 1px var(--light-gray);
   border-radius: 15px;
   font-family: var(--primary-font);
-  padding: 10px;
+  padding: 15px;
+
+}
+
+.notification.sideIn {
+  animation: notificationsSideIn 1s linear forwards;
+}
+
+.notification.sideOut {
+  animation: notificationsSideIn 1s linear forwards alternate-reverse;
 }
 
 .notification.success {
@@ -39,3 +54,5 @@
   cursor: pointer;
   padding: unset;
 }
+
+
