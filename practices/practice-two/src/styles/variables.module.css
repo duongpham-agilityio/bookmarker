@@ -15,4 +15,10 @@
   /* Texts */
   --primary-text-color: #000;
   --secondary-text-color: #b5b5b5;
+
+  /* Toasts */
+  --toast-success-color: rgba(106, 200, 60, 0.54);
+  --toast-error-color: rgba(200, 60, 60, 0.54);
+  --toast-warning-color: rgba(200, 169, 60, 0.54);
+  --toast-info-color: rgba(60, 150, 200, 0.54);
 }
