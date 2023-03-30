@@ -1,5 +1,8 @@
 import React, { FunctionComponent } from 'react';
 
+// Component
+import { Error } from 'components';
+
 export const withErrorBoundary = <T extends object>(
   WrappedComponent: FunctionComponent<T>
 ) => {
@@ -19,7 +22,7 @@ export const withErrorBoundary = <T extends object>(
 
     render(): React.ReactNode {
       if (this.state.hashError) {
-        return <p>error</p>;
+        return <Error />;
       }
 
       return <WrappedComponent {...this.props} />;
