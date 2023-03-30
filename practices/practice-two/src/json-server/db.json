@@ -1,7 +1,7 @@
 {
   "books": [
     {
-      "name": "HTML/CSS Ebook",
+      "name": "HTML/CSS Ebook 1",
       "description": "Description of some book will displayed here",
       "author": "Duong.Pham",
       "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
@@ -12,7 +12,7 @@
       "id": 1
     },
     {
-      "name": "HTML/CSS Ebook",
+      "name": "HTML/CSS Ebook 2",
       "description": "Description of some book will displayed here",
       "author": "Duong.Pham",
       "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
@@ -23,7 +23,7 @@
       "id": 2
     },
     {
-      "name": "HTML/CSS Ebook",
+      "name": "HTML/CSS Ebook 3",
       "description": "Description of some book will displayed here",
       "author": "Duong.Pham",
       "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
@@ -34,7 +34,7 @@
       "id": 3
     },
     {
-      "name": "HTML/CSS Ebook",
+      "name": "HTML/CSS Ebook 4",
       "description": "Description of some book will displayed here",
       "author": "Duong.Pham",
       "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
@@ -45,7 +45,7 @@
       "id": 4
     },
     {
-      "name": "HTML/CSS Ebook",
+      "name": "HTML/CSS Ebook 5",
       "description": "Description of some book will displayed here",
       "author": "Duong.Pham",
       "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
@@ -56,7 +56,7 @@
       "id": 5
     },
     {
-      "name": "HTML/CSS Ebook",
+      "name": "HTML/CSS Ebook 5",
       "description": "Description of some book will displayed here",
       "author": "Duong.Pham",
       "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
@@ -67,7 +67,7 @@
       "id": 6
     },
     {
-      "name": "HTML/CSS Ebook",
+      "name": "HTML/CSS Ebook 6",
       "description": "Description of some book will displayed here",
       "author": "Duong.Pham",
       "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
@@ -78,7 +78,7 @@
       "id": 7
     },
     {
-      "name": "HTML/CSS Ebook",
+      "name": "HTML/CSS Ebook 7",
       "description": "Description of some book will displayed here",
       "author": "Duong.Pham",
       "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
@@ -89,7 +89,7 @@
       "id": 8
     },
     {
-      "name": "HTML/CSS Ebook",
+      "name": "HTML/CSS Ebook 8",
       "description": "Description of some book will displayed here",
       "author": "Duong.Pham",
       "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
@@ -100,7 +100,7 @@
       "id": 9
     },
     {
-      "name": "HTML/CSS Ebook",
+      "name": "HTML/CSS Ebook 9",
       "description": "Description of some book will displayed here",
       "author": "Duong.Pham",
       "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",

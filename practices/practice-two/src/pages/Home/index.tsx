@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { usePagination, useSearchParam } from 'hooks';
+import { useFilter, usePagination, useSearchParam } from 'hooks';
 import { Link } from 'react-router-dom';
 
 //Components
@@ -21,14 +21,18 @@ import { SORT } from '@constants';
 const Home = () => {
   const { data = [], isLoading, error } = useSWR<Book[]>('books');
   const {
+    param: { name, sort },
+  } = useSearchParam();
+  const { data: filters } = useFilter(data, {
+    name,
+    sort,
+  });
+  const {
     data: dataShow,
     pagination,
     currentPage,
     changePageByValue,
-  } = usePagination(data);
-  const {
-    param: { sort },
-  } = useSearchParam();
+  } = usePagination(filters);
 
   if (error) {
     return <p>{error}</p>;
