@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "concurrently \"vite\" \"start-storybook -p 6006\"",
+    "start": "concurrently \"vite\" \"start-storybook -p 6006\" \" json-server --watch src/json-server/db.json\"",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "build-storybook": "build-storybook",
@@ -15,7 +15,8 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.9.0"
+    "react-router-dom": "^6.9.0",
+    "swr": "^2.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",

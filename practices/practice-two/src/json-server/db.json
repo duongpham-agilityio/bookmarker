@@ -1,0 +1,114 @@
+{
+  "books": [
+    {
+      "name": "HTML/CSS Ebook",
+      "description": "Description of some book will displayed here",
+      "author": "Duong.Pham",
+      "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "createdAt": 1680158351376,
+      "deletedAt": null,
+      "updatedAt": 1680158351376,
+      "publishDate": 1680158351376,
+      "id": 1
+    },
+    {
+      "name": "HTML/CSS Ebook",
+      "description": "Description of some book will displayed here",
+      "author": "Duong.Pham",
+      "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "createdAt": 1680158351376,
+      "deletedAt": null,
+      "updatedAt": 1680158351376,
+      "publishDate": 1680158351376,
+      "id": 2
+    },
+    {
+      "name": "HTML/CSS Ebook",
+      "description": "Description of some book will displayed here",
+      "author": "Duong.Pham",
+      "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "createdAt": 1680158351376,
+      "deletedAt": null,
+      "updatedAt": 1680158351376,
+      "publishDate": 1680158351376,
+      "id": 3
+    },
+    {
+      "name": "HTML/CSS Ebook",
+      "description": "Description of some book will displayed here",
+      "author": "Duong.Pham",
+      "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "createdAt": 1680158351376,
+      "deletedAt": null,
+      "updatedAt": 1680158351376,
+      "publishDate": 1680158351376,
+      "id": 4
+    },
+    {
+      "name": "HTML/CSS Ebook",
+      "description": "Description of some book will displayed here",
+      "author": "Duong.Pham",
+      "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "createdAt": 1680158351376,
+      "deletedAt": null,
+      "updatedAt": 1680158351376,
+      "publishDate": 1680158351376,
+      "id": 5
+    },
+    {
+      "name": "HTML/CSS Ebook",
+      "description": "Description of some book will displayed here",
+      "author": "Duong.Pham",
+      "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "createdAt": 1680158351376,
+      "deletedAt": null,
+      "updatedAt": 1680158351376,
+      "publishDate": 1680158351376,
+      "id": 6
+    },
+    {
+      "name": "HTML/CSS Ebook",
+      "description": "Description of some book will displayed here",
+      "author": "Duong.Pham",
+      "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "createdAt": 1680158351376,
+      "deletedAt": null,
+      "updatedAt": 1680158351376,
+      "publishDate": 1680158351376,
+      "id": 7
+    },
+    {
+      "name": "HTML/CSS Ebook",
+      "description": "Description of some book will displayed here",
+      "author": "Duong.Pham",
+      "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "createdAt": 1680158351376,
+      "deletedAt": null,
+      "updatedAt": 1680158351376,
+      "publishDate": 1680158351376,
+      "id": 8
+    },
+    {
+      "name": "HTML/CSS Ebook",
+      "description": "Description of some book will displayed here",
+      "author": "Duong.Pham",
+      "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "createdAt": 1680158351376,
+      "deletedAt": null,
+      "updatedAt": 1680158351376,
+      "publishDate": 1680158351376,
+      "id": 9
+    },
+    {
+      "name": "HTML/CSS Ebook",
+      "description": "Description of some book will displayed here",
+      "author": "Duong.Pham",
+      "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "createdAt": 1680158351376,
+      "deletedAt": null,
+      "updatedAt": 1680158351376,
+      "publishDate": 1680158351376,
+      "id": 10
+    }
+  ]
+}
