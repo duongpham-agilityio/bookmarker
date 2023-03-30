@@ -1,11 +1,11 @@
 import { ChangeEvent, useState } from 'react';
 import useSWR from 'swr';
-import { useDebounce, useFilter, usePagination, useSearchParam } from 'hooks';
 import { Link } from 'react-router-dom';
+import { useDebounce, useFilter, usePagination, useSearchParam } from 'hooks';
 
 //Components
 import { Button, Heading, Input } from 'components/commons';
-import { Card } from 'components';
+import { Card, Error } from 'components';
 
 // Constants
 import { MESSAGES, SORT } from '@constants';
@@ -20,6 +20,7 @@ import commonStyles from 'styles/commons/index.module.css';
 // Assets
 import SearchIcon from 'assets/icons/search.svg';
 import AddIcon from 'assets/icons/add.svg';
+import { withErrorBoundary } from 'hocs/withErrorBoudaries';
 
 const Home = () => {
   const { data = [], isLoading, error } = useSWR<Book[]>('books');
@@ -41,7 +42,7 @@ const Home = () => {
   useDebounce(search, (value) => setSearchParam('name', value));
 
   if (error) {
-    return <p>{error}</p>;
+    return <Error />;
   }
 
   if (isLoading) {
@@ -142,4 +143,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withErrorBoundary(Home);
