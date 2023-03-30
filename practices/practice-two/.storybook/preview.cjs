@@ -1,3 +1,4 @@
+// Styles
 import '../src/styles/index.module.css';
 
 export const parameters = {

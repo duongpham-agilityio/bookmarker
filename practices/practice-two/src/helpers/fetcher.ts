@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const axiosConfig = axios.create({
-  baseURL: import.meta.env.VITE_URL,
+  baseURL: process.env.VITE_URL,
 });
 
 export const fetcher = (endpoint: string) => {
