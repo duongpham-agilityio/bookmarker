@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { usePagination } from 'hooks';
+import { usePagination, useSearchParam } from 'hooks';
 import { Link } from 'react-router-dom';
 
 //Components
@@ -16,6 +16,7 @@ import commonStyles from 'styles/commons/index.module.css';
 // Assets
 import SearchIcon from 'assets/icons/search.svg';
 import AddIcon from 'assets/icons/add.svg';
+import { SORT } from '@constants';
 
 const Home = () => {
   const { data = [], isLoading, error } = useSWR<Book[]>('books');
@@ -25,6 +26,9 @@ const Home = () => {
     currentPage,
     changePageByValue,
   } = usePagination(data);
+  const {
+    param: { sort },
+  } = useSearchParam();
 
   if (error) {
     return <p>{error}</p>;
@@ -48,12 +52,22 @@ const Home = () => {
           <nav className={homeStyles.navigation}>
             <ul className={homeStyles.navList}>
               <li>
-                <Link to="?sort=" className={homeStyles.navLink}>
+                <Link
+                  to={`?sort=${SORT.ASCENDING}`}
+                  className={`${homeStyles.navLink} ${
+                    sort === SORT.ASCENDING ? homeStyles.active : ''
+                  }`}
+                >
                   Ascending
                 </Link>
               </li>
               <li>
-                <Link to="?sort=" className={homeStyles.navLink}>
+                <Link
+                  to={`?sort=${SORT.DESCENDING}`}
+                  className={`${homeStyles.navLink} ${
+                    sort === SORT.DESCENDING ? homeStyles.active : ''
+                  }`}
+                >
                   Descending
                 </Link>
               </li>

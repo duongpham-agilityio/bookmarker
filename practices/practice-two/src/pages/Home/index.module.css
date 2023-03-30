@@ -29,6 +29,10 @@ width:340px;
   color: var(--primary-color);
 }
 
+.navLink.active {
+  color: var(--secondary-color);
+}
+
 .content {
   padding: 27px 0;
 }
