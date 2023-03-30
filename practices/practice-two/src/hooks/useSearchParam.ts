@@ -25,18 +25,18 @@ export const useSearchParam = () => {
    */
   const setSearchParam = useCallback(
     (key: keyof typeof param, value: string) => {
-      const searchValue: { [key: string]: string } = {};
+      const searchValue: { [key: string]: string } = {
+        ...param,
+        [key]: value,
+      };
 
-      searchParams.forEach((value, key) => {
-        if (value) {
-          searchValue[key] = value;
+      Object.entries(searchValue).forEach(([key, value]) => {
+        if (!value) {
+          delete searchValue[key];
         }
       });
 
-      setSearchParams({
-        ...searchValue,
-        [key]: value,
-      });
+      setSearchParams(searchValue);
     },
     [param, setSearchParams]
   );
