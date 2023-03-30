@@ -1,10 +1,13 @@
 import useSWR from 'swr';
-import { useFilter, usePagination, useSearchParam } from 'hooks';
+import { useDebounce, useFilter, usePagination, useSearchParam } from 'hooks';
 import { Link } from 'react-router-dom';
 
 //Components
 import { Button, Input } from 'components/commons';
 import { Card } from 'components';
+
+// Constants
+import { SORT } from '@constants';
 
 // Types
 import { Book } from 'types';
@@ -16,12 +19,13 @@ import commonStyles from 'styles/commons/index.module.css';
 // Assets
 import SearchIcon from 'assets/icons/search.svg';
 import AddIcon from 'assets/icons/add.svg';
-import { SORT } from '@constants';
+import { ChangeEvent, useState } from 'react';
 
 const Home = () => {
   const { data = [], isLoading, error } = useSWR<Book[]>('books');
   const {
     param: { name, sort },
+    setSearchParam,
   } = useSearchParam();
   const { data: filters } = useFilter(data, {
     name,
@@ -33,6 +37,8 @@ const Home = () => {
     currentPage,
     changePageByValue,
   } = usePagination(filters);
+  const [search, setSearch] = useState('');
+  useDebounce(search, (value) => setSearchParam('name', value));
 
   if (error) {
     return <p>{error}</p>;
@@ -48,10 +54,12 @@ const Home = () => {
         <div className={homeStyles.navbar}>
           <Input
             className={homeStyles.search}
-            value={''}
+            value={search}
             leftIcon={SearchIcon}
             placeholder="Search something..."
-            onChange={() => {}}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+              setSearch(event.target.value);
+            }}
           />
           <nav className={homeStyles.navigation}>
             <ul className={homeStyles.navList}>

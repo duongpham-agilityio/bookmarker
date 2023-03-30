@@ -11,7 +11,7 @@ export const useSearchParam = () => {
   const param = useMemo(() => {
     const param = {
       page: searchParams.get('page') || PARAM_DEFAULT.PAGE,
-      name: searchParams.get('search') || PARAM_DEFAULT.SEARCH,
+      name: searchParams.get('name') || PARAM_DEFAULT.SEARCH,
       sort: searchParams.get('sort') || PARAM_DEFAULT.SORT,
     };
 
