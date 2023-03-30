@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
+import useSWR from 'swr';
 
 //Components
 import { Button, Input } from 'components/commons';
+import { Card } from 'components';
+
+// Types
+import { Book } from 'types';
 
 // Styles
 import homeStyles from 'pages/Home/index.module.css';
@@ -10,9 +15,18 @@ import commonStyles from 'styles/commons/index.module.css';
 // Assets
 import SearchIcon from 'assets/icons/search.svg';
 import AddIcon from 'assets/icons/add.svg';
-import { Card } from 'components';
 
 const Home = () => {
+  const { data = [], isLoading, error } = useSWR<Book[]>('books');
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <main className={commonStyles.container}>
       <section className={homeStyles.home}>
@@ -48,16 +62,13 @@ const Home = () => {
         </div>
         <div className={homeStyles.content}>
           <div className={homeStyles.grid}>
-            {new Array(6).fill(0).map((book, index) => (
+            {data.map((book) => (
               <Card
-                title="HTML/CSS Ebook HTML/CSS Ebook HTML/CSS Ebook HTML/CSS Ebook"
-                description="Description of some
-            book will displayed here Description of some
-            book will displayed here Description of some
-            book will displayed here"
+                title={book.name}
+                description={book.description}
                 publishedDate="9:00 AM"
-                imageUrl=""
-                key={index}
+                imageUrl={book.imageURL}
+                key={book.id}
               />
             ))}
           </div>
