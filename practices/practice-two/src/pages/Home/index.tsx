@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
 import useSWR from 'swr';
+import { usePagination } from 'hooks';
+import { Link } from 'react-router-dom';
 
 //Components
 import { Button, Input } from 'components/commons';
@@ -18,6 +19,12 @@ import AddIcon from 'assets/icons/add.svg';
 
 const Home = () => {
   const { data = [], isLoading, error } = useSWR<Book[]>('books');
+  const {
+    data: dataShow,
+    pagination,
+    currentPage,
+    changePageByValue,
+  } = usePagination(data);
 
   if (error) {
     return <p>{error}</p>;
@@ -62,7 +69,7 @@ const Home = () => {
         </div>
         <div className={homeStyles.content}>
           <div className={homeStyles.grid}>
-            {data.map((book) => (
+            {dataShow.map((book) => (
               <Card
                 title={book.name}
                 description={book.description}
@@ -74,9 +81,20 @@ const Home = () => {
           </div>
         </div>
         <div className={homeStyles.pagination}>
-          <Button label="1" variant="primary" />
-          <Button label="2" variant="secondary" />
-          <Button label="3" variant="secondary" />
+          {pagination.map((__, index) => {
+            const page = index + 1;
+
+            return (
+              <Button
+                label={`${page}`}
+                variant={currentPage === page ? 'primary' : 'secondary'}
+                key={index}
+                onClick={() => {
+                  changePageByValue(page);
+                }}
+              />
+            );
+          })}
         </div>
       </section>
     </main>
