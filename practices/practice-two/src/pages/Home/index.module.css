@@ -1,0 +1,48 @@
+.home {
+font-family: var(--primary-font);
+}
+
+.navbar {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.search {
+width:340px;
+}
+
+.navigation {
+  flex: 1;
+}
+
+.navList {
+  display: flex;
+  gap: 27px;
+}
+
+.navLink {
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.content {
+  padding: 27px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 22px;
+}
+
+.pagination {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
