@@ -3,11 +3,11 @@ import { useDebounce, useFilter, usePagination, useSearchParam } from 'hooks';
 import { Link } from 'react-router-dom';
 
 //Components
-import { Button, Input } from 'components/commons';
+import { Button, Heading, Input } from 'components/commons';
 import { Card } from 'components';
 
 // Constants
-import { SORT } from '@constants';
+import { MESSAGES, SORT } from '@constants';
 
 // Types
 import { Book } from 'types';
@@ -93,35 +93,50 @@ const Home = () => {
             border="b-lg"
           />
         </div>
-        <div className={homeStyles.content}>
-          <div className={homeStyles.grid}>
-            {dataShow.map((book) => (
-              <Card
-                title={book.name}
-                description={book.description}
-                publishedDate="9:00 AM"
-                imageUrl={book.imageURL}
-                key={book.id}
-              />
-            ))}
-          </div>
-        </div>
-        <div className={homeStyles.pagination}>
-          {pagination.map((__, index) => {
-            const page = index + 1;
+        {dataShow.length ? (
+          <>
+            <div className={homeStyles.content}>
+              <div className={homeStyles.grid}>
+                {dataShow.map((book) => (
+                  <Card
+                    title={book.name}
+                    description={book.description}
+                    publishedDate="9:00 AM"
+                    imageUrl={book.imageURL}
+                    key={book.id}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className={homeStyles.pagination}>
+              {pagination.map((__, index) => {
+                const page = index + 1;
 
-            return (
-              <Button
-                label={`${page}`}
-                variant={currentPage === page ? 'primary' : 'secondary'}
-                key={index}
-                onClick={() => {
-                  changePageByValue(page);
-                }}
-              />
-            );
-          })}
-        </div>
+                return (
+                  <Button
+                    label={`${page}`}
+                    variant={currentPage === page ? 'primary' : 'secondary'}
+                    key={index}
+                    onClick={() => {
+                      changePageByValue(page);
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </>
+        ) : (
+          <div className={homeStyles.empty}>
+            <Heading
+              label={MESSAGES.EMPTY_TITLE}
+              className={homeStyles.emptyTitle}
+              size="xl"
+            />
+            <p className={homeStyles.emptyDescription}>
+              {MESSAGES.EMPTY_DESCRIPTION}
+            </p>
+          </div>
+        )}
       </section>
     </main>
   );

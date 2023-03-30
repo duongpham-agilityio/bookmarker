@@ -50,3 +50,16 @@ width:340px;
   justify-content: center;
   padding: 40px 0;
 }
+
+.empty {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.emptyDescription {
+  font-size: 30px;
+  color: var(--secondary-text-color);
+}
