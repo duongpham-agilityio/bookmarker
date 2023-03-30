@@ -27,6 +27,7 @@ const config = {
             helpers: path.resolve(__dirname, '../src/helpers'),
             contexts: path.resolve(__dirname, '../src/contexts'),
             hooks: path.resolve(__dirname, '../src/hooks'),
+            hocs: path.resolve(__dirname, '../src/hocs'),
             layouts: path.resolve(__dirname, '../src/layouts'),
             pages: path.resolve(__dirname, '../src/pages'),
             reducers: path.resolve(__dirname, '../src/reducers'),
