@@ -5,3 +5,4 @@ export {
 
 export { default as Form, type FormProps } from './Form';
 export { default as Popup, type PopupProps } from './Popup';
+export { default as Card, type CardProps } from './Card';
