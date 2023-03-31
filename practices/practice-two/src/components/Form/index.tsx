@@ -14,11 +14,13 @@ import UploadIcon from 'assets/icons/upload.svg';
 import { useForm } from 'hooks';
 
 export type FormProps = {
-  value: Omit<Book, 'deletedAt' | 'createdAt' | 'updatedAt'>;
+  value: Omit<Book, 'publishDate' | 'deletedAt' | 'createdAt' | 'updatedAt'> & {
+    publishDate?: number;
+  };
   title?: string;
   className?: string;
+  type?: 'update' | 'create';
   onClose?: (_event: MouseEvent) => void;
-  handleSubmit?: () => void;
 };
 
 const Form = (props: FormProps) => {
@@ -26,15 +28,15 @@ const Form = (props: FormProps) => {
     value: data,
     title = 'Create a new book marker',
     className = '',
+    type = 'create',
     onClose,
-    handleSubmit,
   } = props;
   const {
-    value: { author, description, imageURL, name, publishDate },
+    value: { author, description, imageURL, name, publishDate, imageName },
     refImage,
     onChange,
     onSubmit,
-  } = useForm(data, handleSubmit);
+  } = useForm(data, type);
 
   return (
     <section className={styles.overlay}>
@@ -81,7 +83,7 @@ const Form = (props: FormProps) => {
               <Input
                 type="date"
                 value={publishDate}
-                name="publishedDate"
+                name="publishDate"
                 onChange={onChange}
               />
             </div>
@@ -90,26 +92,18 @@ const Form = (props: FormProps) => {
                 <label className={styles.label} htmlFor="imageURL">
                   Upload
                 </label>
-                {!refImage.current?.files?.length ? (
+                <input
+                  ref={refImage}
+                  hidden
+                  className={styles.input}
+                  type="file"
+                  name="imageURL"
+                  id="imageURL"
+                  accept=".png,.jpeg"
+                  onChange={onChange}
+                />
+                {!imageName ? (
                   <>
-                    {/* <Input
-                      className={styles.input}
-                      type="file"
-                      name="imageURL"
-                      id="imageURL"
-                      accept=".png,.jpeg"
-                      onChange={onChange}
-                    /> */}
-                    <input
-                      ref={refImage}
-                      hidden
-                      className={styles.input}
-                      type="file"
-                      name="imageURL"
-                      id="imageURL"
-                      accept=".png,.jpeg"
-                    />
-
                     <Button
                       label="Upload"
                       width="w-lg"
@@ -122,12 +116,27 @@ const Form = (props: FormProps) => {
                     />
                   </>
                 ) : (
-                  <p>select image</p>
+                  <p
+                    onClick={() => {
+                      console.log(refImage.current);
+
+                      refImage.current?.click();
+                    }}
+                  >
+                    {imageName}
+                  </p>
                 )}
               </div>
               <div className={styles.uploadItem}>
-                {/* <img src={imageURL} alt="image book" className={styles.image} /> */}
-                <div className={styles.image}>{imageURL}</div>
+                {imageURL ? (
+                  <img
+                    src={imageURL}
+                    alt="image book"
+                    className={styles.image}
+                  />
+                ) : (
+                  <div className={styles.image}>{imageURL}</div>
+                )}
               </div>
             </div>
           </div>
@@ -141,6 +150,7 @@ const Form = (props: FormProps) => {
                 className={styles.text}
                 value={description}
                 placeholder="Book name"
+                name="description"
                 onChange={onChange}
               />
             </div>

@@ -42,6 +42,10 @@
   gap: 26px;
 }
 
+.uploadItem:first-child {
+  flex: 1;
+}
+
 .formField {
   flex: 1;
 }

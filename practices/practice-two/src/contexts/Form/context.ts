@@ -6,8 +6,11 @@ import { Book } from 'types';
 
 export type StateType =
   | {
-      formData: Book;
+      formData: Omit<Book, 'publishDate'> & {
+        publishDate?: number;
+      };
       title: string;
+      type: 'update' | 'create';
     }
   | undefined;
 
@@ -18,10 +21,6 @@ const defaultDispatch: Dispatch<SetStateAction<StateType>> = (props: Props) =>
 
 export const FormContext = createContext<{
   dispatch: Dispatch<SetStateAction<StateType>>;
-  createBook: (_book: Omit<Book, 'id'>) => void;
-  updateBook: (_id: number, _book: Omit<Book, 'id'>) => void;
 }>({
   dispatch: defaultDispatch,
-  createBook: (_book: Omit<Book, 'id'>) => {},
-  updateBook: (_id: number, _book: Omit<Book, 'id'>) => {},
 });

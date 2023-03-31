@@ -1,13 +1,19 @@
-import { ChangeEvent, MouseEvent, useState } from 'react';
+import { ChangeEvent, MouseEvent, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useBooks, useDebounce } from 'hooks';
+
+// HOCS
+import { withErrorBoundary } from 'hocs/withErrorBoudaries';
+
+// Contexts
+import { FormContext } from 'contexts/Form/context';
 
 //Components
 import { Button, Heading, Input } from 'components/commons';
 import { Card, CardSkeleton, Error } from 'components';
 
 // Constants
-import { MESSAGES, SORT } from '@constants';
+import { MESSAGES, SORT, TITLE_FORM } from '@constants';
 
 // Styles
 import homeStyles from 'pages/Home/index.module.css';
@@ -16,9 +22,9 @@ import commonStyles from 'styles/commons/index.module.css';
 // Assets
 import SearchIcon from 'assets/icons/search.svg';
 import AddIcon from 'assets/icons/add.svg';
-import { withErrorBoundary } from 'hocs/withErrorBoudaries';
 
 const Home = () => {
+  const { dispatch } = useContext(FormContext);
   const {
     param: { page: currentPage, sort },
     data: dataShow,
@@ -79,6 +85,21 @@ const Home = () => {
             leftIcon={AddIcon}
             width="w-lg"
             border="b-lg"
+            onClick={() => {
+              dispatch({
+                formData: {
+                  author: '',
+                  description: '',
+                  imageURL: '',
+                  name: '',
+                  createdAt: new Date().getTime(),
+                  deletedAt: null,
+                  updatedAt: new Date().getTime(),
+                },
+                title: TITLE_FORM.CREATE,
+                type: 'create',
+              });
+            }}
           />
         </div>
 

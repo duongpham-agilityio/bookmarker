@@ -1,44 +1,29 @@
-import { ReactNode, useCallback, useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 // Components
 import { Form } from 'components';
 
 //Context
-import { FormContext } from 'contexts/Form/context';
-
-// Types
-import { Book } from 'types';
-
-type StateType =
-  | {
-      formData: Book;
-      title: string;
-    }
-  | undefined;
+import { FormContext, StateType } from 'contexts/Form/context';
 
 const FormProvider = ({ children }: { children: ReactNode }) => {
   const [form, setForm] = useState<StateType>(undefined);
-
-  const createBook = useCallback((book: Omit<Book, 'id'>) => {
-    console.log('Create Book', book);
-  }, []);
-
-  const updateBook = useCallback((id: number, book: Omit<Book, 'id'>) => {
-    console.log('Create Book', id);
-    console.log('Create Book', book);
-  }, []);
 
   return (
     <FormContext.Provider
       value={{
         dispatch: setForm,
-        createBook,
-        updateBook,
       }}
     >
       {children}
 
-      {form && <Form value={form.formData} title={form.title} />}
+      {form && (
+        <Form
+          value={form.formData}
+          title={form.title}
+          onClose={() => setForm(undefined)}
+        />
+      )}
     </FormContext.Provider>
   );
 };
