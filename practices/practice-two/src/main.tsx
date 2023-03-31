@@ -1,4 +1,4 @@
-import { Home } from 'pages';
+import { Detail } from 'pages';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           fetcher,
         }}
       >
-        <Home />
+        <Detail />
       </SWRConfig>
     </BrowserRouter>
   </React.StrictMode>
