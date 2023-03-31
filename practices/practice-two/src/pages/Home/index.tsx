@@ -1,17 +1,13 @@
 import { ChangeEvent, useState } from 'react';
-import useSWR from 'swr';
 import { Link } from 'react-router-dom';
-import { useDebounce, useFilter, usePagination, useSearchParam } from 'hooks';
+import { useBooks, useDebounce } from 'hooks';
 
 //Components
 import { Button, Heading, Input } from 'components/commons';
-import { Card, Error } from 'components';
+import { Card, CardSkeleton, Error } from 'components';
 
 // Constants
 import { MESSAGES, SORT } from '@constants';
-
-// Types
-import { Book } from 'types';
 
 // Styles
 import homeStyles from 'pages/Home/index.module.css';
@@ -23,30 +19,20 @@ import AddIcon from 'assets/icons/add.svg';
 import { withErrorBoundary } from 'hocs/withErrorBoudaries';
 
 const Home = () => {
-  const { data = [], isLoading, error } = useSWR<Book[]>('books');
   const {
-    param: { name, sort },
-    setSearchParam,
-  } = useSearchParam();
-  const { data: filters } = useFilter(data, {
-    name,
-    sort,
-  });
-  const {
+    param: { page: currentPage, sort },
     data: dataShow,
+    isLoading,
+    error,
     pagination,
-    currentPage,
     changePageByValue,
-  } = usePagination(filters);
+    setSearchParam,
+  } = useBooks();
   const [search, setSearch] = useState('');
   useDebounce(search, (value) => setSearchParam('name', value));
 
   if (error) {
     return <Error />;
-  }
-
-  if (isLoading) {
-    return <p>Loading...</p>;
   }
 
   return (
@@ -94,49 +80,61 @@ const Home = () => {
             border="b-lg"
           />
         </div>
-        {dataShow.length ? (
-          <>
-            <div className={homeStyles.content}>
-              <div className={homeStyles.grid}>
-                {dataShow.map((book) => (
-                  <Card
-                    title={book.name}
-                    description={book.description}
-                    publishedDate="9:00 AM"
-                    imageUrl={book.imageURL}
-                    key={book.id}
-                  />
-                ))}
-              </div>
-            </div>
-            <div className={homeStyles.pagination}>
-              {pagination.map((__, index) => {
-                const page = index + 1;
 
-                return (
-                  <Button
-                    label={`${page}`}
-                    variant={currentPage === page ? 'primary' : 'secondary'}
-                    key={index}
-                    onClick={() => {
-                      changePageByValue(page);
-                    }}
-                  />
-                );
-              })}
-            </div>
-          </>
-        ) : (
-          <div className={homeStyles.empty}>
-            <Heading
-              label={MESSAGES.EMPTY_TITLE}
-              className={homeStyles.emptyTitle}
-              size="xl"
-            />
-            <p className={homeStyles.emptyDescription}>
-              {MESSAGES.EMPTY_DESCRIPTION}
-            </p>
+        {isLoading ? (
+          <div className={homeStyles.grid}>
+            {[1, 2, 3, 4, 5, 6].map((value) => (
+              <CardSkeleton key={value} />
+            ))}
           </div>
+        ) : (
+          <>
+            {dataShow?.length ? (
+              <>
+                <div className={homeStyles.content}>
+                  <div className={homeStyles.grid}>
+                    {dataShow.map((book) => (
+                      <Card
+                        href={`${book.id}`}
+                        title={book.name}
+                        description={book.description}
+                        publishedDate="9:00 AM"
+                        imageUrl={book.imageURL}
+                        key={book.id}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className={homeStyles.pagination}>
+                  {pagination.map((__, index) => {
+                    const page = index + 1;
+
+                    return (
+                      <Button
+                        label={`${page}`}
+                        variant={currentPage === page ? 'primary' : 'secondary'}
+                        key={index}
+                        onClick={() => {
+                          changePageByValue(page);
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              <div className={homeStyles.empty}>
+                <Heading
+                  label={MESSAGES.EMPTY_TITLE}
+                  className={homeStyles.emptyTitle}
+                  size="xl"
+                />
+                <p className={homeStyles.emptyDescription}>
+                  {MESSAGES.EMPTY_DESCRIPTION}
+                </p>
+              </div>
+            )}
+          </>
         )}
       </section>
     </main>

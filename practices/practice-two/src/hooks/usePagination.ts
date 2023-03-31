@@ -5,7 +5,7 @@ import { useSearchParam } from 'hooks';
 import { Book } from 'types';
 import { RECORD } from '@constants';
 
-export const usePagination = (products: Book[]) => {
+export const usePagination = (products: Book[] = []) => {
   const { param, setSearchParam } = useSearchParam();
 
   /**
@@ -55,7 +55,6 @@ export const usePagination = (products: Book[]) => {
   return {
     data: filters,
     pagination,
-    currentPage: param.page,
     changePageByValue,
   };
 };
