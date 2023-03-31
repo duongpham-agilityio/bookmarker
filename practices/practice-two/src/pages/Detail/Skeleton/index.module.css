@@ -1,0 +1,59 @@
+.detail {
+  height: 748px;
+  background-color: white;
+  padding: 40px 0;
+}
+
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.heading,
+.description {
+  flex: 1;
+  margin: 0 0 15px;
+}
+.heading,
+.description,
+.infoItem {
+  border-radius: 20px;
+}
+
+.action {
+  display: flex;
+  gap: 15px;
+}
+
+.action .btn:first-child {
+  background-color: var(--light-gray);
+}
+
+.heading {
+  height: 85px;
+}
+
+.description,
+.infoItem  {
+  height: 56px;
+  background-color: var(--gray-color);
+ }
+
+ .listInfo {
+  padding: 30px 0;
+}
+
+ .infoItem {
+  width: 553px;
+  margin: 0 0 10px;
+ }
+
+ .image {
+  width: 310px;
+  height: 400px;
+  border-radius: 7px;
+  object-fit: contain;
+  background-color: var(--light-gray);
+}
