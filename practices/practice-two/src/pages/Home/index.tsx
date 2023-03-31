@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, MouseEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useBooks, useDebounce } from 'hooks';
 
@@ -26,6 +26,7 @@ const Home = () => {
     error,
     pagination,
     changePageByValue,
+    deleteBook,
     setSearchParam,
   } = useBooks();
   const [search, setSearch] = useState('');
@@ -101,6 +102,11 @@ const Home = () => {
                         publishedDate="9:00 AM"
                         imageUrl={book.imageURL}
                         key={book.id}
+                        onDelete={(event: MouseEvent) => {
+                          event.preventDefault();
+
+                          deleteBook(book.id || 0);
+                        }}
                       />
                     ))}
                   </div>
