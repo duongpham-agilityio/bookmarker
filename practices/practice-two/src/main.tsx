@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import { SWRConfig } from 'swr';
 
+// Context
+import { ToastProvider } from 'contexts';
+
 // Routes
 import { routes } from 'routes';
 
@@ -19,7 +22,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         fetcher,
       }}
     >
-      <RouterProvider router={routes} />
+      <ToastProvider>
+        <RouterProvider router={routes} />
+      </ToastProvider>
     </SWRConfig>
   </React.StrictMode>
 );
