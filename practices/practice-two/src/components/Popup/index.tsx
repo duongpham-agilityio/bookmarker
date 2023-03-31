@@ -1,3 +1,5 @@
+import { MouseEvent } from 'react';
+
 // Components
 import { Button, Heading } from 'components/commons';
 
@@ -7,8 +9,8 @@ import styles from 'components/Popup/index.module.css';
 export type PopupProps = {
   title?: string;
   description?: string;
-  onAccept?: () => void;
-  onCancel?: () => void;
+  onAccept?: (_event: MouseEvent) => void;
+  onCancel?: (_event: MouseEvent) => void;
 };
 
 const Popup = (props: PopupProps) => {
