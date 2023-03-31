@@ -5,7 +5,12 @@
 
 .detailItem {
   display: flex;
+  justify-content: space-between;
   gap: 20px;
+}
+
+.detailItem:last-child{
+  padding: 20px 0;
 }
 
 .heading,
