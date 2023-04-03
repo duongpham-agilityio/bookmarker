@@ -21,6 +21,7 @@ const FormProvider = ({ children }: { children: ReactNode }) => {
         <Form
           value={form.formData}
           title={form.title}
+          type={form.type}
           onClose={() => setForm(undefined)}
         />
       )}

@@ -83,6 +83,42 @@ export const useForm = (
     );
   }, [state]);
 
+  const handleUpdateBook = useCallback(() => {
+    try {
+      const newBook = {
+        ...state,
+        updatedAt: new Date().getTime(),
+      };
+
+      mutate(
+        `books/${state.id}`,
+        async () => {
+          const res = await axiosConfig
+            .patch(`books/${state.id}`, newBook)
+            .then((r) => r.data);
+
+          console.log(res);
+
+          return res;
+        },
+        {
+          optimisticData: newBook,
+        }
+      );
+      setNotification({
+        message: MESSAGES.UPDATE_TITLE,
+        title: MESSAGES.UPDATE_SUCCESS,
+      });
+      dispatch(undefined);
+    } catch (error) {
+      setNotification({
+        message: MESSAGES.ERROR_TITLE,
+        title: MESSAGES.EMPTY_FIELD,
+        type: 'error',
+      });
+    }
+  }, [state]);
+
   const onSubmit = useCallback(
     (event: FormEvent) => {
       event.preventDefault();
@@ -108,6 +144,8 @@ export const useForm = (
       }
 
       if (type === 'create') return handleCreateBook();
+
+      return handleUpdateBook();
     },
     [type, state]
   );

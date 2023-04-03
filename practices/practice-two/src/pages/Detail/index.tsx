@@ -1,15 +1,16 @@
-import useSWR from 'swr';
+import { useContext } from 'react';
+import { useBook } from 'hooks';
+
+// HOCs
+import { withErrorBoundaries } from 'hocs/withErrorBoundaries';
+
+// Contexts
+import { FormContext } from 'contexts/Form/context';
 
 // Components
 import { Button, Heading } from 'components/commons';
 import { Error } from 'components';
 import DetailSkeleton from 'pages/Detail/Skeleton';
-
-// Mock data
-import { book } from 'mock-data';
-
-// Types
-import { Book } from 'types';
 
 // Styles
 import containerStyles from 'styles/commons/index.module.css';
@@ -19,10 +20,10 @@ import styles from 'pages/Detail/index.module.css';
 import TrashIcon from 'assets/icons/trash.svg';
 import BackIcon from 'assets/icons/back.svg';
 import PenCilIcon from 'assets/icons/pencil.svg';
-import { withErrorBoundaries } from 'hocs/withErrorBoundaries';
 
 const Detail = () => {
-  const { data = book, error, isLoading } = useSWR<Book>('books/1');
+  const { dispatch } = useContext(FormContext);
+  const { data, error, isLoading, deleteBook } = useBook();
 
   if (error) {
     return <Error />;
@@ -38,13 +39,25 @@ const Detail = () => {
             <Heading label={data.name} size="xl" className={styles.heading} />
             <div>
               <div className={styles.action}>
-                <Button label="" leftIcon={TrashIcon} variant="danger" />
+                <Button
+                  label=""
+                  leftIcon={TrashIcon}
+                  variant="danger"
+                  onClick={deleteBook}
+                />
                 <Button label="" leftIcon={BackIcon} variant="primary" />
                 <Button
                   label="Edit"
                   leftIcon={PenCilIcon}
                   variant="primary"
                   width="w-lg"
+                  onClick={() =>
+                    dispatch({
+                      formData: data,
+                      title: 'Edit book',
+                      type: 'update',
+                    })
+                  }
                 />
               </div>
             </div>

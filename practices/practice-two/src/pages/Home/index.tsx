@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useBooks, useDebounce } from 'hooks';
 
 // HOCS
-import { withErrorBoundary } from 'hocs/withErrorBoundaries';
+import { withErrorBoundaries } from 'hocs/withErrorBoundaries';
 
 // Contexts
 import { FormContext } from 'contexts/Form/context';
@@ -168,4 +168,4 @@ const Home = () => {
   );
 };
 
-export default withErrorBoundary(Home);
+export default withErrorBoundaries(Home);

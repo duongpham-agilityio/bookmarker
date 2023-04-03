@@ -46,21 +46,11 @@ export const useBooks = () => {
     [swr.data]
   );
 
-  const handleAdd = useCallback((book: Omit<Book, 'id'>) => {
-    console.log('add product ', book);
-  }, []);
-
-  const handleUpdate = useCallback((id: number, book: Book) => {
-    console.log('update book ', book);
-  }, []);
-
   return {
     ...swr,
     ...restUseSearch,
     ...pagination,
     param: { name, sort, page },
     deleteBook: handleDelete,
-    add: handleAdd,
-    update: handleUpdate,
   };
 };

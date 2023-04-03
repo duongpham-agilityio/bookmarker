@@ -1,18 +1,15 @@
-import { Outlet, RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
+
+// Layouts
+import { MainLayout } from 'layouts';
 
 // Pages
 import { Home, Detail } from 'pages';
-import { Header } from 'layouts';
 
 export const publicRoutes: RouteObject[] = [
   {
     path: '/books',
-    element: (
-      <>
-        <Header />
-        <Outlet />
-      </>
-    ),
+    element: <MainLayout />,
     children: [
       {
         index: true,
