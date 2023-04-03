@@ -1,4 +1,4 @@
-import { useContext, useMemo } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useBook } from 'hooks';
 
@@ -25,13 +25,14 @@ import { convertDateTimeToTimeString, convertTimeToDate } from 'helpers';
 
 const Detail = () => {
   const { data, error, isLoading, deleteBook } = useBook();
-  const redirect = useNavigate();
 
   if (error) {
     return <Error />;
   }
 
+  const redirect = useNavigate();
   const { dispatch } = useContext(FormContext);
+  const [isShortCut, setIsShortCut] = useState(true);
   const book = useMemo(() => {
     const { publishDate, createdAt, updatedAt, ...rest } = data;
     const publishDateConvert = `${convertDateTimeToTimeString(
@@ -93,8 +94,31 @@ const Detail = () => {
           <div className={styles.detailItem}>
             <div className={styles.info}>
               <p className={styles.description}>
-                <span>{data.description.substring(0, 150)}</span>
-                <span className={styles.actionText}>show more</span>
+                {isShortCut ? (
+                  <span>{data.description.substring(0, 150)}</span>
+                ) : (
+                  <span>{data.description}</span>
+                )}
+
+                {data.description.length > 150 && (
+                  <>
+                    {isShortCut ? (
+                      <span
+                        className={styles.actionText}
+                        onClick={() => setIsShortCut(false)}
+                      >
+                        show more
+                      </span>
+                    ) : (
+                      <span
+                        className={styles.actionText}
+                        onClick={() => setIsShortCut(true)}
+                      >
+                        show hide
+                      </span>
+                    )}
+                  </>
+                )}
               </p>
               <ul className={styles.listInfo}>
                 <li className={styles.infoItem}>
