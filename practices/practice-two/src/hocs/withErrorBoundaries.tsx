@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react';
 // Component
 import { Error } from 'components';
 
-export const withErrorBoundary = <T extends object>(
+export const withErrorBoundaries = <T extends object>(
   WrappedComponent: FunctionComponent<T>
 ) => {
   class Wrapper extends React.Component<T, { hashError: boolean }> {

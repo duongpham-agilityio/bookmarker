@@ -19,6 +19,7 @@ import styles from 'pages/Detail/index.module.css';
 import TrashIcon from 'assets/icons/trash.svg';
 import BackIcon from 'assets/icons/back.svg';
 import PenCilIcon from 'assets/icons/pencil.svg';
+import { withErrorBoundaries } from 'hocs/withErrorBoundaries';
 
 const Detail = () => {
   const { data = book, error, isLoading } = useSWR<Book>('books/1');
@@ -87,4 +88,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default withErrorBoundaries(Detail);
