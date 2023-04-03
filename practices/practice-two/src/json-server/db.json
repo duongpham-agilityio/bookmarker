@@ -12,18 +12,6 @@
       "id": 1
     },
     {
-      "name": "HTML/CSS Ebook 21",
-      "description": "Description of some book will displayed here",
-      "author": "Duong.Pham",
-      "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-      "createdAt": 1680158351376,
-      "deletedAt": null,
-      "updatedAt": 1680492508455,
-      "publishDate": 1680158351376,
-      "id": 2,
-      "imageName": ""
-    },
-    {
       "name": "HTML/CSS Ebook 3",
       "description": "Description of some book will displayed here",
       "author": "Duong.Pham",

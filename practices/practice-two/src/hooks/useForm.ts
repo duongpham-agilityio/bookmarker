@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   ChangeEvent,
   FormEvent,
@@ -18,15 +19,18 @@ import {
 } from 'helpers';
 
 // Constants
-import { MESSAGES } from '@constants';
+import { MESSAGES, TIMEOUT_DEBOUNCE } from '@constants';
 
 // Contexts
 import { ToastContext } from 'contexts/Toast/context';
 import { FormContext } from 'contexts/Form/context';
 
 // Types
-import { Book } from 'types';
+import { Book, Recommend } from 'types';
 import { mutate } from 'swr';
+
+// Mock data
+import { book } from 'mock-data';
 
 export const useForm = (
   data: Omit<Book, 'publishDate' | 'deletedAt' | 'createdAt' | 'updatedAt'> & {
@@ -36,12 +40,14 @@ export const useForm = (
 ) => {
   const { setNotification } = useContext(ToastContext);
   const { dispatch } = useContext(FormContext);
-
   const [state, setState] = useState({
     ...data,
     imageName: '',
   });
+  const [booksRecommended, setBooksRecommended] = useState<Recommend[]>([]);
+
   const refImage = useRef<HTMLInputElement>(null);
+  const refTime = useRef<ReturnType<typeof setTimeout>>();
 
   const value = useMemo(() => {
     const { publishDate, ...rest } = state;
@@ -119,6 +125,50 @@ export const useForm = (
     }
   }, [state]);
 
+  const handleRecommended = useCallback((value: string) => {
+    if (value) {
+      if (refTime.current) clearTimeout(refTime.current);
+
+      refTime.current = setTimeout(async () => {
+        const books = await axiosConfig
+          .get(`https://www.googleapis.com/books/v1/volumes?q=${value}`)
+          .then((r) => r.data)
+          .then((data) => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const books =
+              data?.items.map((_item: { volumeInfo: any }) => {
+                const { title, publishedDate, description, imageLinks } =
+                  _item.volumeInfo;
+
+                return {
+                  name: title,
+                  publishDate: publishedDate,
+                  description,
+                  imageURL: imageLinks.thumbnail || book.imageURL,
+                };
+              }) || [];
+
+            return books;
+          });
+
+        setBooksRecommended(books);
+      }, TIMEOUT_DEBOUNCE);
+    }
+  }, []);
+
+  const handleSelectRecommended = useCallback(
+    (index: number) => {
+      const book = booksRecommended[index];
+      setState((prev) => ({
+        ...prev,
+        ...book,
+      }));
+
+      setBooksRecommended([]);
+    },
+    [booksRecommended]
+  );
+
   const onSubmit = useCallback(
     (event: FormEvent) => {
       event.preventDefault();
@@ -153,12 +203,13 @@ export const useForm = (
   const onChange = useCallback(
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const element = event.target;
+      const value = element.value.trim();
       const key: keyof typeof data = element.name as keyof typeof data;
 
       if (key === 'publishDate') {
         return setState((prev) => ({
           ...prev,
-          publishDate: convertStringToTime(element.value),
+          publishDate: convertStringToTime(value),
         }));
       }
 
@@ -180,17 +231,21 @@ export const useForm = (
         return;
       }
 
+      if (key === 'name') handleRecommended(value);
+
       setState((prev) => ({
         ...prev,
-        [key]: element.value,
+        [key]: value,
       }));
     },
-    []
+    [state]
   );
 
   return {
     value,
+    booksRecommended,
     refImage,
+    handleSelectRecommended,
     onSubmit,
     onChange,
   };

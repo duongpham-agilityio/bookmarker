@@ -48,6 +48,25 @@
 
 .formField {
   flex: 1;
+  position: relative;
+}
+
+.recommend {
+  position: absolute;
+  top: calc(100% + 20px);
+  border-radius: 7px;
+  background-color: white;
+  z-index: 999;
+  box-shadow: 0 6px 10px silver;
+}
+
+.recommendItem {
+  padding: 10px 7px;
+}
+
+.recommendItem:hover {
+  background-color: var(--gray-color);
+  cursor: pointer;
 }
 
 .text {

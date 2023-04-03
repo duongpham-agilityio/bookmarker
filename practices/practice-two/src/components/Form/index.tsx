@@ -34,6 +34,8 @@ const Form = (props: FormProps) => {
   const {
     value: { author, description, imageURL, name, publishDate, imageName },
     refImage,
+    booksRecommended,
+    handleSelectRecommended,
     onChange,
     onSubmit,
   } = useForm(data, type);
@@ -61,6 +63,22 @@ const Form = (props: FormProps) => {
                 id="bookName"
                 onChange={onChange}
               />
+
+              {!!booksRecommended.length && (
+                <ul className={styles.recommend}>
+                  {booksRecommended.map((book, index) => {
+                    return (
+                      <li
+                        className={styles.recommendItem}
+                        key={index}
+                        onClick={() => handleSelectRecommended(index)}
+                      >
+                        <p>{book.name}</p>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
             </div>
             <div className={styles.formField}>
               <label className={styles.label} htmlFor="author">
