@@ -118,8 +118,6 @@ const Form = (props: FormProps) => {
                 ) : (
                   <p
                     onClick={() => {
-                      console.log(refImage.current);
-
                       refImage.current?.click();
                     }}
                   >

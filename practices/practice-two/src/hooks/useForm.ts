@@ -2,6 +2,7 @@ import {
   ChangeEvent,
   FormEvent,
   useCallback,
+  useContext,
   useMemo,
   useRef,
   useState,
@@ -13,7 +14,15 @@ import {
   convertStringToTime,
   convertTimeToDate,
   fetcher,
+  validate,
 } from 'helpers';
+
+// Constants
+import { MESSAGES } from '@constants';
+
+// Contexts
+import { ToastContext } from 'contexts/Toast/context';
+import { FormContext } from 'contexts/Form/context';
 
 // Types
 import { Book } from 'types';
@@ -25,6 +34,9 @@ export const useForm = (
   },
   type: 'create' | 'update'
 ) => {
+  const { setNotification } = useContext(ToastContext);
+  const { dispatch } = useContext(FormContext);
+
   const [state, setState] = useState({
     ...data,
     imageName: '',
@@ -40,30 +52,62 @@ export const useForm = (
     };
   }, [state]);
 
+  const handleCreateBook = useCallback(() => {
+    mutate(
+      'books',
+      async () => {
+        // eslint-disable-next-line no-unused-vars
+        const { imageName, ...rest } = state;
+        await axiosConfig.post('/books', rest);
+
+        return fetcher('books');
+      },
+      {
+        optimisticData: (prevData: Book[]) => {
+          setNotification({
+            message: MESSAGES.ADD_SUCCESS,
+            title: MESSAGES.ADD_TITLE,
+          });
+          dispatch(undefined);
+
+          return [
+            ...prevData,
+            {
+              ...state,
+              id: 0,
+            },
+          ];
+        },
+        revalidate: true,
+      }
+    );
+  }, [state]);
+
   const onSubmit = useCallback(
     (event: FormEvent) => {
       event.preventDefault();
+      // eslint-disable-next-line no-unused-vars
+      const { name, author, imageURL, description, publishDate, ...rest } =
+        state;
+      const checked = {
+        name,
+        author,
+        imageURL,
+        description,
+        publishDate,
+      };
 
-      mutate(
-        'books',
-        async () => {
-          await axiosConfig.post('/books', state);
+      const isError = validate(checked);
 
-          return fetcher('books');
-        },
-        {
-          optimisticData: (prevData: Book[]) => {
-            return [
-              ...prevData,
-              {
-                ...state,
-                id: 0,
-              },
-            ];
-          },
-          revalidate: true,
-        }
-      );
+      if (isError) {
+        return setNotification({
+          message: MESSAGES.EMPTY_FIELD_DESCRIPTION,
+          title: MESSAGES.EMPTY_FIELD,
+          type: 'error',
+        });
+      }
+
+      if (type === 'create') return handleCreateBook();
     },
     [type, state]
   );
