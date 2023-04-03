@@ -1,4 +1,5 @@
 import { useContext, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useBook } from 'hooks';
 
 // HOCs
@@ -24,6 +25,7 @@ import { convertDateTimeToTimeString, convertTimeToDate } from 'helpers';
 
 const Detail = () => {
   const { data, error, isLoading, deleteBook } = useBook();
+  const redirect = useNavigate();
 
   if (error) {
     return <Error />;
@@ -66,7 +68,12 @@ const Detail = () => {
                   variant="danger"
                   onClick={deleteBook}
                 />
-                <Button label="" leftIcon={BackIcon} variant="primary" />
+                <Button
+                  label=""
+                  leftIcon={BackIcon}
+                  variant="primary"
+                  onClick={() => redirect('/books')}
+                />
                 <Button
                   label="Edit"
                   leftIcon={PenCilIcon}
