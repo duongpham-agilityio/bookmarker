@@ -22,6 +22,7 @@ import commonStyles from 'styles/commons/index.module.css';
 // Assets
 import SearchIcon from 'assets/icons/search.svg';
 import AddIcon from 'assets/icons/add.svg';
+import { convertDateTimeToTimeString } from 'helpers';
 
 const Home = () => {
   const { dispatch } = useContext(FormContext);
@@ -120,7 +121,9 @@ const Home = () => {
                         href={`${book.id}`}
                         title={book.name}
                         description={book.description}
-                        publishedDate="9:00 AM"
+                        publishedDate={convertDateTimeToTimeString(
+                          book.createdAt
+                        )}
                         imageUrl={book.imageURL}
                         key={book.id}
                         onDelete={(event: MouseEvent) => {

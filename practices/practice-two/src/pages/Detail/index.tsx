@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { useBook } from 'hooks';
 
 // HOCs
@@ -20,14 +20,35 @@ import styles from 'pages/Detail/index.module.css';
 import TrashIcon from 'assets/icons/trash.svg';
 import BackIcon from 'assets/icons/back.svg';
 import PenCilIcon from 'assets/icons/pencil.svg';
+import { convertDateTimeToTimeString, convertTimeToDate } from 'helpers';
 
 const Detail = () => {
-  const { dispatch } = useContext(FormContext);
   const { data, error, isLoading, deleteBook } = useBook();
 
   if (error) {
     return <Error />;
   }
+
+  const { dispatch } = useContext(FormContext);
+  const book = useMemo(() => {
+    const { publishDate, createdAt, updatedAt, ...rest } = data;
+    const publishDateConvert = `${convertDateTimeToTimeString(
+      publishDate
+    )}, ${convertTimeToDate(publishDate, '/', true)}`;
+    const createdAtConvert = `${convertDateTimeToTimeString(
+      createdAt
+    )}, ${convertTimeToDate(createdAt, '/', true)}`;
+    const updatedAtConvert = `${convertDateTimeToTimeString(
+      updatedAt
+    )}, ${convertTimeToDate(updatedAt, '/', true)}`;
+
+    return {
+      ...rest,
+      publishDate: publishDateConvert,
+      createdAt: createdAtConvert,
+      updatedAt: updatedAtConvert,
+    };
+  }, [data]);
 
   return (
     <main className={containerStyles.container}>
@@ -71,19 +92,19 @@ const Detail = () => {
               <ul className={styles.listInfo}>
                 <li className={styles.infoItem}>
                   <span className={styles.label}>Author: </span>
-                  <span className={styles.text}>{data.author}</span>
+                  <span className={styles.text}>{book.author}</span>
                 </li>
                 <li className={styles.infoItem}>
                   <span className={styles.label}>Published date: </span>
-                  <span className={styles.text}>{data.publishDate}</span>
+                  <span className={styles.text}>{book.publishDate}</span>
                 </li>
                 <li className={styles.infoItem}>
                   <span className={styles.label}>Created at: </span>
-                  <span className={styles.text}>{data.createdAt}</span>
+                  <span className={styles.text}>{book.createdAt}</span>
                 </li>
                 <li className={styles.infoItem}>
                   <span className={styles.label}>Updated at: </span>
-                  <span className={styles.text}>{data.updatedAt}</span>
+                  <span className={styles.text}>{book.updatedAt}</span>
                 </li>
               </ul>
             </div>
