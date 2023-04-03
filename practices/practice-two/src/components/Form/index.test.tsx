@@ -12,6 +12,22 @@ jest.mock('assets/icons/upload.svg', () => ({
   default: 'assets/icons/upload.svg',
 }));
 
+jest.mock('assets/icons/next.svg', () => ({
+  default: 'assets/icons/next.svg',
+}));
+
+jest.mock('assets/icons/trash.svg', () => ({
+  default: 'assets/icons/trash.svg',
+}));
+
+jest.mock('assets/icons/back.svg', () => ({
+  default: 'assets/icons/back.svg',
+}));
+
+jest.mock('assets/icons/pencil.svg', () => ({
+  default: 'assets/icons/pencil.svg',
+}));
+
 const value: Omit<Book, 'createdAt' | 'deletedAt' | 'updatedAt'> = {
   author: 'John',
   name: 'HTML/CSS',
@@ -37,15 +53,11 @@ describe('FormComponent', () => {
     const mockHandleSubmit = jest.fn();
     const mockOnClose = jest.fn();
 
-    const { getByText } = render(
-      <Form
-        value={value}
-        handleSubmit={mockHandleSubmit}
-        onClose={mockOnClose}
-      />
-    );
+    const { getByText } = render(<Form value={value} onClose={mockOnClose} />);
     const saveBtn = getByText(/Save/i);
     const cancelBtn = getByText(/Cancel/i);
+
+    saveBtn.addEventListener('click', mockHandleSubmit);
 
     // click button submit
     fireEvent.click(saveBtn);
