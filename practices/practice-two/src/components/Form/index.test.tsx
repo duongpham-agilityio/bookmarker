@@ -28,6 +28,9 @@ jest.mock('assets/icons/pencil.svg', () => ({
   default: 'assets/icons/pencil.svg',
 }));
 
+const setup = (onClose?: () => void) =>
+  render(<Form value={value} onClose={onClose} />);
+
 const value: Omit<Book, 'createdAt' | 'deletedAt' | 'updatedAt'> = {
   author: 'John',
   name: 'HTML/CSS',
@@ -38,13 +41,13 @@ const value: Omit<Book, 'createdAt' | 'deletedAt' | 'updatedAt'> = {
 
 describe('FormComponent', () => {
   it('match snapshot', () => {
-    const { asFragment } = render(<Form value={value} />);
+    const { asFragment } = setup();
 
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('render', () => {
-    const { getByText } = render(<Form value={value} />);
+    const { getByText } = setup();
 
     expect(getByText(/Save/i)).toBeInTheDocument();
   });
@@ -52,20 +55,29 @@ describe('FormComponent', () => {
   it('action', () => {
     const mockHandleSubmit = jest.fn();
     const mockOnClose = jest.fn();
-
-    const { getByText } = render(<Form value={value} onClose={mockOnClose} />);
+    const mockOnChange = jest.fn();
+    const { getByText, getAllByPlaceholderText } = setup(mockOnClose);
     const saveBtn = getByText(/Save/i);
     const cancelBtn = getByText(/Cancel/i);
+    const input = getAllByPlaceholderText(/book name/i);
 
     saveBtn.addEventListener('click', mockHandleSubmit);
+    input[0].addEventListener('change', mockOnChange);
 
     // click button submit
     fireEvent.click(saveBtn);
+    expect(mockHandleSubmit).toHaveBeenCalled();
 
     // click button cancel
     fireEvent.click(cancelBtn);
-
-    expect(mockHandleSubmit).toHaveBeenCalled();
     expect(mockOnClose).toHaveBeenCalled();
+
+    // change input
+    fireEvent.change(input[0], {
+      target: {
+        value: 'HTML/CSS',
+      },
+    });
+    expect(mockOnChange).toHaveBeenCalled();
   });
 });
