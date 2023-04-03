@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, Component } from 'react';
 
 // Component
 import { Error } from 'components';
@@ -6,7 +6,7 @@ import { Error } from 'components';
 export const withErrorBoundaries = <T extends object>(
   WrappedComponent: FunctionComponent<T>
 ) => {
-  class Wrapper extends React.Component<T, { hashError: boolean }> {
+  class Wrapper extends Component<T, { hashError: boolean }> {
     constructor(props: T) {
       super(props);
       this.state = {
