@@ -31,7 +31,7 @@ export const useBooks = () => {
     name,
     sort,
   });
-  const pagination = usePagination(filters);
+  const pagination = usePagination(filters, page);
   const handleDelete = useCallback(
     (id: number) => {
       try {

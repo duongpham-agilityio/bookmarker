@@ -36,6 +36,8 @@ export const useSearchParam = () => {
         }
       });
 
+      console.log('searchValue', searchValue);
+
       setSearchParams(searchValue);
     },
     [param, setSearchParams]

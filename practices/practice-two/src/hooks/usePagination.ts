@@ -1,13 +1,10 @@
-import { useCallback, useMemo } from 'react';
-import { useSearchParam } from 'hooks';
+import { useMemo } from 'react';
 
 // Types
 import { Book } from 'types';
 import { RECORD } from '@constants';
 
-export const usePagination = (products: Book[] = []) => {
-  const { param, setSearchParam } = useSearchParam();
-
+export const usePagination = (products: Book[] = [], page: number) => {
   /**
    * Calculate the number of pages to RECORD
    */
@@ -27,33 +24,20 @@ export const usePagination = (products: Book[] = []) => {
    * Get products by page
    */
   const filters = useMemo(() => {
-    const { page: paramPage } = param;
     const filteredProducts = products.filter((product) => {
       const index = products.indexOf(product);
-      const isStartIndex = index >= (paramPage - 1) * RECORD;
-      const isEndIndex = index < paramPage * RECORD;
+      const isStartIndex = index >= (page - 1) * RECORD;
+      const isEndIndex = index < page * RECORD;
       const condition = isStartIndex && isEndIndex;
 
       return condition;
     });
 
     return filteredProducts;
-  }, [products, RECORD, param]);
-
-  /**
-   * Go to the page you want to see
-   * @param page Pages to see
-   */
-  const changePageByValue = useCallback(
-    (page: number) => {
-      setSearchParam('page', `${page}`);
-    },
-    [setSearchParam]
-  );
+  }, [products, page]);
 
   return {
     data: filters,
     pagination,
-    changePageByValue,
   };
 };

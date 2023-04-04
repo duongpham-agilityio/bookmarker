@@ -32,12 +32,11 @@ const Home = () => {
     isLoading,
     error,
     pagination,
-    changePageByValue,
     deleteBook,
     setSearchParam,
   } = useBooks();
   const [search, setSearch] = useState('');
-  useDebounce(search, (value) => setSearchParam('name', value));
+  const debounce = useDebounce((value) => setSearchParam('name', value));
 
   if (error) {
     return <Error />;
@@ -54,13 +53,14 @@ const Home = () => {
             placeholder="Search something..."
             onChange={(event: ChangeEvent<HTMLInputElement>) => {
               setSearch(event.target.value);
+              debounce(event.target.value);
             }}
           />
           <nav className={homeStyles.navigation}>
             <ul className={homeStyles.navList}>
               <li>
                 <Link
-                  to={`?sort=${SORT.ASCENDING}`}
+                  to={`/books?sort=${SORT.ASCENDING}`}
                   className={`${homeStyles.navLink} ${
                     sort === SORT.ASCENDING ? homeStyles.active : ''
                   }`}
@@ -70,7 +70,7 @@ const Home = () => {
               </li>
               <li>
                 <Link
-                  to={`?sort=${SORT.DESCENDING}`}
+                  to={`/books?sort=${SORT.DESCENDING}`}
                   className={`${homeStyles.navLink} ${
                     sort === SORT.DESCENDING ? homeStyles.active : ''
                   }`}
@@ -149,7 +149,7 @@ const Home = () => {
                           size="small"
                           key={index}
                           onClick={() => {
-                            changePageByValue(page);
+                            setSearchParam('page', `${page}`);
                           }}
                         />
                       );
