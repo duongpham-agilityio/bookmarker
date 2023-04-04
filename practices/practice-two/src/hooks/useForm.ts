@@ -77,6 +77,8 @@ export const useForm = (
     };
   }, [state]);
 
+  console.log(value);
+
   /**
    * Handling add new book
    */
@@ -140,8 +142,11 @@ export const useForm = (
         },
         {
           optimisticData: newBook,
+          populateCache: false,
+          revalidate: false,
         }
       );
+      setState(newBook);
       setNotification({
         message: MESSAGES.UPDATE_TITLE,
         title: MESSAGES.UPDATE_SUCCESS,
@@ -188,11 +193,7 @@ export const useForm = (
 
           setBooksRecommended(books);
         } catch (error) {
-          setNotification({
-            message: MESSAGES.ERROR_TITLE,
-            title: MESSAGES.EMPTY_FIELD,
-            type: 'error',
-          });
+          setBooksRecommended([]);
         }
       }, TIMEOUT_DEBOUNCE);
     }
