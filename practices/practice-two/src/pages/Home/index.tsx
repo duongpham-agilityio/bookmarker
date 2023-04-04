@@ -118,7 +118,7 @@ const Home = () => {
                   <div className={homeStyles.grid}>
                     {dataShow.map((book) => (
                       <Card
-                        href={`${book.id}`}
+                        href={`/books/${book.id}`}
                         title={book.name}
                         description={book.description}
                         publishedDate={convertDateTimeToTimeString(

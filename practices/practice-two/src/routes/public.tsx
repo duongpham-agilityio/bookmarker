@@ -1,4 +1,4 @@
-import { RouteObject } from 'react-router-dom';
+import { Outlet, RouteObject } from 'react-router-dom';
 
 // Layouts
 import { MainLayout } from 'layouts';
@@ -8,7 +8,7 @@ import { Home, Detail } from 'pages';
 
 export const publicRoutes: RouteObject[] = [
   {
-    path: '/books',
+    path: '/',
     element: <MainLayout />,
     children: [
       {
@@ -16,8 +16,18 @@ export const publicRoutes: RouteObject[] = [
         element: <Home />,
       },
       {
-        path: ':id',
-        element: <Detail />,
+        path: 'books',
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <Home />,
+          },
+          {
+            path: ':id',
+            element: <Detail />,
+          },
+        ],
       },
     ],
   },
