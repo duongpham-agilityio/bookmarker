@@ -12,6 +12,9 @@ import { axiosConfig } from 'helpers';
 // Types
 import { Book } from 'types';
 
+// Constants
+import { MESSAGES } from '@constants';
+
 /**
  * Get out all the current list
  * @returns object containing properties and methods for interacting with a books
@@ -31,19 +34,27 @@ export const useBooks = () => {
   const pagination = usePagination(filters);
   const handleDelete = useCallback(
     (id: number) => {
-      dispatch(() => {
-        const newData = swr.data?.filter((book) => {
-          return book.id !== id;
-        });
+      try {
+        dispatch(() => {
+          const newData = swr.data?.filter((book) => {
+            return book.id !== id;
+          });
 
-        swr.mutate(() => axiosConfig.delete(`books/${id}`), {
-          optimisticData: newData,
-          populateCache: false,
-          revalidate: false,
-        });
+          swr.mutate(() => axiosConfig.delete(`books/${id}`), {
+            optimisticData: newData,
+            populateCache: false,
+            revalidate: false,
+          });
 
-        setNotification({ message: 'Delete success', title: 'Delete ' });
-      });
+          setNotification({ message: 'Delete success', title: 'Delete ' });
+        });
+      } catch (error) {
+        return setNotification({
+          message: MESSAGES.ERROR_TITLE,
+          title: MESSAGES.EMPTY_FIELD,
+          type: 'error',
+        });
+      }
     },
     [swr.data]
   );

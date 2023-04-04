@@ -49,13 +49,18 @@ export const useForm = (
   type: 'create' | 'update'
 ) => {
   const { setNotification } = useContext(ToastContext);
+
   const { dispatch } = useContext(FormContext);
+
   const [state, setState] = useState({
     ...data,
     imageName: '',
   });
+
   const [booksRecommended, setBooksRecommended] = useState<Recommend[]>([]);
+
   const refImage = useRef<HTMLInputElement>(null);
+
   const refTime = useRef<ReturnType<typeof setTimeout>>();
 
   /**
@@ -74,34 +79,42 @@ export const useForm = (
    * Handling add new book
    */
   const handleCreateBook = useCallback(() => {
-    mutate(
-      'books',
-      async () => {
-        // eslint-disable-next-line no-unused-vars
-        const { imageName, ...rest } = state;
-        await axiosConfig.post('/books', rest);
+    try {
+      mutate(
+        'books',
+        async () => {
+          // eslint-disable-next-line no-unused-vars
+          const { imageName, ...rest } = state;
+          await axiosConfig.post('/books', rest);
 
-        return fetcher('books');
-      },
-      {
-        optimisticData: (prevData: Book[]) => {
-          setNotification({
-            message: MESSAGES.ADD_SUCCESS,
-            title: MESSAGES.ADD_TITLE,
-          });
-          dispatch(undefined);
-
-          return [
-            ...prevData,
-            {
-              ...state,
-              id: 0,
-            },
-          ];
+          return fetcher('books');
         },
-        revalidate: true,
-      }
-    );
+        {
+          optimisticData: (prevData: Book[]) => {
+            setNotification({
+              message: MESSAGES.ADD_SUCCESS,
+              title: MESSAGES.ADD_TITLE,
+            });
+            dispatch(undefined);
+
+            return [
+              ...prevData,
+              {
+                ...state,
+                id: 0,
+              },
+            ];
+          },
+          revalidate: true,
+        }
+      );
+    } catch (error) {
+      setNotification({
+        message: MESSAGES.ERROR_TITLE,
+        title: MESSAGES.EMPTY_FIELD,
+        type: 'error',
+      });
+    }
   }, [state]);
 
   /**
@@ -120,8 +133,6 @@ export const useForm = (
           const res = await axiosConfig
             .patch(`books/${state.id}`, newBook)
             .then((r) => r.data);
-
-          console.log(res);
 
           return res;
         },
@@ -151,28 +162,36 @@ export const useForm = (
       if (refTime.current) clearTimeout(refTime.current);
 
       refTime.current = setTimeout(async () => {
-        const books = await axiosConfig
-          .get(`${process.env.VITE_RECOMMENDED_URL}?q=${value}`)
-          .then((r) => r.data)
-          .then((data) => {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const books =
-              data?.items.map((_item: { volumeInfo: any }) => {
-                const { title, publishedDate, description, imageLinks } =
-                  _item.volumeInfo;
+        try {
+          const books = await axiosConfig
+            .get(`${process.env.VITE_RECOMMENDED_URL}?q=${value}`)
+            .then((r) => r.data)
+            .then((data) => {
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              const books =
+                data?.items.map((_item: { volumeInfo: any }) => {
+                  const { title, publishedDate, description, imageLinks } =
+                    _item.volumeInfo;
 
-                return {
-                  name: title,
-                  publishDate: publishedDate,
-                  description,
-                  imageURL: imageLinks.thumbnail || book.imageURL,
-                };
-              }) || [];
+                  return {
+                    name: title,
+                    publishDate: publishedDate,
+                    description,
+                    imageURL: imageLinks.thumbnail || book.imageURL,
+                  };
+                }) || [];
 
-            return books;
+              return books;
+            });
+
+          setBooksRecommended(books);
+        } catch (error) {
+          setNotification({
+            message: MESSAGES.ERROR_TITLE,
+            title: MESSAGES.EMPTY_FIELD,
+            type: 'error',
           });
-
-        setBooksRecommended(books);
+        }
       }, TIMEOUT_DEBOUNCE);
     }
   }, []);

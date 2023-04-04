@@ -20,6 +20,7 @@ export const useBook = () => {
   const { dispatch } = useContext(PopupContext);
   const { id } = useParams();
   const { data = book, mutate, ...rest } = useSWR<Book>(`books/${id}`);
+
   const deleteBook = useCallback(() => {
     dispatch(() => {
       mutate(

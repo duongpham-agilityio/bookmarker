@@ -28,7 +28,6 @@ export const usePagination = (products: Book[] = []) => {
    */
   const filters = useMemo(() => {
     const { page: paramPage } = param;
-
     const filteredProducts = products.filter((product) => {
       const index = products.indexOf(product);
       const isStartIndex = index >= (paramPage - 1) * RECORD;
