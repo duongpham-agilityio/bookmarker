@@ -95,6 +95,5 @@
   width: 95px;
   height: 116px;
   object-fit: cover;
-  background-color: var(--gray-color);
   border-radius: 7px;
 }

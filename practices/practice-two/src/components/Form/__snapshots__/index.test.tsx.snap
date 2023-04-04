@@ -98,9 +98,7 @@ exports[`FormComponent match snapshot 1`] = `
                 Upload
               </button>
             </div>
-            <div>
-              <div />
-            </div>
+            <div />
           </div>
         </div>
         <div>

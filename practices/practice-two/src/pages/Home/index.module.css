@@ -1,16 +1,16 @@
 .home {
-font-family: var(--primary-font);
+  font-family: var(--primary-font);
 }
 
 .navbar {
   display: flex;
   gap: 40px;
   align-items: center;
-  padding: 20px 0;
+  padding: 20px 0 0;
 }
 
 .search {
-width:340px;
+  width: 340px;
 }
 
 .navigation {

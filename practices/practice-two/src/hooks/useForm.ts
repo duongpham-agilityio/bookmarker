@@ -57,6 +57,8 @@ export const useForm = (
     imageName: '',
   });
 
+  const [isUpload, setIsUpload] = useState(false);
+
   const [booksRecommended, setBooksRecommended] = useState<Recommend[]>([]);
 
   const refImage = useRef<HTMLInputElement>(null);
@@ -265,14 +267,19 @@ export const useForm = (
           const file = files[0];
 
           data.append('image', file);
+          setIsUpload(true);
           uploadImage(data, (response) => {
             if (response.status) {
               const name = file.name;
-              return setState((prev) => ({
+
+              setIsUpload(false);
+              setState((prev) => ({
                 ...prev,
                 imageURL: response.data.url,
                 imageName: name,
               }));
+
+              return;
             }
 
             return setNotification({
@@ -300,6 +307,7 @@ export const useForm = (
 
   return {
     value,
+    isUpload,
     booksRecommended,
     refImage,
     handleSelectRecommended,

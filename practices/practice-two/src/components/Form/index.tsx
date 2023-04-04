@@ -34,6 +34,7 @@ const Form = (props: FormProps) => {
   const {
     value: { author, description, imageURL, name, publishDate, imageName },
     refImage,
+    isUpload,
     booksRecommended,
     handleSelectRecommended,
     resetRecommended,
@@ -41,13 +42,25 @@ const Form = (props: FormProps) => {
     onSubmit,
   } = useForm(data, type);
 
+  console.log(isUpload);
+
   return (
-    <section className={styles.overlay} onClick={() => resetRecommended([])}>
+    <section
+      className={styles.overlay}
+      onClick={(e: MouseEvent) => {
+        if (onClose) onClose(e);
+      }}
+    >
       <form
         className={`${styles.form} ${className}`}
         action="#"
         method="POST"
         onSubmit={onSubmit}
+        onClick={(e: MouseEvent) => {
+          e.stopPropagation();
+
+          resetRecommended([]);
+        }}
       >
         <Heading label={title} className={styles.heading} />
 
@@ -149,14 +162,12 @@ const Form = (props: FormProps) => {
                 )}
               </div>
               <div className={styles.uploadItem}>
-                {imageURL ? (
+                {imageURL && (
                   <img
                     src={imageURL}
                     alt="image book"
                     className={styles.image}
                   />
-                ) : (
-                  <div className={styles.image}>{imageURL}</div>
                 )}
               </div>
             </div>
@@ -185,9 +196,10 @@ const Form = (props: FormProps) => {
               onClick={onClose}
             />
             <Button
+              disabled={isUpload}
               type="submit"
               label="Save"
-              variant="primary"
+              variant={isUpload ? 'default' : 'primary'}
               width="w-lg"
               border="b-lg"
             />

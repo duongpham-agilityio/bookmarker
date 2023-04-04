@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { ButtonHTMLAttributes, MouseEvent } from 'react';
 
 // Styles
 import buttonStyles from 'components/commons/Button/index.module.css';
@@ -8,7 +8,7 @@ type Size = 'small' | 'medium' | 'large';
 type Border = 'b-md' | 'b-lg';
 type Width = 'w-sm' | 'w-lg';
 type Type = 'button' | 'submit';
-export type ButtonProps = {
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   label: string;
   name?: string;
   className?: string;
