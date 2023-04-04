@@ -78,3 +78,5 @@ exports[`Home match snapshot 1`] = `
   </main>
 </DocumentFragment>
 `;
+
+exports[`Home render 1`] = `<DocumentFragment />`;

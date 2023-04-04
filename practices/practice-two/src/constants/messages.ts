@@ -10,4 +10,6 @@ export enum MESSAGES {
   ADD_SUCCESS = 'Add successfully',
   UPDATE_TITLE = 'Update',
   UPDATE_SUCCESS = 'Update successfully',
+  DELETE_TITLE = 'Are you sure to deleted this book',
+  DELETE_DESCRIPTION = 'This action can not undo, so please careful with this action',
 }

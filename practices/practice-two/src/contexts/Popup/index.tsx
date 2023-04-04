@@ -6,6 +6,9 @@ import { Popup } from 'components';
 // Contexts
 import { PopupContext } from 'contexts/Popup/context';
 
+// Constants
+import { MESSAGES } from '@constants';
+
 const initialState = {
   isShown: false,
   accepter: () => {},
@@ -34,6 +37,8 @@ const PopupProvider = ({ children }: { children: ReactNode }) => {
 
       {state.isShown && (
         <Popup
+          title={MESSAGES.DELETE_TITLE}
+          description={MESSAGES.DELETE_DESCRIPTION}
           onCancel={() => setState(initialState)}
           onAccept={(event: MouseEvent) => {
             state.accepter(event);
