@@ -1,4 +1,6 @@
 .card {
+  height: 232px;
+  width: 455px;
   display: flex;
   align-items: start;
   gap: 60px;
@@ -10,12 +12,19 @@
   padding: 40px;
 }
 
+.cardItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .cardItem:first-child {
   width: 215px;
 }
 
 .cardItem:last-child {
   flex: 1;
+  align-items: flex-end;
 }
 
 .heading {
@@ -36,9 +45,12 @@
 }
 
 .action {
+  flex: 1;
   display: flex;
   gap: 10px;
-  padding: 20px 0;
+  align-items: flex-end;
+  padding: 20px 0 0;
+  margin-top: -9px;
 }
 
 .time {
@@ -49,13 +61,13 @@
 }
 
 .image {
-  width: 100%;
+  width: 95px;
+  height: 116px;
   background-color: white;
   border-radius: 7px;
-  margin-top: 10px;
 }
 
 .image.fake {
-  width: 100%;
+  width: 95px;
   height: 116px;
 }
