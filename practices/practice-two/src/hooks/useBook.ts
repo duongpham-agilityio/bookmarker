@@ -12,6 +12,10 @@ import { book } from 'mock-data';
 import { Book } from 'types';
 import { axiosConfig } from 'helpers';
 
+/**
+ * Get the data of a book
+ * @returns object containing properties and methods for interacting with a book
+ */
 export const useBook = () => {
   const { dispatch } = useContext(PopupContext);
   const { id } = useParams();
