@@ -19,6 +19,7 @@ exports[`Notification match snapshot 1`] = `
       class="undefined undefined
   undefined undefined
   undefined "
+      type="button"
     >
       <img
         alt="icon action"

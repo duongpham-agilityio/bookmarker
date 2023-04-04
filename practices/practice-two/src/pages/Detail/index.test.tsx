@@ -3,25 +3,15 @@ import { Suspense } from 'react';
 
 // Pages
 import { Detail } from 'pages';
-
-const data = {
-  name: 'HTML/CSS Ebook 1',
-  description: 'Description of some book will displayed here',
-  author: 'Duong.Pham',
-  imageURL:
-    'http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
-  createdAt: 1680158351376,
-  deletedAt: null,
-  updatedAt: 1680158351376,
-  publishDate: 1680158351376,
-  id: 1,
-};
+import { BrowserRouter } from 'react-router-dom';
 
 const setup = async () => {
   return await act(() =>
     render(
       <Suspense>
-        <Detail />
+        <BrowserRouter>
+          <Detail />
+        </BrowserRouter>
       </Suspense>
     )
   );
@@ -52,7 +42,20 @@ jest.mock('assets/icons/pencil.svg', () => ({
 }));
 
 jest.mock('hooks', () => ({
-  useBook: jest.fn().mockReturnValue({ data }),
+  useBook: jest.fn().mockReturnValue({
+    data: {
+      name: 'HTML/CSS Ebook 1',
+      description: 'Description of some book will displayed here',
+      author: 'Duong.Pham',
+      imageURL:
+        'http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
+      createdAt: 1680158351376,
+      deletedAt: null,
+      updatedAt: 1680158351376,
+      publishDate: 1680158351376,
+      id: 1,
+    },
+  }),
 }));
 
 describe('Details', () => {

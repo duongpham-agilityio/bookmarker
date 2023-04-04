@@ -55,9 +55,6 @@ exports[`Details match snapshot 1`] = `
             <span>
               Description of some book will displayed here
             </span>
-            <span>
-              show more
-            </span>
           </p>
           <ul>
             <li>

@@ -6,6 +6,7 @@ exports[`Button match snapshot 1`] = `
     class="undefined undefined
   undefined undefined
   undefined "
+    type="button"
   >
     click me
   </button>

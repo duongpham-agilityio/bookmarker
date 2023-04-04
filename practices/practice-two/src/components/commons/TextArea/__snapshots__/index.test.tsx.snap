@@ -3,6 +3,7 @@
 exports[`TextArea match snapshot 1`] = `
 <DocumentFragment>
   <textarea
+    class="undefined "
     placeholder="Enter text..."
   >
     Hello, World

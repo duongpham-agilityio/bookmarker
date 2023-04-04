@@ -2,24 +2,25 @@ import { fireEvent, render } from '@testing-library/react';
 
 import { Input } from 'components/commons';
 
+const setup = (callback: () => void) =>
+  render(<Input value="" onChange={callback} placeholder="Enter" />);
+
 describe('Input', () => {
   it('match snapshot', () => {
-    const { asFragment } = render(<Input />);
+    const { asFragment } = setup(jest.fn());
 
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('render', () => {
-    const { getByPlaceholderText } = render(<Input placeholder="Enter" />);
+    const { getByPlaceholderText } = setup(jest.fn());
 
     expect(getByPlaceholderText(/Enter/i)).toBeInTheDocument();
   });
 
   it('action', () => {
     const mockOnChange = jest.fn();
-    const { getByPlaceholderText } = render(
-      <Input placeholder="Enter" onChange={mockOnChange} />
-    );
+    const { getByPlaceholderText } = setup(mockOnChange);
     const input = getByPlaceholderText(/Enter/i);
 
     fireEvent.change(input, {
