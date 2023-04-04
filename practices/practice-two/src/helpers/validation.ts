@@ -1,3 +1,8 @@
+/**
+ * Data validation of an object
+ * @param object
+ * @returns
+ */
 export const validate = (object: {
   [key: string]: string | number | undefined;
 }) => {

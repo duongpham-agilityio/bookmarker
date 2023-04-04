@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   ChangeEvent,
@@ -35,6 +36,12 @@ import { mutate } from 'swr';
 // Mock data
 import { book } from 'mock-data';
 
+/**
+ * Interacting with forms
+ * @param data initialization values ​of data fields in form
+ * @param type To know if this is a create form or an update form
+ * @returns Object
+ */
 export const useForm = (
   data: Omit<Book, 'publishDate' | 'deletedAt' | 'createdAt' | 'updatedAt'> & {
     publishDate?: number;
@@ -48,10 +55,12 @@ export const useForm = (
     imageName: '',
   });
   const [booksRecommended, setBooksRecommended] = useState<Recommend[]>([]);
-
   const refImage = useRef<HTMLInputElement>(null);
   const refTime = useRef<ReturnType<typeof setTimeout>>();
 
+  /**
+   * Convert data to render form
+   */
   const value = useMemo(() => {
     const { publishDate, ...rest } = state;
 
@@ -61,6 +70,9 @@ export const useForm = (
     };
   }, [state]);
 
+  /**
+   * Handling add new book
+   */
   const handleCreateBook = useCallback(() => {
     mutate(
       'books',
@@ -92,6 +104,9 @@ export const useForm = (
     );
   }, [state]);
 
+  /**
+   * Handling update book
+   */
   const handleUpdateBook = useCallback(() => {
     try {
       const newBook = {
@@ -128,6 +143,9 @@ export const useForm = (
     }
   }, [state]);
 
+  /**
+   * Handling get recommend
+   */
   const handleRecommended = useCallback((value: string) => {
     if (value) {
       if (refTime.current) clearTimeout(refTime.current);
@@ -159,14 +177,17 @@ export const useForm = (
     }
   }, []);
 
+  /**
+   * Handling select an recommend
+   */
   const handleSelectRecommended = useCallback(
     (index: number) => {
       const book = booksRecommended[index];
+
       setState((prev) => ({
         ...prev,
         ...book,
       }));
-
       setBooksRecommended([]);
     },
     [booksRecommended]

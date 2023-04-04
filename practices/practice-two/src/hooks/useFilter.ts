@@ -7,7 +7,16 @@ export type Filter = {
   sort: string;
 };
 
+/**
+ * Filter books on demand
+ * @param data book list
+ * @param filter filter option
+ * @returns book list after filtering
+ */
 export const useFilter = (data: Book[], filter: Filter) => {
+  /**
+   * Filter by book title or author name
+   */
   const filters = useMemo(() => {
     const books = data.filter((book) => {
       const isName = book.name
@@ -23,6 +32,9 @@ export const useFilter = (data: Book[], filter: Filter) => {
     return books;
   }, [data, filter.name]);
 
+  /**
+   * Sort books on demand
+   */
   const books = useMemo(() => {
     if (!filter.sort) return filters;
 

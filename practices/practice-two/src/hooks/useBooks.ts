@@ -12,11 +12,14 @@ import { axiosConfig } from 'helpers';
 // Types
 import { Book } from 'types';
 
+/**
+ * Get out all the current list
+ * @returns object containing properties and methods for interacting with a books
+ */
 export const useBooks = () => {
   const { dispatch } = useContext(PopupContext);
   const { setNotification } = useContext(ToastContext);
   const swr = useSWR<Book[]>('books');
-
   const {
     param: { name, sort, page },
     ...restUseSearch
@@ -26,7 +29,6 @@ export const useBooks = () => {
     sort,
   });
   const pagination = usePagination(filters);
-
   const handleDelete = useCallback(
     (id: number) => {
       dispatch(() => {
