@@ -10,12 +10,12 @@
 }
 
 .btn.w-sm {
-  min-width: 43px;
-  min-height: 43px;
+  height: 48px;
+  width: 48px;
 }
 
 .btn.w-lg {
-  width: 197px;
+  min-width: 197px;
   height: 56px;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .btn.b-md {
-  border-radius: 10px;
+  border-radius: 13px;
 }
 
 .btn.b-lg {

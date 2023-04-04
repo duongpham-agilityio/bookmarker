@@ -67,12 +67,14 @@ const Detail = () => {
                   label=""
                   leftIcon={TrashIcon}
                   variant="danger"
+                  className={styles.btn}
                   onClick={deleteBook}
                 />
                 <Button
                   label=""
                   leftIcon={BackIcon}
                   variant="primary"
+                  className={styles.btn}
                   onClick={() => redirect('/books')}
                 />
                 <Button
@@ -80,6 +82,7 @@ const Detail = () => {
                   leftIcon={PenCilIcon}
                   variant="primary"
                   width="w-lg"
+                  border="b-lg"
                   onClick={() =>
                     dispatch({
                       formData: data,
