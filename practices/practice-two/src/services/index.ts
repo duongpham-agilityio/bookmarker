@@ -1,1 +1,1 @@
-export { default as ImageBB } from './uploadImage';
+export { uploadImage } from './uploadImage';

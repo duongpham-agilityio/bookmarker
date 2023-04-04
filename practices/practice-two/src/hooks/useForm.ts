@@ -19,7 +19,7 @@ import {
 } from 'helpers';
 
 // Services
-import { ImageBB } from 'services';
+import { uploadImage } from 'services';
 
 // Constants
 import { MESSAGES, TIMEOUT_DEBOUNCE } from '@constants';
@@ -221,16 +221,13 @@ export const useForm = (
         const files = imageEl.files;
 
         if (files) {
-          const imgbb = new ImageBB();
           const data = new FormData();
           const file = files[0];
-          data.append('image', file);
-          imgbb.post(data, (response) => {
-            console.log(response);
 
+          data.append('image', file);
+          uploadImage(data, (response) => {
             if (response.status) {
               const name = file.name;
-
               return setState((prev) => ({
                 ...prev,
                 imageURL: response.data.url,

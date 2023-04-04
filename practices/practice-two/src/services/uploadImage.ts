@@ -1,29 +1,21 @@
-class ImageBB {
-  private endpoint: string;
+import { axiosConfig } from 'helpers';
 
-  constructor() {
-    this.endpoint = `${process.env.VITE_UPLOAD_URL}?key=${process.env.VITE_UPLOAD_KEY}`;
+export const uploadImage = async (
+  image: FormData,
+  callBack: (_response: { [key: string]: any }) => void
+) => {
+  try {
+    const data = await axiosConfig
+      .post(
+        `${process.env.VITE_UPLOAD_URL}?key=${process.env.VITE_UPLOAD_KEY}`,
+        image
+      )
+      .then((r) => r.data);
+
+    callBack(data);
+  } catch (error) {
+    callBack({
+      status: false,
+    });
   }
-
-  post(image: FormData, callBack: (_response: { [key: string]: any }) => void) {
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('POST', this.endpoint, true);
-    xhttp.onreadystatechange = () => {
-      if (xhttp.readyState === 4) {
-        if (xhttp.status >= 200 && xhttp.status < 300) {
-          callBack(JSON.parse(xhttp.responseText));
-        } else {
-          callBack({
-            status: false,
-          });
-        }
-      }
-    };
-
-    xhttp.send(image);
-
-    return this;
-  }
-}
-
-export default ImageBB;
+};
