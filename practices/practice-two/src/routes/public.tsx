@@ -6,6 +6,9 @@ import { MainLayout } from 'layouts';
 // Pages
 import { Home, Detail } from 'pages';
 
+// Constants
+import { ENDPOINT } from '@constants';
+
 export const publicRoutes: RouteObject[] = [
   {
     path: '/',
@@ -16,7 +19,7 @@ export const publicRoutes: RouteObject[] = [
         element: <Home />,
       },
       {
-        path: 'books',
+        path: ENDPOINT.BOOKS,
         element: <Outlet />,
         children: [
           {

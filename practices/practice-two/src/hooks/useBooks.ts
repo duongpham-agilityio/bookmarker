@@ -13,7 +13,7 @@ import { axiosConfig } from 'helpers';
 import { Book } from 'types';
 
 // Constants
-import { MESSAGES } from '@constants';
+import { ENDPOINT, MESSAGES } from '@constants';
 
 /**
  * Get out all the current list
@@ -22,7 +22,7 @@ import { MESSAGES } from '@constants';
 export const useBooks = () => {
   const { dispatch } = useContext(PopupContext);
   const { setNotification } = useContext(ToastContext);
-  const swr = useSWR<Book[]>('books');
+  const swr = useSWR<Book[]>(ENDPOINT.BOOKS);
   const {
     param: { name, sort, page },
     ...restUseSearch
@@ -40,7 +40,7 @@ export const useBooks = () => {
             return book.id !== id;
           });
 
-          swr.mutate(() => axiosConfig.delete(`books/${id}`), {
+          swr.mutate(() => axiosConfig.delete(`${ENDPOINT.BOOKS}/${id}`), {
             optimisticData: newData,
             populateCache: false,
             revalidate: false,

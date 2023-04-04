@@ -10,7 +10,12 @@ import { book } from 'mock-data';
 
 // Types
 import { Book } from 'types';
+
+// Helpers
 import { axiosConfig } from 'helpers';
+
+// Constants
+import { ENDPOINT } from '@constants';
 
 /**
  * Get the data of a book
@@ -19,13 +24,17 @@ import { axiosConfig } from 'helpers';
 export const useBook = () => {
   const { dispatch } = useContext(PopupContext);
   const { id } = useParams();
-  const { data = book, mutate, ...rest } = useSWR<Book>(`books/${id}`);
+  const {
+    data = book,
+    mutate,
+    ...rest
+  } = useSWR<Book>(`${ENDPOINT.BOOKS}/${id}`);
 
   const deleteBook = useCallback(() => {
     dispatch(() => {
       mutate(
         async () => {
-          return await axiosConfig.delete(`books/${id}`);
+          return await axiosConfig.delete(`${ENDPOINT.BOOKS}/${id}`);
         },
         {
           populateCache: false,
@@ -33,7 +42,7 @@ export const useBook = () => {
         }
       );
 
-      window.location.replace('/books');
+      window.location.replace(`${ENDPOINT.BOOKS}`);
     });
   }, []);
 

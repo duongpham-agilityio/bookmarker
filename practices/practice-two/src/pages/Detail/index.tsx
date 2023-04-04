@@ -21,7 +21,12 @@ import styles from 'pages/Detail/index.module.css';
 import TrashIcon from 'assets/icons/trash.svg';
 import BackIcon from 'assets/icons/back.svg';
 import PenCilIcon from 'assets/icons/pencil.svg';
+
+// Helpers
 import { convertDateTimeToTimeString, convertTimeToDate } from 'helpers';
+
+// Constants
+import { ENDPOINT } from '@constants';
 
 const Detail = () => {
   const { data, error, isLoading, deleteBook } = useBook();
@@ -31,16 +36,22 @@ const Detail = () => {
   }
 
   const redirect = useNavigate();
+
   const { dispatch } = useContext(FormContext);
+
   const [isShortCut, setIsShortCut] = useState(true);
+
   const book = useMemo(() => {
     const { publishDate, createdAt, updatedAt, ...rest } = data;
+
     const publishDateConvert = `${convertDateTimeToTimeString(
       publishDate
     )}, ${convertTimeToDate(publishDate, '/', true)}`;
+
     const createdAtConvert = `${convertDateTimeToTimeString(
       createdAt
     )}, ${convertTimeToDate(createdAt, '/', true)}`;
+
     const updatedAtConvert = `${convertDateTimeToTimeString(
       updatedAt
     )}, ${convertTimeToDate(updatedAt, '/', true)}`;
@@ -75,7 +86,7 @@ const Detail = () => {
                   leftIcon={BackIcon}
                   variant="primary"
                   className={styles.btn}
-                  onClick={() => redirect('/books')}
+                  onClick={() => redirect(`${ENDPOINT.BOOKS}`)}
                 />
                 <Button
                   label="Edit"

@@ -13,7 +13,7 @@ import { Button, Heading, Input } from 'components/commons';
 import { Card, CardSkeleton, Error } from 'components';
 
 // Constants
-import { MESSAGES, SORT, TITLE_FORM } from '@constants';
+import { ENDPOINT, MESSAGES, SORT, TITLE_FORM } from '@constants';
 
 // Styles
 import homeStyles from 'pages/Home/index.module.css';
@@ -22,6 +22,8 @@ import commonStyles from 'styles/commons/index.module.css';
 // Assets
 import SearchIcon from 'assets/icons/search.svg';
 import AddIcon from 'assets/icons/add.svg';
+
+// Helpers
 import { convertDateTimeToTimeString } from 'helpers';
 
 const Home = () => {
@@ -61,7 +63,7 @@ const Home = () => {
             <ul className={homeStyles.navList}>
               <li>
                 <Link
-                  to={`/books${convertSearchParamsToString(
+                  to={`/${ENDPOINT.BOOKS}${convertSearchParamsToString(
                     'sort',
                     SORT.ASCENDING
                   )}`}
@@ -74,7 +76,7 @@ const Home = () => {
               </li>
               <li>
                 <Link
-                  to={`/books${convertSearchParamsToString(
+                  to={`/${ENDPOINT.BOOKS}${convertSearchParamsToString(
                     'sort',
                     SORT.DESCENDING
                   )}`}
@@ -125,7 +127,7 @@ const Home = () => {
                   <div className={homeStyles.grid}>
                     {dataShow.map((book) => (
                       <Card
-                        href={`/books/${book.id}`}
+                        href={`/${ENDPOINT.BOOKS}/${book.id}`}
                         title={book.name}
                         description={book.description}
                         publishedDate={convertDateTimeToTimeString(

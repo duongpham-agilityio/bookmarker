@@ -14,6 +14,10 @@ export enum TITLE_FORM {
   CREATE = 'Create a new book marker',
 }
 
+export enum ENDPOINT {
+  BOOKS = 'books',
+}
+
 export const RECORD = 6;
 
 export const TIMEOUT_DEBOUNCE = 600;

@@ -23,7 +23,7 @@ import {
 import { uploadImage } from 'services';
 
 // Constants
-import { MESSAGES, TIMEOUT_DEBOUNCE } from '@constants';
+import { ENDPOINT, MESSAGES, TIMEOUT_DEBOUNCE } from '@constants';
 
 // Contexts
 import { ToastContext } from 'contexts/Toast/context';
@@ -85,13 +85,13 @@ export const useForm = (
   const handleCreateBook = useCallback(() => {
     try {
       mutate(
-        'books',
+        ENDPOINT.BOOKS,
         async () => {
           // eslint-disable-next-line no-unused-vars
           const { imageName, ...rest } = state;
-          await axiosConfig.post('/books', rest);
+          await axiosConfig.post(ENDPOINT.BOOKS, rest);
 
-          return fetcher('books');
+          return fetcher(ENDPOINT.BOOKS);
         },
         {
           optimisticData: (prevData: Book[]) => {
@@ -132,10 +132,10 @@ export const useForm = (
       };
 
       mutate(
-        `books/${state.id}`,
+        `${ENDPOINT.BOOKS}/${state.id}`,
         async () => {
           const res = await axiosConfig
-            .patch(`books/${state.id}`, newBook)
+            .patch(`${ENDPOINT.BOOKS}/${state.id}`, newBook)
             .then((r) => r.data);
 
           return res;
