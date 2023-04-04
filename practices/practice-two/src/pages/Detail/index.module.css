@@ -18,6 +18,10 @@
   flex: 1;
 }
 
+.description {
+  line-height: 36px;
+}
+
 .action {
   display: flex;
   gap: 15px;

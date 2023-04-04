@@ -12,13 +12,13 @@
       "id": 1
     },
     {
-      "name": "HTML/CSS Ebook",
+      "name": "HTML/CSS Ebook dd ",
       "description": "Description of some book will displayed hereDescription of some book will displayed hereDescription of some book will displayed hereDescription of some book will displayed heresdssdsdsdsdDescription of some book will displayed hereDescription of some book will displayed hereDescription of some book will displayed hereDescription of some book will displayed here",
       "author": "Duong.Pham",
       "imageURL": "http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
       "createdAt": 1680158351376,
       "deletedAt": null,
-      "updatedAt": 1680602856970,
+      "updatedAt": 1680603476559,
       "publishDate": 1680158351376,
       "id": 3,
       "imageName": ""

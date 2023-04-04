@@ -146,7 +146,6 @@ export const useForm = (
           revalidate: false,
         }
       );
-      setState(newBook);
       setNotification({
         message: MESSAGES.UPDATE_TITLE,
         title: MESSAGES.UPDATE_SUCCESS,

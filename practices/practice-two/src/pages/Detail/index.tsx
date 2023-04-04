@@ -98,7 +98,7 @@ const Detail = () => {
             <div className={styles.info}>
               <p className={styles.description}>
                 {isShortCut ? (
-                  <span>{data.description.substring(0, 150)}</span>
+                  <span>{data.description.substring(0, 140)}</span>
                 ) : (
                   <span>{data.description}</span>
                 )}
