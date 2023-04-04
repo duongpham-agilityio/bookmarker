@@ -36,11 +36,27 @@ export const useSearchParam = () => {
         }
       });
 
-      console.log('searchValue', searchValue);
-
       setSearchParams(searchValue);
     },
     [param, setSearchParams]
+  );
+
+  const convertSearchParamsToString = useCallback(
+    (searchKey: keyof typeof param, searchValue: string) => {
+      const obj: { [key: string]: string } = {
+        ...param,
+        [searchKey]: searchValue,
+      };
+      const url = Object.entries(obj).reduce((data, [key, value]) => {
+        if (value) {
+          return `${data}${key}=${value}&`;
+        }
+        return data;
+      }, '?');
+
+      return url.substring(0, url.length - 1);
+    },
+    [param]
   );
 
   return {
@@ -49,5 +65,6 @@ export const useSearchParam = () => {
       page: parseInt(param.page),
     },
     setSearchParam,
+    convertSearchParamsToString,
   };
 };

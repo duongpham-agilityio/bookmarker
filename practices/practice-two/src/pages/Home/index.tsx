@@ -34,6 +34,7 @@ const Home = () => {
     pagination,
     deleteBook,
     setSearchParam,
+    convertSearchParamsToString,
   } = useBooks();
   const [search, setSearch] = useState('');
   const debounce = useDebounce((value) => setSearchParam('name', value));
@@ -60,7 +61,10 @@ const Home = () => {
             <ul className={homeStyles.navList}>
               <li>
                 <Link
-                  to={`/books?sort=${SORT.ASCENDING}`}
+                  to={`/books${convertSearchParamsToString(
+                    'sort',
+                    SORT.ASCENDING
+                  )}`}
                   className={`${homeStyles.navLink} ${
                     sort === SORT.ASCENDING ? homeStyles.active : ''
                   }`}
@@ -70,7 +74,10 @@ const Home = () => {
               </li>
               <li>
                 <Link
-                  to={`/books?sort=${SORT.DESCENDING}`}
+                  to={`/books${convertSearchParamsToString(
+                    'sort',
+                    SORT.DESCENDING
+                  )}`}
                   className={`${homeStyles.navLink} ${
                     sort === SORT.DESCENDING ? homeStyles.active : ''
                   }`}

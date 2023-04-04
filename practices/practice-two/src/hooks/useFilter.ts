@@ -15,10 +15,40 @@ export type Filter = {
  */
 export const useFilter = (data: Book[], filter: Filter) => {
   /**
+   * Sort books on demand
+   */
+  const sorts = useMemo(() => {
+    const newBooks = [...data];
+    if (!filter.sort) return data;
+
+    if (filter.sort === SORT.ASCENDING) {
+      newBooks.sort(function (a, b) {
+        if (a.name < b.name) return -1;
+
+        if (a.name > b.name) return 1;
+
+        return 0;
+      });
+
+      return newBooks;
+    }
+
+    newBooks.sort(function (a, b) {
+      if (a.name < b.name) return 1;
+
+      if (a.name > b.name) return -1;
+
+      return 0;
+    });
+
+    return newBooks;
+  }, [data, filter.sort]);
+
+  /**
    * Filter by book title or author name
    */
   const filters = useMemo(() => {
-    const books = data.filter((book) => {
+    const books = sorts.filter((book) => {
       const isName = book.name
         .toLowerCase()
         .includes(filter.name.toLowerCase());
@@ -30,36 +60,7 @@ export const useFilter = (data: Book[], filter: Filter) => {
     });
 
     return books;
-  }, [data, filter.name]);
+  }, [sorts, filter.name]);
 
-  /**
-   * Sort books on demand
-   */
-  const books = useMemo(() => {
-    if (!filter.sort) return filters;
-
-    if (filter.sort === SORT.ASCENDING) {
-      filters.sort(function (a, b) {
-        if (a.name < b.name) return -1;
-
-        if (a.name > b.name) return 1;
-
-        return 0;
-      });
-
-      return filters;
-    }
-
-    filters.sort(function (a, b) {
-      if (a.name < b.name) return 1;
-
-      if (a.name > b.name) return -1;
-
-      return 0;
-    });
-
-    return filters;
-  }, [filters, filter.sort]);
-
-  return { data: books };
+  return { data: filters };
 };
