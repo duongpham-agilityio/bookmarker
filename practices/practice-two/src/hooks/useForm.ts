@@ -203,13 +203,13 @@ export const useForm = (
   const onChange = useCallback(
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const element = event.target;
-      const value = element.value.trim();
+      const value = element.value;
       const key: keyof typeof data = element.name as keyof typeof data;
 
       if (key === 'publishDate') {
         return setState((prev) => ({
           ...prev,
-          publishDate: convertStringToTime(value),
+          publishDate: convertStringToTime(value.trim()),
         }));
       }
 
@@ -231,7 +231,7 @@ export const useForm = (
         return;
       }
 
-      if (key === 'name') handleRecommended(value);
+      if (key === 'name') handleRecommended(value.trim());
 
       setState((prev) => ({
         ...prev,
