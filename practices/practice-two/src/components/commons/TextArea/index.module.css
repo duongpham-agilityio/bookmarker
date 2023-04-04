@@ -7,6 +7,8 @@
   background-color: var(--gray-color);
   color: var(--secondary-text-color);
   font-family: var(--primary-font);
+  font-size: 22px;
+  line-height: 26.4px;
   padding: 17px;
 }
 
