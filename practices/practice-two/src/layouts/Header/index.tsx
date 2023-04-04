@@ -12,7 +12,7 @@ import Logo from 'assets/images/Logo.jpg';
 const Header = () => {
   return (
     <header className={headerStyles.mainHeader}>
-      <Link to="/books">
+      <Link to="/">
         <img src={Logo} alt="logo" />
       </Link>
       <Heading
