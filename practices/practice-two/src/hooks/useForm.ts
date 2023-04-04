@@ -18,6 +18,9 @@ import {
   validate,
 } from 'helpers';
 
+// Services
+import { ImageBB } from 'services';
+
 // Constants
 import { MESSAGES, TIMEOUT_DEBOUNCE } from '@constants';
 
@@ -201,7 +204,7 @@ export const useForm = (
   );
 
   const onChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    async (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const element = event.target;
       const value = element.value;
       const key: keyof typeof data = element.name as keyof typeof data;
@@ -218,14 +221,31 @@ export const useForm = (
         const files = imageEl.files;
 
         if (files) {
-          const imageURL = URL.createObjectURL(files[0]);
-          const name = files[0].name;
+          const imgbb = new ImageBB();
+          const data = new FormData();
+          const file = files[0];
+          data.append('image', file);
+          imgbb.post(data, (response) => {
+            console.log(response);
 
-          return setState((prev) => ({
-            ...prev,
-            imageURL: imageURL,
-            imageName: name,
-          }));
+            if (response.status) {
+              const name = file.name;
+
+              return setState((prev) => ({
+                ...prev,
+                imageURL: response.data.url,
+                imageName: name,
+              }));
+            }
+
+            return setNotification({
+              message: MESSAGES.ERROR_TITLE,
+              title: MESSAGES.EMPTY_FIELD,
+              type: 'error',
+            });
+          });
+
+          return;
         }
 
         return;
@@ -246,6 +266,7 @@ export const useForm = (
     booksRecommended,
     refImage,
     handleSelectRecommended,
+    resetRecommended: setBooksRecommended,
     onSubmit,
     onChange,
   };

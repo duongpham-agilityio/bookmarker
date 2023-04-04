@@ -10,6 +10,8 @@ export default defineConfig({
     environmentPlugin({
       VITE_URL: process.env.VITE_URL,
       VITE_RECOMMENDED_URL: process.env.VITE_RECOMMENDED_URL,
+      VITE_UPLOAD_URL: process.env.VITE_UPLOAD_URL,
+      VITE_UPLOAD_KEY: process.env.VITE_UPLOAD_KEY,
     }),
   ],
 });

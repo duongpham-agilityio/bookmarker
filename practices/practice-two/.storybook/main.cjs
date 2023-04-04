@@ -34,6 +34,7 @@ const config = {
             routes: path.resolve(__dirname, '../src/routes'),
             styles: path.resolve(__dirname, '../src/styles'),
             types: path.resolve(__dirname, '../src/types'),
+            services: path.resolve(__dirname, '../src/services'),
             'mock-data': path.resolve(__dirname, '../src/mock-data'),
           },
         },

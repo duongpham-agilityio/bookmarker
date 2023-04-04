@@ -36,12 +36,13 @@ const Form = (props: FormProps) => {
     refImage,
     booksRecommended,
     handleSelectRecommended,
+    resetRecommended,
     onChange,
     onSubmit,
   } = useForm(data, type);
 
   return (
-    <section className={styles.overlay}>
+    <section className={styles.overlay} onClick={() => resetRecommended([])}>
       <form
         className={`${styles.form} ${className}`}
         action="#"
@@ -71,7 +72,11 @@ const Form = (props: FormProps) => {
                       <li
                         className={styles.recommendItem}
                         key={index}
-                        onClick={() => handleSelectRecommended(index)}
+                        onClick={(event: MouseEvent) => {
+                          event.preventDefault();
+
+                          handleSelectRecommended(index);
+                        }}
                       >
                         <p>{book.name}</p>
                       </li>
