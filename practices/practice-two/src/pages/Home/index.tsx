@@ -136,20 +136,24 @@ const Home = () => {
                   </div>
                 </div>
                 <div className={homeStyles.pagination}>
-                  {pagination.map((__, index) => {
-                    const page = index + 1;
+                  {pagination.length > 1 &&
+                    pagination.map((__, index) => {
+                      const page = index + 1;
 
-                    return (
-                      <Button
-                        label={`${page}`}
-                        variant={currentPage === page ? 'primary' : 'secondary'}
-                        key={index}
-                        onClick={() => {
-                          changePageByValue(page);
-                        }}
-                      />
-                    );
-                  })}
+                      return (
+                        <Button
+                          label={`${page}`}
+                          variant={
+                            currentPage === page ? 'primary' : 'secondary'
+                          }
+                          size="small"
+                          key={index}
+                          onClick={() => {
+                            changePageByValue(page);
+                          }}
+                        />
+                      );
+                    })}
                 </div>
               </>
             ) : (

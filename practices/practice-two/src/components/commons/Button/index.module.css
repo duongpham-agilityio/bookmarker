@@ -4,6 +4,7 @@
   justify-content: center;
   gap: 10px;
   font-weight: 500;
+  line-height: 26.4px;
   text-transform: capitalize;
   border: none;
   padding: 10px;
@@ -44,11 +45,11 @@
 }
 
 .btn.small {
-  font-size: small;
+  font-size: 20px;
 }
 
 .btn.medium {
-  font-size: medium;
+  font-size: 22px;
 }
 
 .btn.large {
