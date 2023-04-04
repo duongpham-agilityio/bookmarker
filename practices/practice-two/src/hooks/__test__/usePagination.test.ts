@@ -13,7 +13,7 @@ jest.mock('hooks', () => ({
 }));
 
 const setup = (data: Book[]) =>
-  renderHook((value) => usePagination(value), {
+  renderHook((value) => usePagination(value, 1), {
     initialProps: data,
   });
 

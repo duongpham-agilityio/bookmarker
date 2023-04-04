@@ -1,10 +1,9 @@
 import { renderHook } from '@testing-library/react';
 import { useDebounce } from 'hooks/useDebounce';
 
-const setup = (value: string, callback?: (_value: string) => void) => {
-  return renderHook(({ value, callback }) => useDebounce(value, callback), {
+const setup = (callback?: (_value: string) => void) => {
+  return renderHook(({ callback }) => useDebounce(callback), {
     initialProps: {
-      value,
       callback,
     },
   });
@@ -14,9 +13,9 @@ jest.useFakeTimers();
 describe('useDebounce', () => {
   it('should debounce user input', async () => {
     const callback = jest.fn();
-    const { rerender } = setup('', callback);
+    const { result } = setup(callback);
 
-    rerender({ value: 'hello', callback });
+    result.current('hello');
     jest.runAllTimers();
 
     expect(callback).toHaveBeenCalledWith('hello');

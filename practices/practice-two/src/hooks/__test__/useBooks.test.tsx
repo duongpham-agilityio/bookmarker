@@ -124,7 +124,8 @@ describe('useBooks', () => {
         name: '',
         sort: '',
       },
-      setSearchParam: jest.fn(),
+      setSearchParam: mockChangePage,
+      convertSearchParamsToString: jest.fn(),
     });
 
     jest.spyOn(hooks, 'usePagination').mockReturnValue({
@@ -142,7 +143,6 @@ describe('useBooks', () => {
           id: 1,
         },
       ],
-      changePageByValue: mockChangePage,
       pagination: [],
     });
   });
@@ -182,7 +182,7 @@ describe('useBooks', () => {
     const { result } = setup();
 
     act(() => {
-      result.current.changePageByValue(2);
+      result.current.setSearchParam('name', 'duong');
     });
 
     expect(mockChangePage).toHaveBeenCalled();

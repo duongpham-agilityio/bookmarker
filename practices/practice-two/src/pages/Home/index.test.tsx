@@ -71,7 +71,12 @@ jest.mock('assets/icons/add.svg', () => ({
 jest.mock('hooks', () => ({
   useBooks: jest
     .fn()
-    .mockReturnValue({ data, param: { page: 1, sort: '' }, pagination: [1] }),
+    .mockReturnValue({
+      data,
+      param: { page: 1, sort: '' },
+      pagination: [1],
+      convertSearchParamsToString: jest.fn(),
+    }),
   useDebounce: jest.fn(),
 }));
 
