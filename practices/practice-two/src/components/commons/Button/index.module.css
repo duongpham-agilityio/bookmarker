@@ -16,12 +16,12 @@
 }
 
 .btn.w-lg {
-  min-width: 197px;
-  height: 56px;
+  width: 100px;
+  height: 46px;
 }
 
 .btn .icon {
-  width: 22px;
+  width: 14px;
 }
 
 .btn.default {
@@ -45,11 +45,11 @@
 }
 
 .btn.small {
-  font-size: 20px;
+  font-size: 14px;
 }
 
 .btn.medium {
-  font-size: 22px;
+  font-size: 16px;
 }
 
 .btn.large {
@@ -71,4 +71,32 @@
 .btn:hover {
   opacity: 0.8;
   cursor: pointer;
+}
+
+/* Medium */
+@media (min-width: 768px) {
+  .btn.w-lg {
+    min-width: 197px;
+    height: 56px;
+  }
+
+  .btn.small {
+    font-size: 20px;
+  }
+
+  .btn.medium {
+    font-size: 22px;
+  }
+
+  .btn.large {
+    font-size: large;
+  }
+
+  .btn.large {
+    font-size: large;
+  }
+
+  .btn .icon {
+    width: 22px;
+  }
 }

@@ -4,13 +4,14 @@
 
 .navbar {
   display: flex;
-  gap: 40px;
+  gap: 15px;
   align-items: center;
   padding: 20px 0 0;
 }
 
 .search {
-  width: 340px;
+  display: none;
+  width: 100%;
 }
 
 .navigation {
@@ -19,12 +20,12 @@
 
 .navList {
   display: flex;
-  gap: 27px;
+  gap: 17px;
 }
 
 .navLink {
   text-decoration: none;
-  font-size: 22px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--primary-color);
 }
@@ -66,12 +67,24 @@
 
 /* Small */
 @media (min-width: 576px) {
+  .navLink {
+    font-size: 18px;
+  }
 }
 
 /* Medium */
 @media (min-width: 768px) {
+  .navList {
+    gap: 27px;
+  }
+
   .grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .search {
+    display: flex;
+    width: 250px;
   }
 }
 
@@ -83,6 +96,14 @@
 @media (min-width: 1200px) {
   .grid {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .search {
+    width: 340px;
+  }
+
+  .navLink {
+    font-size: 22px;
   }
 }
 
