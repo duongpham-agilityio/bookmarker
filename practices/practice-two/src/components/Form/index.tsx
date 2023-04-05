@@ -42,8 +42,6 @@ const Form = (props: FormProps) => {
     onSubmit,
   } = useForm(data, type);
 
-  console.log(isUpload);
-
   return (
     <section
       className={styles.overlay}

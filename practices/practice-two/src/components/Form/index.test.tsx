@@ -36,7 +36,7 @@ const value: Omit<Book, 'createdAt' | 'deletedAt' | 'updatedAt'> = {
   name: 'HTML/CSS',
   description: 'HTML/CSS with styles',
   imageURL: '',
-  publishDate: new Date().getTime(),
+  publishDate: 1680662612195,
 };
 
 describe('FormComponent', () => {

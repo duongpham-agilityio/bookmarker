@@ -6,10 +6,10 @@ import {
 
 describe('Convert', () => {
   it('convert time to date', () => {
-    const date = new Date();
-    const result = convertTimeToDate(date.getTime());
+    const date = 1680662612195;
+    const result = convertTimeToDate(date);
 
-    expect(result).toBe('2023-04-04');
+    expect(result).toBe('2023-04-05');
   });
 
   it('convert string to time', () => {
@@ -20,9 +20,10 @@ describe('Convert', () => {
   });
 
   it('convert DateTime to TimeString', () => {
-    const date = new Date();
-    const result = convertDateTimeToTimeString(date.getTime());
+    const date = 1680662612195;
 
-    expect(result).toBe('2:38 PM');
+    const result = convertDateTimeToTimeString(date);
+
+    expect(result).toBe('9:43 AM');
   });
 });

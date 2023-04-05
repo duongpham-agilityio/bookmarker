@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Error match snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <h2
+      class="undefined undefined "
+    >
+      Oops! Something went wrong
+    </h2>
+    <p>
+      Please, help me reload pages.
+    </p>
+  </div>
+</DocumentFragment>
+`;
