@@ -65,7 +65,7 @@ const Home = () => {
                 <Link
                   to={`/${ENDPOINT.BOOKS}${convertSearchParamsToString(
                     'sort',
-                    SORT.ASCENDING
+                    sort === SORT.ASCENDING ? '' : SORT.ASCENDING
                   )}`}
                   className={`${homeStyles.navLink} ${
                     sort === SORT.ASCENDING ? homeStyles.active : ''
@@ -78,7 +78,7 @@ const Home = () => {
                 <Link
                   to={`/${ENDPOINT.BOOKS}${convertSearchParamsToString(
                     'sort',
-                    SORT.DESCENDING
+                    sort === SORT.DESCENDING ? '' : SORT.DESCENDING
                   )}`}
                   className={`${homeStyles.navLink} ${
                     sort === SORT.DESCENDING ? homeStyles.active : ''
