@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, memo } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 
 // Component
@@ -57,4 +57,4 @@ const Card = (props: CardProps) => {
   );
 };
 
-export default Card;
+export default memo(Card);

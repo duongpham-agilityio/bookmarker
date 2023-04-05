@@ -39,7 +39,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 22px;
 }
 
@@ -62,4 +62,30 @@
 .emptyDescription {
   font-size: 30px;
   color: var(--secondary-text-color);
+}
+
+/* Small */
+@media (min-width: 576px) {
+}
+
+/* Medium */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Large */
+@media (min-width: 992px) {
+}
+
+/* Extra-large */
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Extra-extra-large */
+@media (min-width: 1400px) {
 }
