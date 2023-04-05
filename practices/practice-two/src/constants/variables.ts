@@ -18,6 +18,10 @@ export enum ENDPOINT {
   BOOKS = 'books',
 }
 
+export enum SEARCH {
+  SORT = '?_sort=createdAt&_order=desc',
+}
+
 export const RECORD = 6;
 
 export const TIMEOUT_DEBOUNCE = 600;

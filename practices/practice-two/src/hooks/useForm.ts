@@ -23,7 +23,7 @@ import {
 import { uploadImage } from 'services';
 
 // Constants
-import { ENDPOINT, MESSAGES, TIMEOUT_DEBOUNCE } from '@constants';
+import { ENDPOINT, MESSAGES, SEARCH, TIMEOUT_DEBOUNCE } from '@constants';
 
 // Contexts
 import { ToastContext } from 'contexts/Toast/context';
@@ -77,41 +77,38 @@ export const useForm = (
     };
   }, [state]);
 
-  console.log(value);
-
   /**
    * Handling add new book
    */
   const handleCreateBook = useCallback(() => {
     try {
       mutate(
-        ENDPOINT.BOOKS,
+        `${ENDPOINT.BOOKS}${SEARCH.SORT}`,
         async () => {
           // eslint-disable-next-line no-unused-vars
           const { imageName, ...rest } = state;
           await axiosConfig.post(ENDPOINT.BOOKS, rest);
 
-          return fetcher(ENDPOINT.BOOKS);
+          return fetcher(`${ENDPOINT.BOOKS}${SEARCH.SORT}`);
         },
         {
           optimisticData: (prevData: Book[]) => {
-            setNotification({
-              message: MESSAGES.ADD_SUCCESS,
-              title: MESSAGES.ADD_TITLE,
-            });
-            dispatch(undefined);
-
             return [
-              ...prevData,
               {
                 ...state,
                 id: 0,
               },
+              ...prevData,
             ];
           },
-          revalidate: true,
+          revalidate: false,
         }
       );
+      setNotification({
+        message: MESSAGES.ADD_SUCCESS,
+        title: MESSAGES.ADD_TITLE,
+      });
+      dispatch(undefined);
     } catch (error) {
       setNotification({
         message: MESSAGES.ERROR_TITLE,
