@@ -11,18 +11,6 @@ import { TIMEOUT_DEBOUNCE } from '@constants';
 export const useDebounce = (callback?: (_value: string) => void) => {
   const refTime = useRef<ReturnType<typeof setTimeout>>();
 
-  // useEffect(() => {
-  //   if (refTime.current) clearTimeout(refTime.current);
-
-  //   refTime.current = setTimeout(() => {
-  //     if (callback) callback(value.trim());
-  //   }, TIMEOUT_DEBOUNCE);
-
-  //   return () => {
-  //     clearTimeout(refTime.current);
-  //   };
-  // }, [value]);
-
   const debounce = useMemo(() => {
     return (value: string) => {
       if (refTime.current) clearTimeout(refTime.current);

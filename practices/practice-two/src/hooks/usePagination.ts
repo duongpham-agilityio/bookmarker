@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 
 // Types
 import { Book } from 'types';
+
+// Constants
 import { RECORD } from '@constants';
 
 export const usePagination = (products: Book[] = [], page: number) => {
