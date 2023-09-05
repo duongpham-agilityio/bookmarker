@@ -14,11 +14,8 @@
   width: 100%;
 }
 
-.navigation {
-  flex: 1;
-}
-
 .navList {
+  flex: 1;
   display: flex;
   gap: 17px;
 }
