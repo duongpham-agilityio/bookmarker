@@ -19,6 +19,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const ButtonIcon = ({
   icon,
+  subTitle,
   ...rest
 }: {
   icon?: string;
@@ -29,7 +30,7 @@ const ButtonIcon = ({
       {icon && (
         <img
           src={icon}
-          alt="icon action"
+          alt={subTitle ?? 'icon action'}
           className={buttonStyles.icon}
           {...rest}
         />

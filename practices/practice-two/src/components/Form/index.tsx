@@ -1,7 +1,7 @@
 import { MouseEvent, memo } from 'react';
 
 // Components
-import { Button, Heading, Input, TextArea } from 'components/commons';
+import { Button, Heading, Input } from 'components/commons';
 
 // Types
 import { Book } from 'types';
@@ -176,7 +176,8 @@ const Form = (props: FormProps) => {
               <label className={styles.label} htmlFor="bookName">
                 Description
               </label>
-              <TextArea
+              <Input
+                variant="area"
                 className={styles.text}
                 value={description}
                 placeholder="Book name"

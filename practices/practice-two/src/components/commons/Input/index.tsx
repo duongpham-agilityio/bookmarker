@@ -1,16 +1,27 @@
-import { InputHTMLAttributes, MouseEvent, Ref, forwardRef } from 'react';
+import {
+  InputHTMLAttributes,
+  MouseEvent,
+  Ref,
+  TextareaHTMLAttributes,
+  forwardRef,
+} from 'react';
+
+// Components
+import Button from '../Button';
 
 // Style
 import inputStyles from 'components/commons/Input/index.module.css';
-import Button from '../Button';
+import textAreaStyle from 'components/commons/Input/textArea.module.css';
 
-export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-  leftIcon?: string;
-  rightIcon?: string;
-  className?: string;
-  leftIconClick?: (_event: MouseEvent) => void;
-  rightIconClick?: (_event: MouseEvent) => void;
-};
+export type InputProps = InputHTMLAttributes<HTMLInputElement> &
+  TextareaHTMLAttributes<HTMLTextAreaElement> & {
+    variant?: 'input' | 'area';
+    leftIcon?: string;
+    rightIcon?: string;
+    customRef?: Ref<HTMLInputElement | HTMLTextAreaElement>;
+    leftIconClick?: (_event: MouseEvent) => void;
+    rightIconClick?: (_event: MouseEvent) => void;
+  };
 
 const InputIcon = ({
   icon,
@@ -34,10 +45,23 @@ const InputIcon = ({
   );
 };
 
-const Input = (props: InputProps, ref: Ref<HTMLInputElement>) => {
+const TextArea = (props: Omit<InputProps, 'variant'>) => {
+  const { value = '', className = '', ...rest } = props;
+
+  return (
+    <textarea
+      className={`${textAreaStyle.text} ${className}`}
+      value={value}
+      {...rest}
+    ></textarea>
+  );
+};
+
+const Input = (props: Omit<InputProps, 'variant'>) => {
   const {
     leftIcon = '',
     rightIcon = '',
+    customRef,
     className = '',
     type = 'text',
     placeholder = 'Enter text...',
@@ -54,7 +78,7 @@ const Input = (props: InputProps, ref: Ref<HTMLInputElement>) => {
         className={inputStyles.value}
         type={type}
         placeholder={placeholder}
-        ref={ref}
+        ref={customRef as Ref<HTMLInputElement>}
         {...rest}
       />
 
@@ -63,4 +87,18 @@ const Input = (props: InputProps, ref: Ref<HTMLInputElement>) => {
   );
 };
 
-export default forwardRef(Input);
+const Component = (
+  { variant, ...rest }: Omit<InputProps, 'customRef'>,
+  ref: Ref<HTMLInputElement | HTMLTextAreaElement>
+) => {
+  const component = {
+    input: Input,
+    area: TextArea,
+  };
+
+  const Render = component[variant ?? 'input'];
+
+  return <Render {...rest} customRef={ref} />;
+};
+
+export default forwardRef(Component);
