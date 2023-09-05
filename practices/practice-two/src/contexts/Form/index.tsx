@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 
 // Components
 import { Form } from 'components';
@@ -8,6 +8,8 @@ import { FormContext, StateType } from 'contexts/Form/context';
 
 const FormProvider = ({ children }: { children: ReactNode }) => {
   const [form, setForm] = useState<StateType>(undefined);
+
+  const closeForm = useCallback(() => setForm(undefined), []);
 
   return (
     <FormContext.Provider
@@ -22,7 +24,7 @@ const FormProvider = ({ children }: { children: ReactNode }) => {
           value={form.formData}
           title={form.title}
           type={form.type}
-          onClose={() => setForm(undefined)}
+          onClose={closeForm}
         />
       )}
     </FormContext.Provider>

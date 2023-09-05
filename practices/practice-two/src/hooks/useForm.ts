@@ -299,7 +299,7 @@ export const useForm = (
         [key]: value,
       }));
     },
-    [state]
+    []
   );
 
   return {

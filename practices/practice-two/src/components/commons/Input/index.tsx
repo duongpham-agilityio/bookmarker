@@ -4,6 +4,7 @@ import {
   Ref,
   TextareaHTMLAttributes,
   forwardRef,
+  memo,
 } from 'react';
 
 // Components
@@ -23,13 +24,13 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> &
     rightIconClick?: (_event: MouseEvent) => void;
   };
 
-const InputIcon = ({
+const InputIcon = memo(function Icon({
   icon,
   ...rest
 }: {
   icon?: string;
   onClick?: (_event: MouseEvent) => void;
-}) => {
+}) {
   return (
     <Button
       label=""
@@ -43,7 +44,7 @@ const InputIcon = ({
       {...rest}
     />
   );
-};
+});
 
 const TextArea = (props: Omit<InputProps, 'variant'>) => {
   const { value = '', className = '', ...rest } = props;
@@ -101,4 +102,4 @@ const Component = (
   return <Render {...rest} customRef={ref} />;
 };
 
-export default forwardRef(Component);
+export default memo(forwardRef(Component));

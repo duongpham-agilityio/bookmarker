@@ -16,6 +16,7 @@ const MainLayout = () => {
     <SWRConfig
       value={{
         fetcher,
+        revalidateOnFocus: false,
       }}
     >
       <ToastProvider>

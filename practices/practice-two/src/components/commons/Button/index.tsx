@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, memo } from 'react';
 
 // Styles
 import buttonStyles from 'components/commons/Button/index.module.css';
@@ -17,14 +17,14 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   width?: Width;
 };
 
-const ButtonIcon = ({
+const ButtonIcon = memo(function Icon({
   icon,
   subTitle,
   ...rest
 }: {
   icon?: string;
   subTitle?: string;
-}) => {
+}) {
   return (
     <>
       {icon && (
@@ -37,7 +37,7 @@ const ButtonIcon = ({
       )}
     </>
   );
-};
+});
 
 const Button = (props: ButtonProps) => {
   const {

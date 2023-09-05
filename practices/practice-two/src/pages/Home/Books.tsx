@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, memo } from 'react';
 
 // Hooks
 import { useBooks } from 'hooks';
@@ -96,4 +96,4 @@ const Books = () => {
   );
 };
 
-export default Books;
+export default memo(Books);

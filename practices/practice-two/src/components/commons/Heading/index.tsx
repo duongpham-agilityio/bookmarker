@@ -1,4 +1,4 @@
-import { HTMLAttributes, createElement } from 'react';
+import { HTMLAttributes, createElement, memo } from 'react';
 
 // Styles
 import stylesHeading from 'components/commons/Heading/index.module.css';
@@ -34,4 +34,4 @@ const Heading = (props: HeadingProps) => {
   return Component;
 };
 
-export default Heading;
+export default memo(Heading);

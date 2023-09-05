@@ -1,5 +1,7 @@
-import { useContext, useMemo, useState } from 'react';
+import { memo, useCallback, useContext, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// Hooks
 import { useBook } from 'hooks';
 
 // HOCs
@@ -57,6 +59,49 @@ const Detail = () => {
     };
   }, [data]);
 
+  const description = useMemo(() => {
+    return (
+      <>
+        {isShortCut ? (
+          <span>{data.description.substring(0, 140)}</span>
+        ) : (
+          <span>{data.description}</span>
+        )}
+
+        {data.description.length > 150 && (
+          <>
+            {isShortCut ? (
+              <span
+                className={styles.actionText}
+                onClick={() => setIsShortCut(false)}
+              >
+                show more
+              </span>
+            ) : (
+              <span
+                className={styles.actionText}
+                onClick={() => setIsShortCut(true)}
+              >
+                show hide
+              </span>
+            )}
+          </>
+        )}
+      </>
+    );
+  }, [isShortCut, data.description]);
+
+  const navigate = useCallback(() => redirect(-1), []);
+
+  const editHandler = useCallback(
+    () =>
+      dispatch({
+        formData: data,
+        title: 'Edit book',
+        type: 'update',
+      }),
+    [data]
+  );
   if (error) {
     return <Error />;
   }
@@ -83,7 +128,7 @@ const Detail = () => {
                   leftIcon={BackIcon}
                   variant="primary"
                   className={styles.btn}
-                  onClick={() => redirect(-1)}
+                  onClick={navigate}
                 />
                 <Button
                   label="Edit"
@@ -91,46 +136,14 @@ const Detail = () => {
                   variant="primary"
                   width="w-lg"
                   border="b-lg"
-                  onClick={() =>
-                    dispatch({
-                      formData: data,
-                      title: 'Edit book',
-                      type: 'update',
-                    })
-                  }
+                  onClick={editHandler}
                 />
               </div>
             </div>
           </div>
           <div className={styles.detailItem}>
             <div className={styles.info}>
-              <p className={styles.description}>
-                {isShortCut ? (
-                  <span>{data.description.substring(0, 140)}</span>
-                ) : (
-                  <span>{data.description}</span>
-                )}
-
-                {data.description.length > 150 && (
-                  <>
-                    {isShortCut ? (
-                      <span
-                        className={styles.actionText}
-                        onClick={() => setIsShortCut(false)}
-                      >
-                        show more
-                      </span>
-                    ) : (
-                      <span
-                        className={styles.actionText}
-                        onClick={() => setIsShortCut(true)}
-                      >
-                        show hide
-                      </span>
-                    )}
-                  </>
-                )}
-              </p>
+              <p className={styles.description}>{description}</p>
               <ul className={styles.listInfo}>
                 <li className={styles.infoItem}>
                   <span className={styles.label}>Author: </span>
@@ -164,4 +177,4 @@ const Detail = () => {
   );
 };
 
-export default withErrorBoundaries(Detail);
+export default memo(withErrorBoundaries(Detail));

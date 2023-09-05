@@ -1,8 +1,8 @@
-import { ChangeEvent, useContext, useState } from 'react';
+import { ChangeEvent, memo, useCallback, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useBooks, useDebounce } from 'hooks';
 
-// HOCS
+// HOCs
 import { withErrorBoundaries } from 'hocs/withErrorBoundaries';
 
 // Contexts
@@ -34,6 +34,22 @@ const Home = () => {
   } = useBooks();
   const [search, setSearch] = useState('');
   const debounce = useDebounce((value) => setSearchParam('name', value));
+
+  const createBookHandler = useCallback(() => {
+    dispatch({
+      formData: {
+        author: '',
+        description: '',
+        imageURL: '',
+        name: '',
+        createdAt: new Date().getTime(),
+        deletedAt: null,
+        updatedAt: new Date().getTime(),
+      },
+      title: TITLE.FORM_CREATE,
+      type: 'create',
+    });
+  }, []);
 
   if (error) {
     return <Error />;
@@ -89,21 +105,7 @@ const Home = () => {
             leftIcon={AddIcon}
             width="w-lg"
             border="b-lg"
-            onClick={() => {
-              dispatch({
-                formData: {
-                  author: '',
-                  description: '',
-                  imageURL: '',
-                  name: '',
-                  createdAt: new Date().getTime(),
-                  deletedAt: null,
-                  updatedAt: new Date().getTime(),
-                },
-                title: TITLE.FORM_CREATE,
-                type: 'create',
-              });
-            }}
+            onClick={createBookHandler}
           />
         </div>
 
@@ -113,4 +115,4 @@ const Home = () => {
   );
 };
 
-export default withErrorBoundaries(Home);
+export default memo(withErrorBoundaries(Home));
