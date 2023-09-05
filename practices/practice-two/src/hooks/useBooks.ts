@@ -13,7 +13,7 @@ import { axiosConfig } from 'helpers';
 import { Book } from 'types';
 
 // Constants
-import { ENDPOINT, MESSAGES, SEARCH } from '@constants';
+import { ENDPOINT, MESSAGES } from '@constants';
 
 /**
  * Get out all the current list
@@ -22,7 +22,7 @@ import { ENDPOINT, MESSAGES, SEARCH } from '@constants';
 export const useBooks = () => {
   const { dispatch } = useContext(PopupContext);
   const { setNotification } = useContext(ToastContext);
-  const swr = useSWR<Book[]>(`${ENDPOINT.BOOKS}${SEARCH.SORT}`);
+  const swr = useSWR<Book[]>(`${ENDPOINT.BOOKS}${ENDPOINT.SORT}`);
   const {
     param: { name, sort, page },
     ...restUseSearch

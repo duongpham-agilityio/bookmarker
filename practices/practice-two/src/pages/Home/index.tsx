@@ -14,7 +14,7 @@ import { Error } from 'components';
 import Books from './Books';
 
 // Constants
-import { ENDPOINT, SORT, TITLE_FORM } from '@constants';
+import { ENDPOINT, SORT, TITLE } from '@constants';
 
 // Styles
 import homeStyles from 'pages/Home/index.module.css';
@@ -29,7 +29,6 @@ const Home = () => {
   const {
     param: { sort },
     error,
-
     setSearchParam,
     convertSearchParamsToString,
   } = useBooks();
@@ -101,7 +100,7 @@ const Home = () => {
                   deletedAt: null,
                   updatedAt: new Date().getTime(),
                 },
-                title: TITLE_FORM.CREATE,
+                title: TITLE.FORM_CREATE,
                 type: 'create',
               });
             }}
