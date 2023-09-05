@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, MouseEvent } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 
 // Styles
 import buttonStyles from 'components/commons/Button/index.module.css';
@@ -15,8 +15,6 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   border?: Border;
   size?: Size;
   width?: Width;
-  leftIconClick?: (_e: MouseEvent) => void;
-  rightIconClick?: (_e: MouseEvent) => void;
 };
 
 const ButtonIcon = ({
@@ -24,7 +22,7 @@ const ButtonIcon = ({
   ...rest
 }: {
   icon?: string;
-  onClick?: (_e: MouseEvent) => void;
+  subTitle?: string;
 }) => {
   return (
     <>
@@ -51,8 +49,6 @@ const Button = (props: ButtonProps) => {
     border = 'b-md',
     width = 'w-sm',
     type = 'button',
-    leftIconClick,
-    rightIconClick,
     ...rest
   } = props;
 
@@ -62,11 +58,17 @@ const Button = (props: ButtonProps) => {
 
   return (
     <button className={classes} type={type} {...rest}>
-      <ButtonIcon icon={leftIcon ?? ''} onClick={leftIconClick} />
+      <ButtonIcon
+        icon={leftIcon ?? ''}
+        subTitle="This is the left icon for the button"
+      />
 
       {label}
 
-      <ButtonIcon icon={rightIcon ?? ''} onClick={rightIconClick} />
+      <ButtonIcon
+        icon={rightIcon ?? ''}
+        subTitle="This is the right icon for the button"
+      />
     </button>
   );
 };
