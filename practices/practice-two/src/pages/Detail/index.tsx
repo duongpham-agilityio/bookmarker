@@ -31,10 +31,6 @@ import { ENDPOINT } from '@constants';
 const Detail = () => {
   const { data, error, isLoading, deleteBook } = useBook();
 
-  if (error) {
-    return <Error />;
-  }
-
   const redirect = useNavigate();
 
   const { dispatch } = useContext(FormContext);
@@ -63,6 +59,10 @@ const Detail = () => {
       updatedAt: updatedAtConvert,
     };
   }, [data]);
+
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <main className={containerStyles.container}>

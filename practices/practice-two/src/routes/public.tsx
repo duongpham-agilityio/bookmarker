@@ -1,13 +1,15 @@
+import { lazy } from 'react';
 import { Outlet, RouteObject } from 'react-router-dom';
 
 // Layouts
 import { MainLayout } from 'layouts';
 
-// Pages
-import { Home, Detail } from 'pages';
-
 // Constants
 import { ENDPOINT } from '@constants';
+
+// Pages
+const Home = lazy(() => import('pages/Home'));
+const Detail = lazy(() => import('pages/Detail'));
 
 export const publicRoutes: RouteObject[] = [
   {
