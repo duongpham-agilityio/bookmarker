@@ -7,50 +7,66 @@ type Variant = 'default' | 'primary' | 'secondary' | 'danger';
 type Size = 'small' | 'medium' | 'large';
 type Border = 'b-md' | 'b-lg';
 type Width = 'w-sm' | 'w-lg';
-type Type = 'button' | 'submit';
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   label: string;
-  name?: string;
-  className?: string;
   leftIcon?: string;
   rightIcon?: string;
   variant?: Variant;
   border?: Border;
   size?: Size;
   width?: Width;
-  type?: Type;
-  onClick?: (_event: MouseEvent) => void;
+  leftIconClick?: (_e: MouseEvent) => void;
+  rightIconClick?: (_e: MouseEvent) => void;
+};
+
+const ButtonIcon = ({
+  icon,
+  ...rest
+}: {
+  icon?: string;
+  onClick?: (_e: MouseEvent) => void;
+}) => {
+  return (
+    <>
+      {icon && (
+        <img
+          src={icon}
+          alt="icon action"
+          className={buttonStyles.icon}
+          {...rest}
+        />
+      )}
+    </>
+  );
 };
 
 const Button = (props: ButtonProps) => {
   const {
     label,
-    leftIcon = '',
-    rightIcon = '',
-    className = '',
+    leftIcon,
+    rightIcon,
+    className,
     variant = 'default',
     size = 'medium',
     border = 'b-md',
     width = 'w-sm',
     type = 'button',
+    leftIconClick,
+    rightIconClick,
     ...rest
   } = props;
 
   const classes = `${buttonStyles.btn} ${buttonStyles[variant]}
   ${buttonStyles[size]} ${buttonStyles[border]}
-  ${buttonStyles[width]} ${className}`;
+  ${buttonStyles[width]} ${className ?? ''}`;
 
   return (
     <button className={classes} type={type} {...rest}>
-      {leftIcon && (
-        <img src={leftIcon} alt="icon action" className={buttonStyles.icon} />
-      )}
+      <ButtonIcon icon={leftIcon ?? ''} onClick={leftIconClick} />
 
       {label}
 
-      {rightIcon && (
-        <img src={rightIcon} alt="icon action" className={buttonStyles.icon} />
-      )}
+      <ButtonIcon icon={rightIcon ?? ''} onClick={rightIconClick} />
     </button>
   );
 };
