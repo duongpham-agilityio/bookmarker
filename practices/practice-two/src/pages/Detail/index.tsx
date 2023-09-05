@@ -25,9 +25,6 @@ import PenCilIcon from 'assets/icons/pencil.svg';
 // Helpers
 import { convertDateTimeToTimeString, convertTimeToDate } from 'helpers';
 
-// Constants
-import { ENDPOINT } from '@constants';
-
 const Detail = () => {
   const { data, error, isLoading, deleteBook } = useBook();
 
@@ -86,7 +83,7 @@ const Detail = () => {
                   leftIcon={BackIcon}
                   variant="primary"
                   className={styles.btn}
-                  onClick={() => redirect(`${ENDPOINT.BOOKS}`)}
+                  onClick={() => redirect(-1)}
                 />
                 <Button
                   label="Edit"

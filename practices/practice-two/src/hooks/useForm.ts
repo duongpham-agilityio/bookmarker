@@ -23,7 +23,7 @@ import {
 import { uploadImage } from 'services';
 
 // Constants
-import { ENDPOINT, MESSAGES, SEARCH, TIMEOUT_DEBOUNCE } from '@constants';
+import { ENDPOINT, MESSAGES, TIMEOUT_DEBOUNCE } from '@constants';
 
 // Contexts
 import { ToastContext } from 'contexts/Toast/context';
@@ -83,13 +83,13 @@ export const useForm = (
   const handleCreateBook = useCallback(() => {
     try {
       mutate(
-        `${ENDPOINT.BOOKS}${SEARCH.SORT}`,
+        `${ENDPOINT.BOOKS}${ENDPOINT.SORT}`,
         async () => {
           // eslint-disable-next-line no-unused-vars
           const { imageName, ...rest } = state;
           await axiosConfig.post(ENDPOINT.BOOKS, rest);
 
-          return fetcher(`${ENDPOINT.BOOKS}${SEARCH.SORT}`);
+          return fetcher(`${ENDPOINT.BOOKS}${ENDPOINT.SORT}`);
         },
         {
           optimisticData: (prevData: Book[]) => {
