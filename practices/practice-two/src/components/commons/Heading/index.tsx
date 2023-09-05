@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, createElement } from 'react';
 
 // Styles
 import stylesHeading from 'components/commons/Heading/index.module.css';
@@ -14,20 +14,24 @@ export type HeadingProps = HTMLAttributes<HTMLHeadingElement> & {
 const Heading = (props: HeadingProps) => {
   const {
     children,
-    label = '',
-    className = '',
+    label,
+    className,
     size = 'sm',
     tag = 'h2',
     ...rest
   } = props;
-  const TagName = tag;
-  const classes = `${stylesHeading.heading} ${stylesHeading[size]} ${className}`;
-  const attributes = {
-    ...rest,
-    className: classes,
-  };
+  const Component = createElement(
+    tag,
+    {
+      ...rest,
+      className: `${stylesHeading.heading} ${stylesHeading[size]} ${
+        className ?? ''
+      }`,
+    },
+    children || label
+  );
 
-  return <TagName {...attributes}>{children || label}</TagName>;
+  return Component;
 };
 
 export default Heading;
