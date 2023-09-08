@@ -102,6 +102,7 @@ const Detail = () => {
       }),
     [data]
   );
+
   if (error) {
     return <Error />;
   }

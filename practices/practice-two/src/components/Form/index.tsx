@@ -1,5 +1,8 @@
 import { MouseEvent, memo } from 'react';
 
+// Hooks
+import { useForm } from 'hooks';
+
 // Components
 import { Button, Heading, Input } from 'components/commons';
 
@@ -11,7 +14,6 @@ import styles from 'components/Form/index.module.css';
 
 // Assets
 import UploadIcon from 'assets/icons/upload.svg';
-import { useForm } from 'hooks';
 
 export type FormProps = {
   value: Omit<Book, 'publishDate' | 'deletedAt' | 'createdAt' | 'updatedAt'> & {
@@ -62,7 +64,7 @@ const Form = (props: FormProps) => {
       >
         <Heading label={title} className={styles.heading} />
 
-        <div className={styles.content}>
+        <section className={styles.content}>
           <div className={styles.formItem}>
             <div className={styles.formField}>
               <label className={styles.label} htmlFor="bookName">
@@ -203,7 +205,7 @@ const Form = (props: FormProps) => {
               border="b-lg"
             />
           </div>
-        </div>
+        </section>
       </form>
     </section>
   );
