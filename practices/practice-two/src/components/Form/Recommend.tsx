@@ -32,5 +32,4 @@ const BookRecommend = ({ books, onSelect }: RecommendProps) => {
 
   return <ul className={styles.recommend}>{books.map(renderBook)}</ul>;
 };
-
 export default memo(BookRecommend);
