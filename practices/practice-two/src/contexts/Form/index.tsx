@@ -1,7 +1,7 @@
-import { ReactNode, useCallback, useState } from 'react';
+import { ReactNode, Suspense, lazy, useCallback, useState } from 'react';
 
 // Components
-import { Form } from 'components';
+const Form = lazy(() => import('components/Form'));
 
 //Context
 import { FormContext, StateType } from 'contexts/Form/context';
@@ -19,14 +19,16 @@ const FormProvider = ({ children }: { children: ReactNode }) => {
     >
       {children}
 
-      {form && (
-        <Form
-          value={form.formData}
-          title={form.title}
-          type={form.type}
-          onClose={closeForm}
-        />
-      )}
+      <Suspense>
+        {form && (
+          <Form
+            value={form.formData}
+            title={form.title}
+            type={form.type}
+            onClose={closeForm}
+          />
+        )}
+      </Suspense>
     </FormContext.Provider>
   );
 };
