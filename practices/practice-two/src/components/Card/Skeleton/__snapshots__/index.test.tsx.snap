@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardSkeleton match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="undefined undefined"
+  >
+    <div>
+      <h2
+        class="undefined undefined undefined undefined"
+      />
+      <p
+        class="undefined undefined"
+      />
+      <div>
+        <button
+          class="undefined undefined
+  undefined undefined
+  undefined "
+          type="button"
+        />
+        <button
+          class="undefined undefined
+  undefined undefined
+  undefined "
+          type="button"
+        />
+      </div>
+    </div>
+    <div>
+      <p
+        class="undefined undefined"
+      />
+      <div
+        class="undefined undefined undefined"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

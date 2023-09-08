@@ -1,0 +1,70 @@
+.heading {
+  font-family: var(--primary-font);
+  font-weight: 700;
+}
+
+.heading.sm {
+  font-size: 15px;
+  line-height: 17.4px;
+}
+
+.heading.md {
+  font-size: 17px;
+  line-height: 20.8px;
+}
+
+.heading.lg {
+  font-size: 20px;
+  line-height: 24.2px;
+}
+
+.heading.xl {
+  font-size: 22px;
+  line-height: 26.4px;
+}
+
+/* Small */
+@media (min-width: 576px) {
+  .heading.sm {
+    font-size: 18px;
+    line-height: 20.4px;
+  }
+
+  .heading.md {
+    font-size: 20px;
+    line-height: 24.8px;
+  }
+
+  .heading.lg {
+    font-size: 28px;
+    line-height: 32.2px;
+  }
+
+  .heading.xl {
+    font-size: 30px;
+    line-height: 36.4px;
+  }
+}
+
+/* Extra-large */
+@media (min-width: 1200px) {
+  .heading.sm {
+    font-size: 22px;
+    line-height: 26.4px;
+  }
+
+  .heading.md {
+    font-size: 24px;
+    line-height: 28.8px;
+  }
+
+  .heading.lg {
+    font-size: 36px;
+    line-height: 43.2px;
+  }
+
+  .heading.xl {
+    font-size: 42px;
+    line-height: 50.4px;
+  }
+}

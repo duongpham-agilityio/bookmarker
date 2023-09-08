@@ -1,0 +1,11 @@
+.empty {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.emptyDescription {
+  color: var(--secondary-text-color);
+}

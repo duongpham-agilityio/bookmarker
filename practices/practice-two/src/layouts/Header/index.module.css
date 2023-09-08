@@ -1,0 +1,11 @@
+.mainHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 37px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+}
+
+.mainHeader .heading {
+  font-weight: 400;
+}

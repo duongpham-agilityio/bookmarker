@@ -1,0 +1,102 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 500;
+  line-height: 26.4px;
+  text-transform: capitalize;
+  border: none;
+  padding: 10px;
+}
+
+.btn.w-sm {
+  height: 48px;
+  width: 48px;
+}
+
+.btn.w-lg {
+  width: 100px;
+  height: 46px;
+}
+
+.btn .icon {
+  width: 14px;
+}
+
+.btn.default {
+  background-color: var(--light-gray);
+  color: white;
+}
+
+.btn.primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn.secondary {
+  background-color: var(--secondary-color);
+  color: black;
+}
+
+.btn.danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.btn.small {
+  font-size: 14px;
+}
+
+.btn.medium {
+  font-size: 16px;
+}
+
+.btn.large {
+  font-size: large;
+}
+
+.btn.large {
+  font-size: large;
+}
+
+.btn.b-md {
+  border-radius: 13px;
+}
+
+.btn.b-lg {
+  border-radius: 20px;
+}
+
+.btn:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+/* Medium */
+@media (min-width: 768px) {
+  .btn.w-lg {
+    min-width: 197px;
+    height: 56px;
+  }
+
+  .btn.small {
+    font-size: 20px;
+  }
+
+  .btn.medium {
+    font-size: 22px;
+  }
+
+  .btn.large {
+    font-size: large;
+  }
+
+  .btn.large {
+    font-size: large;
+  }
+
+  .btn .icon {
+    width: 22px;
+  }
+}

@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailSkeleton match snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="undefined undefined"
+  >
+    <div>
+      <h2
+        class="undefined undefined undefined undefined"
+      />
+      <div>
+        <div>
+          <button
+            class="undefined undefined
+  undefined undefined
+  undefined undefined undefined"
+            type="button"
+          />
+          <button
+            class="undefined undefined
+  undefined undefined
+  undefined undefined undefined"
+            type="button"
+          />
+          <button
+            class="undefined undefined
+  undefined undefined
+  undefined undefined undefined"
+            type="button"
+          />
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <p
+          class="undefined undefined"
+        />
+        <ul>
+          <li
+            class="undefined undefined"
+          />
+          <li
+            class="undefined undefined"
+          />
+          <li
+            class="undefined undefined"
+          />
+        </ul>
+      </div>
+      <div>
+        <div
+          class="undefined undefined"
+        />
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;

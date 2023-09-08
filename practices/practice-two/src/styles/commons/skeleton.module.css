@@ -1,0 +1,27 @@
+@import url(./animation.module.css);
+
+.loading {
+  background-color: var(--gray-color);
+}
+
+.loading .loadingItem {
+  position: relative;
+  background-color: var(--light-gray) !important;
+  overflow: hidden;
+}
+
+.loadingItem::after {
+  position: absolute;
+  content: '';
+  width: 45%;
+  height: 100%;
+  left: 50%;
+  background: linear-gradient(
+    to right,
+    var(--light-gray),
+    white,
+    var(--light-gray)
+  );
+  transform: translateX(-50%);
+  animation: skeleton 2s linear infinite alternate;
+}

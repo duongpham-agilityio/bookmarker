@@ -1,0 +1,99 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  font-family: var(--primary-font);
+}
+
+.form {
+  width: 800px;
+  height: 624px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 22px;
+}
+
+.heading {
+  text-align: center;
+  padding: 0 0 20px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px 0;
+}
+
+.formItem {
+  display: flex;
+  align-items: start;
+  gap: 60px;
+}
+
+.formItem .upload {
+  position: relative;
+  display: flex;
+  align-items: start;
+  gap: 26px;
+}
+
+.uploadItem:first-child {
+  flex: 1;
+}
+
+.formField {
+  flex: 1;
+  position: relative;
+}
+
+.recommend {
+  position: absolute;
+  top: calc(100% + 20px);
+  border-radius: 7px;
+  background-color: white;
+  z-index: 999;
+  box-shadow: 0 6px 10px silver;
+}
+
+.recommendItem {
+  padding: 10px 7px;
+}
+
+.recommendItem:hover {
+  background-color: var(--gray-color);
+  cursor: pointer;
+}
+
+.text {
+  height: 118px;
+}
+
+.input {
+  background-color: transparent;
+  position: absolute;
+}
+
+.label {
+  display: inline-block;
+  font-weight: 700;
+  padding: 10px 0;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 20px;
+}
+
+.image {
+  width: 95px;
+  height: 116px;
+  object-fit: cover;
+  border-radius: 7px;
+}

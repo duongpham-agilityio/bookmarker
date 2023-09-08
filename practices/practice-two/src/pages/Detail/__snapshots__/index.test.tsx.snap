@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Details match snapshot 1`] = `
+<DocumentFragment>
+  <main>
+    <section>
+      <div>
+        <h2
+          class="undefined undefined "
+        >
+          HTML/CSS Ebook 1
+        </h2>
+        <div>
+          <div>
+            <button
+              class="undefined undefined
+  undefined undefined
+  undefined "
+              type="button"
+            >
+              <img
+                alt="icon action"
+                src="assets/icons/trash.svg"
+              />
+            </button>
+            <button
+              class="undefined undefined
+  undefined undefined
+  undefined "
+              type="button"
+            >
+              <img
+                alt="icon action"
+                src="assets/icons/back.svg"
+              />
+            </button>
+            <button
+              class="undefined undefined
+  undefined undefined
+  undefined "
+              type="button"
+            >
+              <img
+                alt="icon action"
+                src="assets/icons/pencil.svg"
+              />
+              Edit
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <p>
+            <span>
+              Description of some book will displayed here
+            </span>
+          </p>
+          <ul>
+            <li>
+              <span>
+                Author: 
+              </span>
+              <span>
+                Duong.Pham
+              </span>
+            </li>
+            <li>
+              <span>
+                Published date: 
+              </span>
+              <span>
+                1:39 PM, 30/03/2023
+              </span>
+            </li>
+            <li>
+              <span>
+                Created at: 
+              </span>
+              <span>
+                1:39 PM, 30/03/2023
+              </span>
+            </li>
+            <li>
+              <span>
+                Updated at: 
+              </span>
+              <span>
+                1:39 PM, 30/03/2023
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <img
+            alt="HTML/CSS Ebook 1"
+            src="http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+</DocumentFragment>
+`;

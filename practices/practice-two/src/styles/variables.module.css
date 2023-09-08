@@ -1,0 +1,24 @@
+:root {
+  /* Fonts */
+  --primary-font: 'Lato', sans-serif;
+
+  /* Colors */
+  --primary-color: #000;
+  --secondary-color: #fabb18;
+  --success-color: #6ac83c;
+  --warning-color: #c8a93c;
+  --info-color: #3c96c8;
+  --danger-color: #c83c3c;
+  --gray-color: #f4f4f4;
+  --light-gray: #cccc;
+
+  /* Texts */
+  --primary-text-color: #000;
+  --secondary-text-color: #b5b5b5;
+
+  /* Toasts */
+  --toast-success-color: rgba(106, 200, 60, 0.54);
+  --toast-error-color: rgba(200, 60, 60, 0.54);
+  --toast-warning-color: rgba(200, 169, 60, 0.54);
+  --toast-info-color: rgba(60, 150, 200, 0.54);
+}
