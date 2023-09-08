@@ -1,19 +1,19 @@
-import { MouseEvent, memo } from 'react';
+import { MouseEvent, memo, useCallback } from 'react';
+import isEqual from 'react-fast-compare';
 
 // Hooks
 import { useForm } from 'hooks';
 
 // Components
 import { Button, Heading, Input } from 'components/commons';
+import BookRecommend from './Recommend';
+import ChooseImage from './ChooseImage';
 
 // Types
 import { Book } from 'types';
 
 // Styles
 import styles from 'components/Form/index.module.css';
-
-// Assets
-import UploadIcon from 'assets/icons/upload.svg';
 
 export type FormProps = {
   value: Omit<Book, 'publishDate' | 'deletedAt' | 'createdAt' | 'updatedAt'> & {
@@ -22,7 +22,7 @@ export type FormProps = {
   title?: string;
   className?: string;
   type?: 'update' | 'create';
-  onClose?: (_event: MouseEvent) => void;
+  onClose?: (event: MouseEvent) => void;
 };
 
 const Form = (props: FormProps) => {
@@ -44,23 +44,27 @@ const Form = (props: FormProps) => {
     onSubmit,
   } = useForm(data, type);
 
+  const chooseImage = useCallback(() => {
+    refImage.current?.click();
+  }, [refImage]);
+
+  const resetRecommendedData = useCallback(
+    (e: MouseEvent) => {
+      e.stopPropagation();
+
+      resetRecommended([]);
+    },
+    [resetRecommended]
+  );
+
   return (
-    <section
-      className={styles.overlay}
-      onClick={(e: MouseEvent) => {
-        if (onClose) onClose(e);
-      }}
-    >
+    <section className={styles.overlay} onClick={onClose}>
       <form
         className={`${styles.form} ${className}`}
         action="#"
         method="POST"
         onSubmit={onSubmit}
-        onClick={(e: MouseEvent) => {
-          e.stopPropagation();
-
-          resetRecommended([]);
-        }}
+        onClick={resetRecommendedData}
       >
         <Heading label={title} className={styles.heading} />
 
@@ -79,23 +83,10 @@ const Form = (props: FormProps) => {
               />
 
               {!!booksRecommended.length && (
-                <ul className={styles.recommend}>
-                  {booksRecommended.map((book, index) => {
-                    return (
-                      <li
-                        className={styles.recommendItem}
-                        key={index}
-                        onClick={(event: MouseEvent) => {
-                          event.preventDefault();
-
-                          handleSelectRecommended(index);
-                        }}
-                      >
-                        <p>{book.name}</p>
-                      </li>
-                    );
-                  })}
-                </ul>
+                <BookRecommend
+                  books={booksRecommended}
+                  onSelect={handleSelectRecommended}
+                />
               )}
             </div>
             <div className={styles.formField}>
@@ -138,28 +129,8 @@ const Form = (props: FormProps) => {
                   accept=".png,.jpeg"
                   onChange={onChange}
                 />
-                {!imageName ? (
-                  <>
-                    <Button
-                      label="Upload"
-                      width="w-lg"
-                      border="b-lg"
-                      variant="primary"
-                      leftIcon={UploadIcon}
-                      onClick={() => {
-                        refImage.current?.click();
-                      }}
-                    />
-                  </>
-                ) : (
-                  <p
-                    onClick={() => {
-                      refImage.current?.click();
-                    }}
-                  >
-                    {imageName}
-                  </p>
-                )}
+
+                <ChooseImage name={imageName} chooseHandler={chooseImage} />
               </div>
               <div className={styles.uploadItem}>
                 {imageURL && (
@@ -211,4 +182,4 @@ const Form = (props: FormProps) => {
   );
 };
 
-export default memo(Form);
+export default memo(Form, isEqual);

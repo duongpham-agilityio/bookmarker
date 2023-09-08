@@ -6,7 +6,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
@@ -18,8 +19,8 @@
   "rules": {
     "semi": ["error"],
     "quotes": ["error", "single"],
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/no-empty-function": "off"
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-unused-vars": "error"
   }
 }
