@@ -1,5 +1,6 @@
 import { ChangeEvent, memo, useCallback, useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+
+// Hooks
 import { useBooks, useDebounce } from 'hooks';
 
 // HOCs
@@ -9,9 +10,11 @@ import { withErrorBoundaries } from 'hocs/withErrorBoundaries';
 import { FormContext } from 'contexts/Form/context';
 
 //Components
-import { Button, Input } from 'components/commons';
 import { Error } from 'components';
 import Books from './Books';
+import Pagination from './Pagination';
+import Pending from './Pending';
+import FilterBar, { SortOption } from './FilterBar';
 
 // Constants
 import { ENDPOINT, SORT, TITLE } from '@constants';
@@ -20,20 +23,47 @@ import { ENDPOINT, SORT, TITLE } from '@constants';
 import homeStyles from 'pages/Home/index.module.css';
 import commonStyles from 'styles/commons/index.module.css';
 
-// Assets
-import SearchIcon from 'assets/icons/search.svg';
-import AddIcon from 'assets/icons/add.svg';
-
 const Home = () => {
   const { dispatch } = useContext(FormContext);
   const {
-    param: { sort },
+    isLoading,
+    param: { sort, page },
     error,
+    pagination,
+    data,
     setSearchParam,
     convertSearchParamsToString,
+    deleteBook,
   } = useBooks();
   const [search, setSearch] = useState('');
   const debounce = useDebounce((value) => setSearchParam('name', value));
+
+  const sortOptions: SortOption[] = [
+    {
+      href: `/${ENDPOINT.BOOKS}${convertSearchParamsToString(
+        'sort',
+        sort === SORT.ASCENDING ? '' : SORT.ASCENDING
+      )}`,
+      isActive: sort === SORT.ASCENDING,
+      title: 'Ascending',
+    },
+    {
+      href: `/${ENDPOINT.BOOKS}${convertSearchParamsToString(
+        'sort',
+        sort === SORT.DESCENDING ? '' : SORT.DESCENDING
+      )}`,
+      isActive: sort === SORT.DESCENDING,
+      title: 'Descending',
+    },
+  ];
+
+  const changeSearchData = useCallback(
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setSearch(event.target.value);
+      debounce(event.target.value);
+    },
+    [debounce]
+  );
 
   const createBookHandler = useCallback(() => {
     dispatch({
@@ -49,7 +79,14 @@ const Home = () => {
       title: TITLE.FORM_CREATE,
       type: 'create',
     });
-  }, []);
+  }, [dispatch]);
+
+  const changePage = useCallback(
+    (page: number) => {
+      setSearchParam('page', `${page}`);
+    },
+    [setSearchParam]
+  );
 
   if (error) {
     return <Error />;
@@ -58,58 +95,24 @@ const Home = () => {
   return (
     <main className={commonStyles.container}>
       <section className={homeStyles.home}>
-        <div className={homeStyles.navbar}>
-          <Input
-            className={homeStyles.search}
-            value={search}
-            leftIcon={SearchIcon}
-            placeholder="Search something..."
-            onChange={(
-              event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-            ) => {
-              setSearch(event.target.value);
-              debounce(event.target.value);
-            }}
-          />
-          <ul className={homeStyles.navList}>
-            <li>
-              <Link
-                to={`/${ENDPOINT.BOOKS}${convertSearchParamsToString(
-                  'sort',
-                  sort === SORT.ASCENDING ? '' : SORT.ASCENDING
-                )}`}
-                className={`${homeStyles.navLink} ${
-                  sort === SORT.ASCENDING ? homeStyles.active : ''
-                }`}
-              >
-                Ascending
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={`/${ENDPOINT.BOOKS}${convertSearchParamsToString(
-                  'sort',
-                  sort === SORT.DESCENDING ? '' : SORT.DESCENDING
-                )}`}
-                className={`${homeStyles.navLink} ${
-                  sort === SORT.DESCENDING ? homeStyles.active : ''
-                }`}
-              >
-                Descending
-              </Link>
-            </li>
-          </ul>
-          <Button
-            label="Create"
-            variant="primary"
-            leftIcon={AddIcon}
-            width="w-lg"
-            border="b-lg"
-            onClick={createBookHandler}
-          />
-        </div>
+        <FilterBar
+          searchValue={search}
+          sortOptions={sortOptions}
+          changeSearchData={changeSearchData}
+          addBook={createBookHandler}
+        />
 
-        <Books />
+        {isLoading ? (
+          <Pending />
+        ) : (
+          <Books books={data} deleteBook={deleteBook}>
+            <Pagination
+              changePage={changePage}
+              currentPage={page}
+              pagination={pagination}
+            />
+          </Books>
+        )}
       </section>
     </main>
   );

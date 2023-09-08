@@ -20,7 +20,7 @@ export const usePagination = (products: Book[] = [], page: number) => {
     }
 
     return new Array(sizePage + 1).fill(0);
-  }, [products, RECORD]);
+  }, [products]);
 
   /**
    * Get products by page

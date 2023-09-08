@@ -1,11 +1,8 @@
-import { MouseEvent, memo } from 'react';
-
-// Hooks
-import { useBooks } from 'hooks';
+import { MouseEvent, ReactNode, memo, useCallback } from 'react';
 
 // Components
-import { Button, Heading } from 'components/commons';
-import { Card, CardSkeleton } from 'components';
+import { Heading } from 'components/commons';
+import { Card } from 'components';
 
 // Constants
 import { ENDPOINT, MESSAGES } from '@constants';
@@ -15,84 +12,58 @@ import { convertDateTimeToTimeString } from 'helpers';
 
 // Styles
 import homeStyles from 'pages/Home/index.module.css';
+import { Book } from 'types';
 
-const Books = () => {
-  const {
-    param: { page: currentPage },
-    data: dataShow,
-    isLoading,
-    pagination,
-    deleteBook,
-    setSearchParam,
-  } = useBooks();
+interface BooksProps {
+  books: Book[];
+  deleteBook: (id: number) => void;
+  children?: ReactNode;
+}
+
+const Books = ({ books, children, deleteBook }: BooksProps) => {
+  const renderBook = useCallback(
+    (book: Book) => {
+      const deleteHandler = (event: MouseEvent) => {
+        event.preventDefault();
+
+        deleteBook(book.id || 0);
+      };
+
+      return (
+        <Card
+          href={`/${ENDPOINT.BOOKS}/${book.id}`}
+          title={book.name}
+          description={book.description}
+          publishedDate={convertDateTimeToTimeString(book.createdAt)}
+          imageUrl={book.imageURL}
+          key={book.id}
+          onDelete={deleteHandler}
+        />
+      );
+    },
+    [deleteBook]
+  );
 
   return (
-    <>
-      {isLoading ? (
-        <div className={homeStyles.grid}>
-          {Array.from({ length: 6 }).map((_, index) => (
-            <CardSkeleton key={index} />
-          ))}
-        </div>
-      ) : (
+    <div className={homeStyles.content}>
+      {(books ?? []).length ? (
         <>
-          {dataShow?.length ? (
-            <>
-              <div className={homeStyles.content}>
-                <div className={homeStyles.grid}>
-                  {dataShow.map((book) => (
-                    <Card
-                      href={`/${ENDPOINT.BOOKS}/${book.id}`}
-                      title={book.name}
-                      description={book.description}
-                      publishedDate={convertDateTimeToTimeString(
-                        book.createdAt
-                      )}
-                      imageUrl={book.imageURL}
-                      key={book.id}
-                      onDelete={(event: MouseEvent) => {
-                        event.preventDefault();
-
-                        deleteBook(book.id || 0);
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className={homeStyles.pagination}>
-                {pagination.length > 1 &&
-                  pagination.map((__, index) => {
-                    const page = index + 1;
-
-                    return (
-                      <Button
-                        label={`${page}`}
-                        variant={currentPage === page ? 'primary' : 'secondary'}
-                        size="small"
-                        key={index}
-                        onClick={() => {
-                          setSearchParam('page', `${page}`);
-                        }}
-                      />
-                    );
-                  })}
-              </div>
-            </>
-          ) : (
-            <div className={homeStyles.empty}>
-              <Heading
-                label={MESSAGES.EMPTY_TITLE}
-                className={homeStyles.emptyTitle}
-                size="xl"
-              />
-              <p className={homeStyles.emptyDescription}>
-                {MESSAGES.EMPTY_DESCRIPTION}
-              </p>
-            </div>
-          )}
+          <div className={homeStyles.grid}>{books.map(renderBook)}</div>
+          {children}
         </>
+      ) : (
+        <div className={homeStyles.empty}>
+          <Heading
+            label={MESSAGES.EMPTY_TITLE}
+            className={homeStyles.emptyTitle}
+            size="xl"
+          />
+          <p className={homeStyles.emptyDescription}>
+            {MESSAGES.EMPTY_DESCRIPTION}
+          </p>
+        </div>
       )}
-    </>
+    </div>
   );
 };
 
