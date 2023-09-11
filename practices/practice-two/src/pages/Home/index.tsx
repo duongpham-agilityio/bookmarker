@@ -64,21 +64,21 @@ const Home = ({ openForm }: WithUseFormProps) => {
     [debounce]
   );
 
-  // const createBookHandler = useCallback(() => {
-  //   dispatch({
-  //     formData: {
-  //       author: '',
-  //       description: '',
-  //       imageURL: '',
-  //       name: '',
-  //       createdAt: new Date().getTime(),
-  //       deletedAt: null,
-  //       updatedAt: new Date().getTime(),
-  //     },
-  //     title: TITLE.FORM_CREATE,
-  //     type: 'create',
-  //   });
-  // }, [dispatch]);
+  const createBookHandler = useCallback(() => {
+    openForm({
+      formData: {
+        author: '',
+        description: '',
+        imageURL: '',
+        name: '',
+        createdAt: new Date().getTime(),
+        deletedAt: null,
+        updatedAt: new Date().getTime(),
+      },
+      title: TITLE.FORM_CREATE,
+      type: 'create',
+    });
+  }, [openForm]);
 
   const changePage = useCallback(
     (page: number) => {
@@ -98,21 +98,7 @@ const Home = ({ openForm }: WithUseFormProps) => {
           searchValue={search}
           sortOptions={sortOptions}
           onChangeSearch={changeSearchData}
-          onAddBook={() =>
-            openForm({
-              formData: {
-                author: '',
-                description: '',
-                imageURL: '',
-                name: '',
-                createdAt: new Date().getTime(),
-                deletedAt: null,
-                updatedAt: new Date().getTime(),
-              },
-              title: TITLE.FORM_CREATE,
-              type: 'create',
-            })
-          }
+          onAddBook={createBookHandler}
         />
 
         {isLoading ? (

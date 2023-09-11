@@ -9,7 +9,6 @@ import {
   useRef,
   useState,
 } from 'react';
-// import { mutate } from 'swr';
 import useMutation from 'swr/mutation';
 
 // Helpers
@@ -17,7 +16,6 @@ import {
   axiosConfig,
   convertStringToTime,
   convertTimeToDate,
-  // fetcher,
   validate,
 } from 'helpers';
 
