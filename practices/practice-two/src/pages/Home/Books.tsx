@@ -12,6 +12,8 @@ import { convertDateTimeToTimeString } from 'helpers';
 
 // Styles
 import homeStyles from 'pages/Home/index.module.css';
+
+// Types
 import { Book } from 'types';
 
 interface BooksProps {

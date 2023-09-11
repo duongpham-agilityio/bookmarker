@@ -1,4 +1,4 @@
-import { MouseEvent, ChangeEvent, memo } from 'react';
+import { MouseEvent, ChangeEvent, memo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import isEqual from 'react-fast-compare';
 
@@ -11,7 +11,6 @@ import homeStyles from 'pages/Home/index.module.css';
 // Assets
 import SearchIcon from 'assets/icons/search.svg';
 import AddIcon from 'assets/icons/add.svg';
-import { useCallback } from 'react';
 
 export interface SortOption {
   href: string;
