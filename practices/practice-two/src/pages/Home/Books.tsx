@@ -30,7 +30,7 @@ const Books = ({ books = [], children, onDeleteBook }: BooksProps) => {
       const deleteHandler = (event: MouseEvent) => {
         event.preventDefault();
 
-        onDeleteBook(book.id || 0);
+        onDeleteBook(id || 0);
       };
 
       return (
