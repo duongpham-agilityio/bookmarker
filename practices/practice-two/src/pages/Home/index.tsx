@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useCallback, useContext, useState } from 'react';
+import { memo, useCallback, useContext, useState } from 'react';
 
 // Hooks
 import { useBooks, useDebounce } from 'hooks';
@@ -36,7 +36,9 @@ const Home = () => {
     deleteBook,
   } = useBooks();
   const [search, setSearch] = useState('');
-  const debounce = useDebounce((value) => setSearchParam('name', value));
+  const debounce = useDebounce((value: string) =>
+    setSearchParam('name', value)
+  );
 
   const sortOptions: SortOption[] = [
     {
@@ -58,9 +60,9 @@ const Home = () => {
   ];
 
   const changeSearchData = useCallback(
-    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setSearch(event.target.value);
-      debounce(event.target.value);
+    (value: string) => {
+      setSearch(value);
+      debounce(value);
     },
     [debounce]
   );
@@ -98,7 +100,7 @@ const Home = () => {
         <FilterBar
           searchValue={search}
           sortOptions={sortOptions}
-          changeSearchData={changeSearchData}
+          onChangeSearch={changeSearchData}
           onAddBook={createBookHandler}
         />
 
@@ -107,7 +109,7 @@ const Home = () => {
         ) : (
           <Books books={data} deleteBook={deleteBook}>
             <Pagination
-              changePage={changePage}
+              onChangePage={changePage}
               currentPage={page}
               pagination={pagination}
             />

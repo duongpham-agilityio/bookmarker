@@ -21,18 +21,23 @@ export interface SortOption {
 interface FilterBarProps {
   searchValue: string;
   sortOptions: SortOption[];
-  changeSearchData: (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+  onChangeSearch: (value: string) => void;
   onAddBook: (e: MouseEvent) => void;
 }
 
 const FilterBar = ({
   searchValue,
-  sortOptions,
-  changeSearchData,
+  sortOptions = [],
+  onChangeSearch,
   onAddBook,
 }: FilterBarProps) => {
+  const changeSearchValue = useCallback(
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      onChangeSearch(event.target.value);
+    },
+    [onChangeSearch]
+  );
+
   const renderOption = useCallback((option: SortOption) => {
     const { href, title, isActive } = option;
 
@@ -57,11 +62,9 @@ const FilterBar = ({
         value={searchValue}
         leftIcon={SearchIcon}
         placeholder="Search something..."
-        onChange={changeSearchData}
+        onChange={changeSearchValue}
       />
-      <ul className={homeStyles.navList}>
-        {(sortOptions ?? []).map(renderOption)}
-      </ul>
+      <ul className={homeStyles.navList}>{sortOptions.map(renderOption)}</ul>
       <Button
         label="Create"
         variant="primary"

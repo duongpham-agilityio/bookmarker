@@ -10,20 +10,20 @@ import homeStyles from 'pages/Home/index.module.css';
 interface PaginationProps {
   currentPage: number;
   pagination: number[];
-  changePage: (page: number) => void;
+  onChangePage: (page: number) => void;
 }
 
 const Pagination = ({
-  pagination,
+  pagination = [],
   currentPage,
-  changePage,
+  onChangePage,
 }: PaginationProps) => {
   return (
     <div className={homeStyles.pagination}>
-      {(pagination ?? []).map((_, index) => {
+      {pagination.map((_, index) => {
         const page = index + 1;
         const handleChangePage = () => {
-          changePage(page);
+          onChangePage(page);
         };
 
         return (
