@@ -19,19 +19,14 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const Icon = ({
   icon,
-  subTitle,
+  subTitle = '',
   ...rest
 }: {
   icon?: string;
   subTitle?: string;
 }) =>
   icon && (
-    <img
-      src={icon}
-      alt={subTitle ?? 'icon action'}
-      className={buttonStyles.icon}
-      {...rest}
-    />
+    <img src={icon} alt={subTitle} className={buttonStyles.icon} {...rest} />
   );
 
 const ButtonIcon = memo(Icon);
@@ -39,9 +34,9 @@ const ButtonIcon = memo(Icon);
 const Button = (props: ButtonProps) => {
   const {
     label,
-    leftIcon,
-    rightIcon,
-    className,
+    leftIcon = '',
+    rightIcon = '',
+    className = '',
     variant = 'default',
     size = 'medium',
     border = 'b-md',
@@ -52,19 +47,19 @@ const Button = (props: ButtonProps) => {
 
   const classes = `${buttonStyles.btn} ${buttonStyles[variant]}
   ${buttonStyles[size]} ${buttonStyles[border]}
-  ${buttonStyles[width]} ${className ?? ''}`;
+  ${buttonStyles[width]} ${className}`;
 
   return (
     <button className={classes} type={type} {...rest}>
       <ButtonIcon
-        icon={leftIcon ?? ''}
+        icon={leftIcon}
         subTitle="This is the left icon for the button"
       />
 
       {label}
 
       <ButtonIcon
-        icon={rightIcon ?? ''}
+        icon={rightIcon}
         subTitle="This is the right icon for the button"
       />
     </button>
