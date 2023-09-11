@@ -40,4 +40,8 @@ const Pagination = ({
   );
 };
 
-export default memo(Pagination, isEqual);
+const areCompare = (prev: PaginationProps, next: PaginationProps): boolean =>
+  isEqual(prev.currentPage, next.currentPage) &&
+  isEqual(prev.pagination, next.pagination);
+
+export default memo(Pagination, areCompare);

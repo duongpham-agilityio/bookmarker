@@ -71,7 +71,7 @@ const Books = ({ books = [], children, deleteBook }: BooksProps) => {
   );
 };
 
-const areCompare = (prev: BooksProps, next: BooksProps) =>
+const areCompare = (prev: BooksProps, next: BooksProps): boolean =>
   isEqual(prev.books, next.books) && isEqual(prev.children, next.children);
 
 export default memo(Books, areCompare);

@@ -74,7 +74,7 @@ const FilterBar = ({
   );
 };
 
-const areCompare = (prev: FilterBarProps, next: FilterBarProps) =>
+const areCompare = (prev: FilterBarProps, next: FilterBarProps): boolean =>
   isEqual(prev.sortOptions, next.sortOptions) &&
   isEqual(prev.searchValue, next.searchValue);
 
