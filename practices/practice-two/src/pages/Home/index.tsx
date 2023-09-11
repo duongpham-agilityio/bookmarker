@@ -107,7 +107,7 @@ const Home = () => {
         {isLoading ? (
           <Pending />
         ) : (
-          <Books books={data} deleteBook={deleteBook}>
+          <Books books={data} onDeleteBook={deleteBook}>
             <Pagination
               onChangePage={changePage}
               currentPage={page}

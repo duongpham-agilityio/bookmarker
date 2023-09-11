@@ -19,18 +19,18 @@ import { Book } from 'types';
 
 interface BooksProps {
   books: Book[];
-  deleteBook: (id: number) => void;
+  onDeleteBook: (id: number) => void;
   children?: ReactNode;
 }
 
-const Books = ({ books = [], children, deleteBook }: BooksProps) => {
+const Books = ({ books = [], children, onDeleteBook }: BooksProps) => {
   const renderBook = useCallback(
     (book: Book) => {
       const { id, name, description, createdAt, imageURL } = book;
       const deleteHandler = (event: MouseEvent) => {
         event.preventDefault();
 
-        deleteBook(book.id || 0);
+        onDeleteBook(book.id || 0);
       };
 
       return (
@@ -45,7 +45,7 @@ const Books = ({ books = [], children, deleteBook }: BooksProps) => {
         />
       );
     },
-    [deleteBook]
+    [onDeleteBook]
   );
 
   return (
