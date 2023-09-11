@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 import Header from 'layouts/Header';
 
 // Context
-import { FormProvider, PopupProvider, ToastProvider } from 'contexts';
+import { PopupProvider, ToastProvider } from 'contexts';
 
 // Helpers
 import { fetcher } from 'helpers';
@@ -21,12 +21,10 @@ const MainLayout = () => {
     >
       <ToastProvider>
         <PopupProvider>
-          <FormProvider>
-            <Header />
-            <Suspense>
-              <Outlet />
-            </Suspense>
-          </FormProvider>
+          <Header />
+          <Suspense>
+            <Outlet />
+          </Suspense>
         </PopupProvider>
       </ToastProvider>
     </SWRConfig>

@@ -1,14 +1,11 @@
-import { memo, useCallback, useContext, useMemo, useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Hooks
 import { useBook } from 'hooks';
 
 // HOCs
-import { withErrorBoundaries } from 'hocs/withErrorBoundaries';
-
-// Contexts
-import { FormContext } from 'contexts/Form/context';
+import { WithUseFormProps, withUseForm, withErrorBoundaries } from 'hocs';
 
 // Components
 import { Button, Heading } from 'components/commons';
@@ -27,12 +24,10 @@ import PenCilIcon from 'assets/icons/pencil.svg';
 // Helpers
 import { convertDateTimeToTimeString, convertTimeToDate } from 'helpers';
 
-const Detail = () => {
+const Detail = ({ openForm }: WithUseFormProps) => {
   const { data, error, isLoading, deleteBook } = useBook();
 
   const redirect = useNavigate();
-
-  const { dispatch } = useContext(FormContext);
 
   const [isShortCut, setIsShortCut] = useState(true);
 
@@ -91,16 +86,16 @@ const Detail = () => {
     );
   }, [isShortCut, data.description]);
 
-  const navigate = useCallback(() => redirect(-1), []);
+  const navigate = useCallback(() => redirect(-1), [redirect]);
 
   const editHandler = useCallback(
     () =>
-      dispatch({
+      openForm({
         formData: data,
         title: 'Edit book',
         type: 'update',
       }),
-    [data]
+    [data, openForm]
   );
 
   if (error) {
@@ -178,4 +173,4 @@ const Detail = () => {
   );
 };
 
-export default memo(withErrorBoundaries(Detail));
+export default memo(withErrorBoundaries(withUseForm(Detail)));

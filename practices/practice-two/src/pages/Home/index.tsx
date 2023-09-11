@@ -1,13 +1,10 @@
-import { memo, useCallback, useContext, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 
 // Hooks
 import { useBooks, useDebounce } from 'hooks';
 
 // HOCs
 import { withErrorBoundaries } from 'hocs/withErrorBoundaries';
-
-// Contexts
-import { FormContext } from 'contexts/Form/context';
 
 //Components
 import { Error } from 'components';
@@ -22,9 +19,9 @@ import { ENDPOINT, SORT, TITLE } from '@constants';
 // Styles
 import homeStyles from 'pages/Home/index.module.css';
 import commonStyles from 'styles/commons/index.module.css';
+import { WithUseFormProps, withUseForm } from 'hocs';
 
-const Home = () => {
-  const { dispatch } = useContext(FormContext);
+const Home = ({ openForm }: WithUseFormProps) => {
   const {
     isLoading,
     param: { sort, page },
@@ -67,21 +64,21 @@ const Home = () => {
     [debounce]
   );
 
-  const createBookHandler = useCallback(() => {
-    dispatch({
-      formData: {
-        author: '',
-        description: '',
-        imageURL: '',
-        name: '',
-        createdAt: new Date().getTime(),
-        deletedAt: null,
-        updatedAt: new Date().getTime(),
-      },
-      title: TITLE.FORM_CREATE,
-      type: 'create',
-    });
-  }, [dispatch]);
+  // const createBookHandler = useCallback(() => {
+  //   dispatch({
+  //     formData: {
+  //       author: '',
+  //       description: '',
+  //       imageURL: '',
+  //       name: '',
+  //       createdAt: new Date().getTime(),
+  //       deletedAt: null,
+  //       updatedAt: new Date().getTime(),
+  //     },
+  //     title: TITLE.FORM_CREATE,
+  //     type: 'create',
+  //   });
+  // }, [dispatch]);
 
   const changePage = useCallback(
     (page: number) => {
@@ -101,7 +98,21 @@ const Home = () => {
           searchValue={search}
           sortOptions={sortOptions}
           onChangeSearch={changeSearchData}
-          onAddBook={createBookHandler}
+          onAddBook={() =>
+            openForm({
+              formData: {
+                author: '',
+                description: '',
+                imageURL: '',
+                name: '',
+                createdAt: new Date().getTime(),
+                deletedAt: null,
+                updatedAt: new Date().getTime(),
+              },
+              title: TITLE.FORM_CREATE,
+              type: 'create',
+            })
+          }
         />
 
         {isLoading ? (
@@ -120,4 +131,4 @@ const Home = () => {
   );
 };
 
-export default memo(withErrorBoundaries(Home));
+export default memo(withErrorBoundaries(withUseForm(Home)));

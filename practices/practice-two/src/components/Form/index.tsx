@@ -22,7 +22,7 @@ export type FormProps = {
   title?: string;
   className?: string;
   type?: 'update' | 'create';
-  onClose?: (event: MouseEvent) => void;
+  onClose?: () => void;
 };
 
 const Form = (props: FormProps) => {
@@ -42,7 +42,7 @@ const Form = (props: FormProps) => {
     resetRecommended,
     onChange,
     onSubmit,
-  } = useForm(data, type);
+  } = useForm(data, type, onClose);
 
   const chooseImage = useCallback(() => {
     refImage.current?.click();
@@ -119,7 +119,7 @@ const Form = (props: FormProps) => {
                 <label className={styles.label} htmlFor="imageURL">
                   Upload
                 </label>
-                <input
+                <Input
                   ref={refImage}
                   hidden
                   className={styles.input}

@@ -17,27 +17,24 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   width?: Width;
 };
 
-const ButtonIcon = memo(function Icon({
+const Icon = ({
   icon,
   subTitle,
   ...rest
 }: {
   icon?: string;
   subTitle?: string;
-}) {
-  return (
-    <>
-      {icon && (
-        <img
-          src={icon}
-          alt={subTitle ?? 'icon action'}
-          className={buttonStyles.icon}
-          {...rest}
-        />
-      )}
-    </>
+}) =>
+  icon && (
+    <img
+      src={icon}
+      alt={subTitle ?? 'icon action'}
+      className={buttonStyles.icon}
+      {...rest}
+    />
   );
-});
+
+const ButtonIcon = memo(Icon);
 
 const Button = (props: ButtonProps) => {
   const {
@@ -74,4 +71,4 @@ const Button = (props: ButtonProps) => {
   );
 };
 
-export default Button;
+export default memo(Button);

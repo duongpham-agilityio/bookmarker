@@ -9,13 +9,15 @@ import {
   useRef,
   useState,
 } from 'react';
+// import { mutate } from 'swr';
+import useMutation from 'swr/mutation';
 
 // Helpers
 import {
   axiosConfig,
   convertStringToTime,
   convertTimeToDate,
-  fetcher,
+  // fetcher,
   validate,
 } from 'helpers';
 
@@ -27,14 +29,19 @@ import { ENDPOINT, MESSAGES, TIMEOUT_DEBOUNCE } from '@constants';
 
 // Contexts
 import { ToastContext } from 'contexts/Toast/context';
-import { FormContext } from 'contexts/Form/context';
-
-// Types
-import { Book, Recommend } from 'types';
-import { mutate } from 'swr';
 
 // Mock data
 import { book } from 'mock-data';
+
+// Types
+import { Book, Recommend } from 'types';
+
+type FormData = Omit<
+  Book,
+  'publishDate' | 'deletedAt' | 'createdAt' | 'updatedAt'
+> & {
+  publishDate?: number;
+};
 
 /**
  * Interacting with forms
@@ -43,27 +50,29 @@ import { book } from 'mock-data';
  * @returns Object
  */
 export const useForm = (
-  data: Omit<Book, 'publishDate' | 'deletedAt' | 'createdAt' | 'updatedAt'> & {
-    publishDate?: number;
-  },
-  type: 'create' | 'update'
+  data: FormData,
+  type: 'create' | 'update',
+  hideForm = () => {}
 ) => {
   const { setNotification } = useContext(ToastContext);
-
-  const { dispatch } = useContext(FormContext);
-
-  const [state, setState] = useState({
+  const [state, setState] = useState<FormData & { imageName: string }>({
     ...data,
     imageName: '',
   });
-
   const [isUpload, setIsUpload] = useState(false);
-
   const [booksRecommended, setBooksRecommended] = useState<Recommend[]>([]);
-
   const refImage = useRef<HTMLInputElement>(null);
-
   const refTime = useRef<ReturnType<typeof setTimeout>>();
+  const { trigger: onAddBook } = useMutation(
+    `${ENDPOINT.BOOKS}${ENDPOINT.SORT}`,
+    (_, { arg }: { arg: Omit<FormData, 'imageName'> }) =>
+      axiosConfig.post(ENDPOINT.BOOKS, arg)
+  );
+  const { trigger: onUpdateBook } = useMutation(
+    `${ENDPOINT.BOOKS}/${state.id}`,
+    (key: string, { arg }: { arg: FormData & { updatedAt: number } }) =>
+      axiosConfig.patch(key, arg)
+  );
 
   /**
    * Convert data to render form
@@ -80,35 +89,18 @@ export const useForm = (
   /**
    * Handling add new book
    */
-  const handleCreateBook = useCallback(() => {
+  const handleCreateBook = useCallback(async () => {
     try {
-      mutate(
-        `${ENDPOINT.BOOKS}${ENDPOINT.SORT}`,
-        async () => {
-          // eslint-disable-next-line no-unused-vars
-          const { imageName, ...rest } = state;
-          await axiosConfig.post(ENDPOINT.BOOKS, rest);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { imageName, ...rest } = state;
+      onAddBook(rest);
 
-          return fetcher(`${ENDPOINT.BOOKS}${ENDPOINT.SORT}`);
-        },
-        {
-          optimisticData: (prevData: Book[]) => {
-            return [
-              {
-                ...state,
-                id: 0,
-              },
-              ...prevData,
-            ];
-          },
-          revalidate: false,
-        }
-      );
       setNotification({
         message: MESSAGES.ADD_SUCCESS,
         title: MESSAGES.ADD_TITLE,
       });
-      dispatch(undefined);
+
+      hideForm();
     } catch (error) {
       setNotification({
         message: MESSAGES.ERROR_TITLE,
@@ -116,38 +108,26 @@ export const useForm = (
         type: 'error',
       });
     }
-  }, [state]);
+  }, [hideForm, setNotification, state, onAddBook]);
 
   /**
    * Handling update book
    */
   const handleUpdateBook = useCallback(() => {
     try {
-      const newBook = {
+      const newBook: FormData & {
+        updatedAt: number;
+      } = {
         ...state,
         updatedAt: new Date().getTime(),
       };
 
-      mutate(
-        `${ENDPOINT.BOOKS}/${state.id}`,
-        async () => {
-          const res = await axiosConfig
-            .patch(`${ENDPOINT.BOOKS}/${state.id}`, newBook)
-            .then((r) => r.data);
-
-          return res;
-        },
-        {
-          optimisticData: newBook,
-          populateCache: false,
-          revalidate: false,
-        }
-      );
+      onUpdateBook(newBook);
       setNotification({
         message: MESSAGES.UPDATE_TITLE,
         title: MESSAGES.UPDATE_SUCCESS,
       });
-      dispatch(undefined);
+      hideForm();
     } catch (error) {
       setNotification({
         message: MESSAGES.ERROR_TITLE,
@@ -155,7 +135,7 @@ export const useForm = (
         type: 'error',
       });
     }
-  }, [state]);
+  }, [hideForm, onUpdateBook, setNotification, state]);
 
   /**
    * Handling get recommend
@@ -214,9 +194,7 @@ export const useForm = (
   const onSubmit = useCallback(
     (event: FormEvent) => {
       event.preventDefault();
-      // eslint-disable-next-line no-unused-vars
-      const { name, author, imageURL, description, publishDate, ...rest } =
-        state;
+      const { name, author, imageURL, description, publishDate } = state;
       const checked = {
         name,
         author,
@@ -224,7 +202,6 @@ export const useForm = (
         description,
         publishDate,
       };
-
       const isError = validate(checked);
 
       if (isError) {
@@ -239,7 +216,7 @@ export const useForm = (
 
       return handleUpdateBook();
     },
-    [type, state]
+    [state, type, handleCreateBook, handleUpdateBook, setNotification]
   );
 
   const onChange = useCallback(
@@ -299,7 +276,7 @@ export const useForm = (
         [key]: value,
       }));
     },
-    []
+    [handleRecommended, setNotification]
   );
 
   return {
