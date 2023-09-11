@@ -17,7 +17,7 @@ export type CardProps = Omit<LinkProps, 'to'> & {
   description: string;
   publishedDate: string;
   imageUrl: string;
-  onDelete?: (_event: MouseEvent) => void;
+  onDeleteBook?: (_event: MouseEvent) => void;
 };
 
 const Card = (props: CardProps) => {
@@ -27,7 +27,7 @@ const Card = (props: CardProps) => {
     publishedDate,
     imageUrl,
     href = '',
-    onDelete,
+    onDeleteBook,
   } = props;
 
   return (
@@ -41,7 +41,7 @@ const Card = (props: CardProps) => {
             leftIcon={TrashIcon}
             label=""
             variant="danger"
-            onClick={onDelete}
+            onClick={onDeleteBook}
           />
         </div>
       </div>

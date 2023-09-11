@@ -99,7 +99,7 @@ const Home = () => {
           searchValue={search}
           sortOptions={sortOptions}
           changeSearchData={changeSearchData}
-          addBook={createBookHandler}
+          onAddBook={createBookHandler}
         />
 
         {isLoading ? (

@@ -1,4 +1,5 @@
 import { MouseEvent, ReactNode, memo, useCallback } from 'react';
+import isEqual from 'react-fast-compare';
 
 // Components
 import { Heading } from 'components/commons';
@@ -22,9 +23,10 @@ interface BooksProps {
   children?: ReactNode;
 }
 
-const Books = ({ books, children, deleteBook }: BooksProps) => {
+const Books = ({ books = [], children, deleteBook }: BooksProps) => {
   const renderBook = useCallback(
     (book: Book) => {
+      const { id, name, description, createdAt, imageURL } = book;
       const deleteHandler = (event: MouseEvent) => {
         event.preventDefault();
 
@@ -33,13 +35,13 @@ const Books = ({ books, children, deleteBook }: BooksProps) => {
 
       return (
         <Card
-          href={`/${ENDPOINT.BOOKS}/${book.id}`}
-          title={book.name}
-          description={book.description}
-          publishedDate={convertDateTimeToTimeString(book.createdAt)}
-          imageUrl={book.imageURL}
-          key={book.id}
-          onDelete={deleteHandler}
+          href={`/${ENDPOINT.BOOKS}/${id}`}
+          title={name}
+          description={description}
+          publishedDate={convertDateTimeToTimeString(createdAt)}
+          imageUrl={imageURL}
+          key={id}
+          onDeleteBook={deleteHandler}
         />
       );
     },
@@ -48,7 +50,7 @@ const Books = ({ books, children, deleteBook }: BooksProps) => {
 
   return (
     <div className={homeStyles.content}>
-      {(books ?? []).length ? (
+      {books.length ? (
         <>
           <div className={homeStyles.grid}>{books.map(renderBook)}</div>
           {children}
@@ -69,4 +71,7 @@ const Books = ({ books, children, deleteBook }: BooksProps) => {
   );
 };
 
-export default memo(Books);
+const areCompare = (prev: BooksProps, next: BooksProps) =>
+  isEqual(prev.books, next.books) && isEqual(prev.children, next.children);
+
+export default memo(Books, areCompare);

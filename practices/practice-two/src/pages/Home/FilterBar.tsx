@@ -24,14 +24,14 @@ interface FilterBarProps {
   changeSearchData: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  addBook: (e: MouseEvent) => void;
+  onAddBook: (e: MouseEvent) => void;
 }
 
 const FilterBar = ({
   searchValue,
   sortOptions,
   changeSearchData,
-  addBook,
+  onAddBook,
 }: FilterBarProps) => {
   const renderOption = useCallback((option: SortOption) => {
     const { href, title, isActive } = option;
@@ -68,10 +68,14 @@ const FilterBar = ({
         leftIcon={AddIcon}
         width="w-lg"
         border="b-lg"
-        onClick={addBook}
+        onClick={onAddBook}
       />
     </div>
   );
 };
 
-export default memo(FilterBar, isEqual);
+const areCompare = (prev: FilterBarProps, next: FilterBarProps) =>
+  isEqual(prev.sortOptions, next.sortOptions) &&
+  isEqual(prev.searchValue, next.searchValue);
+
+export default memo(FilterBar, areCompare);
