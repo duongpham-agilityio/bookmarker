@@ -19,7 +19,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const Icon = ({
   icon,
-  subTitle = '',
+  subTitle = 'icon action',
   ...rest
 }: {
   icon?: string;
