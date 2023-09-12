@@ -53,9 +53,7 @@ export const withUseForm = <T extends WithUseFormProps>(Component: FC<T>) => {
         axiosConfig.patch(key, arg)
     );
 
-    const closeForm = useCallback(() => {
-      setForm(null);
-    }, []);
+    const closeForm = useCallback(() => setForm(null), []);
 
     const createBook = useCallback((data: StateType) => {
       setForm(data);
@@ -83,22 +81,23 @@ export const withUseForm = <T extends WithUseFormProps>(Component: FC<T>) => {
               type: 'error',
             })
           )
-          .finally(() => closeForm()),
+          .finally(closeForm),
       [closeForm, setNotification, triggerAddBook]
     );
 
     const onTriggerUpdate = useCallback(
       (result: FormData) => {
         const { author, description, imageURL, name, publishDate } = result;
-
-        return triggerUpdateBook({
+        const payload: FormData & { updatedAt: number } = {
           author,
           description,
           imageURL,
           name,
           updatedAt: new Date().getTime(),
           publishDate,
-        })
+        };
+
+        return triggerUpdateBook(payload)
           .then(() =>
             setNotification({
               message: MESSAGES.UPDATE_TITLE,
@@ -112,7 +111,7 @@ export const withUseForm = <T extends WithUseFormProps>(Component: FC<T>) => {
               type: 'error',
             })
           )
-          .finally(() => closeForm());
+          .finally(closeForm);
       },
       [closeForm, setNotification, triggerUpdateBook]
     );
