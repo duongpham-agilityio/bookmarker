@@ -25,9 +25,9 @@ const Icon = ({
   icon?: string;
   subTitle?: string;
 }) =>
-  icon && (
+  icon ? (
     <img src={icon} alt={subTitle} className={buttonStyles.icon} {...rest} />
-  );
+  ) : null;
 
 const ButtonIcon = memo(Icon);
 

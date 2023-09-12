@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Heading match snapshot 1`] = `
+<DocumentFragment>
+  <h2
+    class="undefined undefined "
+  >
+    HTML/CSS
+  </h2>
+</DocumentFragment>
+`;

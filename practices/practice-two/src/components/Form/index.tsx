@@ -63,6 +63,7 @@ const Form = (props: FormProps) => {
         method="POST"
         onSubmit={onSubmitOnHook}
         onClick={resetRecommendedData}
+        data-testid="book-form"
       >
         <Heading label={title} className={styles.heading} />
 

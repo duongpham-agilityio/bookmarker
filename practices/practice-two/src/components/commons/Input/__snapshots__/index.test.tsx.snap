@@ -5,10 +5,24 @@ exports[`Input match snapshot 1`] = `
   <div
     class="undefined "
   >
+    <button
+      class="undefined undefined
+  undefined undefined
+  undefined "
+      style="background-color: transparent; padding: 0px;"
+      type="button"
+    />
     <input
       placeholder="Enter"
       type="text"
       value=""
+    />
+    <button
+      class="undefined undefined
+  undefined undefined
+  undefined "
+      style="background-color: transparent; padding: 0px;"
+      type="button"
     />
   </div>
 </DocumentFragment>

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card Match snapshot 1`] = `
+<div>
+  <a
+    href=""
+  >
+    <div>
+      <h2
+        class="undefined undefined "
+      >
+        Lorem ipsum dolor
+      </h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, dicta.
+      </p>
+      <div>
+        <button>
+          Icon
+        </button>
+        <button>
+          Icon
+        </button>
+      </div>
+    </div>
+    <div>
+      <p>
+        1955-08-15
+      </p>
+      <img
+        alt="Lorem ipsum dolor"
+        src="http://books.google.com/books/content?id=51YEAAAAMBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+      />
+    </div>
+  </a>
+</div>
+`;

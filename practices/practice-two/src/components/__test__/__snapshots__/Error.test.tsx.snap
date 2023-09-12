@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Error match snapshot 1`] = `
-<DocumentFragment>
-  <div>
+exports[`Error component Match snapshot 1`] = `
+<div>
+  <section>
     <h2
       class="undefined undefined "
     >
@@ -11,6 +11,6 @@ exports[`Error match snapshot 1`] = `
     <p>
       Please, help me reload pages.
     </p>
-  </div>
-</DocumentFragment>
+  </section>
+</div>
 `;

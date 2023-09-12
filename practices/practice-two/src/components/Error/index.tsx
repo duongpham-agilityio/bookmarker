@@ -7,17 +7,19 @@ import { MESSAGES } from '@constants';
 // Styles
 import styles from 'components/Error/index.module.css';
 
-const Error = () => {
-  return (
-    <section className={styles.empty}>
-      <Heading
-        label={MESSAGES.ERROR_TITLE}
-        className={styles.emptyTitle}
-        size="sm"
-      />
-      <p className={styles.emptyDescription}>{MESSAGES.ERROR_DESCRIPTION}</p>
-    </section>
-  );
-};
+export interface ErrorProps {
+  title?: string;
+  description?: string;
+}
+
+const Error = ({
+  title = MESSAGES.ERROR_TITLE,
+  description = MESSAGES.ERROR_DESCRIPTION,
+}: ErrorProps) => (
+  <section className={styles.empty}>
+    <Heading label={title} className={styles.emptyTitle} size="sm" />
+    <p className={styles.emptyDescription}>{description}</p>
+  </section>
+);
 
 export default Error;

@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/react';
 
-import { Button } from 'components/commons';
+import Button from 'components/commons/Button';
 
 describe('Button', () => {
   it('match snapshot', () => {

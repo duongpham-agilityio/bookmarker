@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookRecommend Match snapshot 1`] = `
+<div>
+  <ul>
+    <li>
+      <p>
+        Book 1
+      </p>
+    </li>
+    <li>
+      <p>
+        Book 2
+      </p>
+    </li>
+  </ul>
+</div>
+`;

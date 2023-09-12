@@ -6,7 +6,7 @@ import styles from 'components/Form/index.module.css';
 // Types
 import { Recommend } from 'types';
 
-interface RecommendProps {
+export interface RecommendProps {
   books: Recommend[];
   onSelect: (index: number) => void;
 }
