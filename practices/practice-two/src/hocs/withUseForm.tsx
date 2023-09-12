@@ -9,6 +9,12 @@ import {
 } from 'react';
 import useMutation from 'swr/mutation';
 
+// Hooks
+import { FormData } from 'hooks';
+
+// Contexts
+import { ToastContext } from 'contexts/Toast/context';
+
 // Components
 const Form = lazy(() => import('components/Form'));
 
@@ -20,8 +26,6 @@ import { axiosConfig } from 'helpers';
 
 // Types
 import { Book } from 'types';
-import { FormData } from 'hooks';
-import { ToastContext } from 'contexts/Toast/context';
 
 type FormStatus = 'update' | 'create';
 interface StateType {
@@ -33,8 +37,7 @@ interface StateType {
 }
 
 export interface WithUseFormProps {
-  create: (data: StateType) => void;
-  update: (data: StateType) => void;
+  dispatchAction: (data: StateType) => void;
 }
 
 export const withUseForm = <T extends WithUseFormProps>(Component: FC<T>) => {
@@ -53,16 +56,11 @@ export const withUseForm = <T extends WithUseFormProps>(Component: FC<T>) => {
         axiosConfig.patch(key, arg)
     );
 
-    const closeForm = useCallback(() => setForm(null), []);
+    const handleCloseForm = useCallback(() => setForm(null), []);
 
-    const createBook = useCallback((data: StateType) => {
+    const dispatchAction = useCallback((data: StateType) => {
       setForm(data);
-      setFormStatus('create');
-    }, []);
-
-    const updateBook = useCallback((data: StateType) => {
-      setForm(data);
-      setFormStatus('update');
+      setFormStatus(data.type);
     }, []);
 
     const onTriggerCreate = useCallback(
@@ -81,8 +79,8 @@ export const withUseForm = <T extends WithUseFormProps>(Component: FC<T>) => {
               type: 'error',
             })
           )
-          .finally(closeForm),
-      [closeForm, setNotification, triggerAddBook]
+          .finally(handleCloseForm),
+      [handleCloseForm, setNotification, triggerAddBook]
     );
 
     const onTriggerUpdate = useCallback(
@@ -111,9 +109,9 @@ export const withUseForm = <T extends WithUseFormProps>(Component: FC<T>) => {
               type: 'error',
             })
           )
-          .finally(closeForm);
+          .finally(handleCloseForm);
       },
-      [closeForm, setNotification, triggerUpdateBook]
+      [handleCloseForm, setNotification, triggerUpdateBook]
     );
 
     const onSubmit = useMemo(() => {
@@ -127,14 +125,14 @@ export const withUseForm = <T extends WithUseFormProps>(Component: FC<T>) => {
 
     return (
       <>
-        <Component {...(props as T)} update={updateBook} create={createBook} />
+        <Component {...(props as T)} {...{ dispatchAction }} />
         <Suspense>
           {form && (
             <Form
               value={form.formData}
               title={form.title}
               type={form.type}
-              onClose={closeForm}
+              onClose={handleCloseForm}
               onSubmit={onSubmit}
             />
           )}

@@ -21,7 +21,7 @@ import homeStyles from 'pages/Home/index.module.css';
 import commonStyles from 'styles/commons/index.module.css';
 import { WithUseFormProps, withUseForm } from 'hocs';
 
-const Home = ({ create }: WithUseFormProps) => {
+const Home = ({ dispatchAction }: WithUseFormProps) => {
   const {
     isLoading,
     param: { sort, page },
@@ -65,7 +65,7 @@ const Home = ({ create }: WithUseFormProps) => {
   );
 
   const createBookHandler = useCallback(() => {
-    create({
+    dispatchAction({
       formData: {
         author: '',
         description: '',
@@ -78,7 +78,7 @@ const Home = ({ create }: WithUseFormProps) => {
       title: TITLE.FORM_CREATE,
       type: 'create',
     });
-  }, [create]);
+  }, [dispatchAction]);
 
   const changePage = useCallback(
     (page: number) => {
