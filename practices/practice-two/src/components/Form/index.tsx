@@ -2,27 +2,23 @@ import { MouseEvent, memo, useCallback } from 'react';
 import isEqual from 'react-fast-compare';
 
 // Hooks
-import { useForm } from 'hooks';
+import { useBookForm, FormData } from 'hooks';
 
 // Components
 import { Button, Heading, Input } from 'components/commons';
 import BookRecommend from './Recommend';
 import ChooseImage from './ChooseImage';
 
-// Types
-import { Book } from 'types';
-
 // Styles
 import styles from 'components/Form/index.module.css';
 
 export type FormProps = {
-  value: Omit<Book, 'publishDate' | 'deletedAt' | 'createdAt' | 'updatedAt'> & {
-    publishDate?: number;
-  };
+  value: FormData;
   title?: string;
   className?: string;
   type?: 'update' | 'create';
   onClose?: () => void;
+  onSubmit: (data: FormData) => Promise<void>;
 };
 
 const Form = (props: FormProps) => {
@@ -32,17 +28,19 @@ const Form = (props: FormProps) => {
     className = '',
     type = 'create',
     onClose,
+    onSubmit,
   } = props;
   const {
     value: { author, description, imageURL, name, publishDate, imageName },
     refImage,
     isUpload,
+    isSubmit,
     booksRecommended,
     handleSelectRecommended,
     resetRecommended,
     onChange,
-    onSubmit,
-  } = useForm(data, type, onClose);
+    onSubmit: onSubmitOnHook,
+  } = useBookForm(data, type, onSubmit);
 
   const chooseImage = useCallback(() => {
     refImage.current?.click();
@@ -63,7 +61,7 @@ const Form = (props: FormProps) => {
         className={`${styles.form} ${className}`}
         action="#"
         method="POST"
-        onSubmit={onSubmit}
+        onSubmit={onSubmitOnHook}
         onClick={resetRecommendedData}
       >
         <Heading label={title} className={styles.heading} />
@@ -166,9 +164,10 @@ const Form = (props: FormProps) => {
               width="w-lg"
               border="b-lg"
               onClick={onClose}
+              disabled={isSubmit}
             />
             <Button
-              disabled={isUpload}
+              disabled={isUpload || isSubmit}
               type="submit"
               label="Save"
               variant={isUpload ? 'default' : 'primary'}

@@ -24,7 +24,7 @@ import PenCilIcon from 'assets/icons/pencil.svg';
 // Helpers
 import { convertDateTimeToTimeString, convertTimeToDate } from 'helpers';
 
-const Detail = ({ openForm }: WithUseFormProps) => {
+const Detail = ({ update }: WithUseFormProps) => {
   const { data, error, isLoading, deleteBook } = useBook();
 
   const redirect = useNavigate();
@@ -90,12 +90,12 @@ const Detail = ({ openForm }: WithUseFormProps) => {
 
   const editHandler = useCallback(
     () =>
-      openForm({
+      update({
         formData: data,
         title: 'Edit book',
         type: 'update',
       }),
-    [data, openForm]
+    [data, update]
   );
 
   if (error) {
