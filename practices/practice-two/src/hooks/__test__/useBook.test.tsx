@@ -51,7 +51,7 @@ describe('useBook', () => {
   it('Render', () => {
     const {
       result: {
-        current: { data: res, deleteBook },
+        current: { data: res, deleteBook, mutate },
       },
     } = renderHook(useBook, {
       wrapper: PopupProvider,
@@ -68,5 +68,7 @@ describe('useBook', () => {
     act(() => {
       buttons[1].click();
     });
+
+    expect(mutate).toBeCalled();
   });
 });

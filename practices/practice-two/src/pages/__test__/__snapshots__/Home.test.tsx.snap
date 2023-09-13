@@ -584,7 +584,44 @@ exports[`Home page Match to snapshot 1`] = `
             </div>
           </a>
         </div>
-        <div />
+        <div>
+          <button
+            class="undefined undefined
+  function small() { [native code] } undefined
+  undefined "
+            data-testid="pagination"
+            type="button"
+          >
+            1
+          </button>
+          <button
+            class="undefined undefined
+  function small() { [native code] } undefined
+  undefined "
+            data-testid="pagination"
+            type="button"
+          >
+            2
+          </button>
+          <button
+            class="undefined undefined
+  function small() { [native code] } undefined
+  undefined "
+            data-testid="pagination"
+            type="button"
+          >
+            3
+          </button>
+          <button
+            class="undefined undefined
+  function small() { [native code] } undefined
+  undefined "
+            data-testid="pagination"
+            type="button"
+          >
+            4
+          </button>
+        </div>
       </div>
     </section>
   </main>

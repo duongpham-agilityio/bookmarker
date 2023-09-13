@@ -4,6 +4,7 @@ exports[`Card skeleton Match snapshot 1`] = `
 <div>
   <div
     class="undefined undefined"
+    data-testid="card-skeleton"
   >
     <div>
       <h2

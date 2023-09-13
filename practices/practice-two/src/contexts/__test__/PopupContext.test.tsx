@@ -35,5 +35,20 @@ describe('Popup context', () => {
     const acceptBtn = getByText('Ok');
 
     fireEvent.click(acceptBtn);
+
+    expect(acceptBtn).not.toBeInTheDocument();
+  });
+
+  it('Close popup', () => {
+    const { getByText, getByRole } = setup();
+    const openBtn = getByRole('button');
+
+    fireEvent.click(openBtn);
+
+    const cancelBtn = getByText('Cancel');
+
+    fireEvent.click(cancelBtn);
+
+    expect(cancelBtn).not.toBeInTheDocument();
   });
 });

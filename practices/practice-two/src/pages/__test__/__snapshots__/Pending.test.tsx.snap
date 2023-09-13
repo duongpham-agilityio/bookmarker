@@ -6,6 +6,7 @@ exports[`Pending Match to snapshot 1`] = `
     <div>
       <div
         class="undefined undefined"
+        data-testid="card-skeleton"
       >
         <div>
           <h2
@@ -40,6 +41,7 @@ exports[`Pending Match to snapshot 1`] = `
       </div>
       <div
         class="undefined undefined"
+        data-testid="card-skeleton"
       >
         <div>
           <h2
@@ -74,6 +76,7 @@ exports[`Pending Match to snapshot 1`] = `
       </div>
       <div
         class="undefined undefined"
+        data-testid="card-skeleton"
       >
         <div>
           <h2
@@ -108,6 +111,7 @@ exports[`Pending Match to snapshot 1`] = `
       </div>
       <div
         class="undefined undefined"
+        data-testid="card-skeleton"
       >
         <div>
           <h2
@@ -142,6 +146,7 @@ exports[`Pending Match to snapshot 1`] = `
       </div>
       <div
         class="undefined undefined"
+        data-testid="card-skeleton"
       >
         <div>
           <h2
@@ -176,6 +181,7 @@ exports[`Pending Match to snapshot 1`] = `
       </div>
       <div
         class="undefined undefined"
+        data-testid="card-skeleton"
       >
         <div>
           <h2

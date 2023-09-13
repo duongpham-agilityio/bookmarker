@@ -1,3 +1,6 @@
+// Mocks
+import 'components/__test__/mocks/image.test';
+
 import { act } from 'react-dom/test-utils';
 import { fireEvent, render } from '@testing-library/react';
 
@@ -21,14 +24,6 @@ jest.mock('react-router-dom', () => ({
       {children}
     </a>
   ),
-}));
-
-jest.mock('assets/icons/next.svg', () => ({
-  default: 'assets/icons/next.svg',
-}));
-
-jest.mock('assets/icons/trash.svg', () => ({
-  default: 'assets/icons/trash.svg',
 }));
 
 const setup = (props: CardProps) => render(<Card {...props} />);

@@ -7,7 +7,10 @@ import skeletonStyles from 'styles/commons/index.module.css';
 
 const CardSkeleton = () => {
   return (
-    <div className={`${styles.card} ${skeletonStyles.loading}`}>
+    <div
+      className={`${styles.card} ${skeletonStyles.loading}`}
+      data-testid="card-skeleton"
+    >
       <div className={styles.cardItem}>
         <Heading
           label=""

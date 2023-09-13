@@ -21,6 +21,7 @@ const ChooseImage = ({
       variant="primary"
       leftIcon={UploadIcon}
       onClick={chooseHandler}
+      data-testid="upload-btn"
     />
   ) : (
     <p onClick={chooseHandler}>{name}</p>

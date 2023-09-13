@@ -32,20 +32,30 @@ const setup = () =>
   });
 
 describe('Toast context', () => {
-  it('Match to snapshot', () => {
-    const { container } = setup();
+  it('Match to snapshot', async () => {
+    const { container } = await setup();
 
     expect(container).toMatchSnapshot();
   });
 
   jest.useFakeTimers();
-  it('Render with props', () => {
-    const { getByRole } = setup();
+  it('Render with props', async () => {
+    const { getByRole, getByText } = setup();
     const btn = getByRole('button');
+
+    act(() => {
+      fireEvent.click(btn);
+    });
+
+    const pEl = getByText('Add on success');
+
+    expect(pEl).toBeInTheDocument();
 
     act(() => {
       fireEvent.click(btn);
       jest.runAllTimers();
     });
+
+    expect(pEl).not.toBeInTheDocument();
   });
 });

@@ -4,7 +4,6 @@ import { fireEvent, render } from '@testing-library/react';
 import * as hooks from 'hooks';
 
 // Mocks
-import './mocks/button.test';
 import './mocks/image.test';
 
 // Components
@@ -15,44 +14,47 @@ jest.mock('hooks');
 
 const setup = (props: FormProps) => render(<Form {...props} />);
 
-describe('Form component', () => {
-  const onSubmit = jest.fn();
-  const mockProps: FormProps = {
-    onSubmit,
-    value: {
-      author: 'dddd',
-      description:
-        'LIFE Magazine is the treasured photographic magazine that chronicled the 20th Century. It now lives on at LIFE.com, the largest, most amazing collection of professional photography on the internet. Users can browse, search and view photos of today’s people and events. They have free access to share, print and post images for personal use.',
-      imageURL:
-        'http://books.google.com/books/content?id=51YEAAAAMBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
-      name: 'LIFE23333',
-      id: 16,
+const onSubmit = jest.fn();
+const chooseImage = jest.fn();
+const mockProps: FormProps = {
+  onSubmit,
+  value: {
+    author: 'dddd',
+    description:
+      'LIFE Magazine is the treasured photographic magazine that chronicled the 20th Century. It now lives on at LIFE.com, the largest, most amazing collection of professional photography on the internet. Users can browse, search and view photos of today’s people and events. They have free access to share, print and post images for personal use.',
+    imageURL:
+      'http://books.google.com/books/content?id=51YEAAAAMBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+    name: 'LIFE23333',
+    id: 16,
+  },
+};
+const mockUseBookFormValue: ReturnType<typeof hooks.useBookForm> = {
+  value: {
+    author: 'dddd',
+    description:
+      'LIFE Magazine is the treasured photographic magazine that chronicled the 20th Century. It now lives on at LIFE.com, the largest, most amazing collection of professional photography on the internet. Users can browse, search and view photos of today’s people and events. They have free access to share, print and post images for personal use.',
+    imageURL:
+      'http://books.google.com/books/content?id=51YEAAAAMBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+    name: 'LIFE23333',
+    id: 16,
+    publishDate: '1955-08-15',
+    imageName: 'duong',
+  },
+  isUpload: false,
+  isSubmit: false,
+  booksRecommended: [],
+  handleSelectRecommended: jest.fn(),
+  resetRecommended: jest.fn(),
+  onChange: jest.fn(),
+  onSubmit: jest.fn(),
+  refImage: {
+    current: {
+      click: chooseImage,
     },
-  };
-  const mockUseBookFormValue = {
-    value: {
-      author: 'dddd',
-      description:
-        'LIFE Magazine is the treasured photographic magazine that chronicled the 20th Century. It now lives on at LIFE.com, the largest, most amazing collection of professional photography on the internet. Users can browse, search and view photos of today’s people and events. They have free access to share, print and post images for personal use.',
-      imageURL:
-        'http://books.google.com/books/content?id=51YEAAAAMBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
-      name: 'LIFE23333',
-      id: 16,
-      publishDate: '1955-08-15',
-      imageName: 'duong',
-    },
-    isUpload: false,
-    isSubmit: false,
-    booksRecommended: [],
-    handleSelectRecommended: jest.fn(),
-    resetRecommended: jest.fn(),
-    onChange: jest.fn(),
-    onSubmit: jest.fn(),
-    refImage: {
-      current: null,
-    },
-  };
+  } as unknown as RefObject<HTMLInputElement>,
+};
 
+describe('Form component', () => {
   it('Match snapshot', () => {
     jest.spyOn(hooks, 'useBookForm').mockReturnValue(mockUseBookFormValue);
 
@@ -77,6 +79,7 @@ describe('Form component', () => {
       value: {
         ...mockUseBookFormValue.value,
         imageName: '',
+        imageURL: '',
       },
       refImage: {
         current: {
@@ -84,13 +87,31 @@ describe('Form component', () => {
         },
       } as unknown as RefObject<HTMLInputElement>,
     });
-    const { getByText, getByTestId } = setup(mockProps);
+    const { getByTestId } = setup(mockProps);
 
-    const button = getByText('Upload');
     const formEl = getByTestId('book-form');
 
-    fireEvent.click(button);
-
     fireEvent.click(formEl);
+
+    expect(mockUseBookFormValue.resetRecommended).toBeCalled();
+  });
+
+  it('Choose image', () => {
+    jest.spyOn(hooks, 'useBookForm').mockReturnValue({
+      ...mockUseBookFormValue,
+      isUpload: false,
+      booksRecommended: [],
+      value: {
+        ...mockUseBookFormValue.value,
+        imageName: '',
+      },
+    });
+
+    const { getByTestId } = setup(mockProps);
+    const uploadBtn = getByTestId('upload-btn');
+
+    fireEvent.click(uploadBtn);
+
+    expect(chooseImage).toHaveBeenCalledTimes(1);
   });
 });

@@ -115,8 +115,8 @@ export const withUseForm = <T extends WithUseFormProps>(Component: FC<T>) => {
     return (
       <>
         <Component {...(props as T)} {...{ dispatchAction }} />
-        <Suspense>
-          {form && (
+        {form && (
+          <Suspense>
             <Form
               value={form.formData}
               title={form.title}
@@ -124,8 +124,8 @@ export const withUseForm = <T extends WithUseFormProps>(Component: FC<T>) => {
               onClose={handleCloseForm}
               onSubmit={onSubmit}
             />
-          )}
-        </Suspense>
+          </Suspense>
+        )}
       </>
     );
   };

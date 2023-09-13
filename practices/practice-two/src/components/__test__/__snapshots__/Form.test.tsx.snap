@@ -25,9 +25,13 @@ exports[`Form component Match snapshot 1`] = `
             <div
               class="undefined "
             >
-              <button>
-                Icon
-              </button>
+              <button
+                class="undefined undefined
+  undefined undefined
+  undefined "
+                style="background-color: transparent; padding: 0px;"
+                type="button"
+              />
               <input
                 id="bookName"
                 name="name"
@@ -35,9 +39,13 @@ exports[`Form component Match snapshot 1`] = `
                 type="text"
                 value="LIFE23333"
               />
-              <button>
-                Icon
-              </button>
+              <button
+                class="undefined undefined
+  undefined undefined
+  undefined "
+                style="background-color: transparent; padding: 0px;"
+                type="button"
+              />
             </div>
           </div>
           <div>
@@ -49,18 +57,26 @@ exports[`Form component Match snapshot 1`] = `
             <div
               class="undefined "
             >
-              <button>
-                Icon
-              </button>
+              <button
+                class="undefined undefined
+  undefined undefined
+  undefined "
+                style="background-color: transparent; padding: 0px;"
+                type="button"
+              />
               <input
                 name="author"
                 placeholder="Author"
                 type="text"
                 value="dddd"
               />
-              <button>
-                Icon
-              </button>
+              <button
+                class="undefined undefined
+  undefined undefined
+  undefined "
+                style="background-color: transparent; padding: 0px;"
+                type="button"
+              />
             </div>
           </div>
         </div>
@@ -74,18 +90,26 @@ exports[`Form component Match snapshot 1`] = `
             <div
               class="undefined "
             >
-              <button>
-                Icon
-              </button>
+              <button
+                class="undefined undefined
+  undefined undefined
+  undefined "
+                style="background-color: transparent; padding: 0px;"
+                type="button"
+              />
               <input
                 name="publishDate"
                 placeholder="Enter text..."
                 type="date"
                 value="1955-08-15"
               />
-              <button>
-                Icon
-              </button>
+              <button
+                class="undefined undefined
+  undefined undefined
+  undefined "
+                style="background-color: transparent; padding: 0px;"
+                type="button"
+              />
             </div>
           </div>
           <div
@@ -100,9 +124,13 @@ exports[`Form component Match snapshot 1`] = `
               <div
                 class="undefined "
               >
-                <button>
-                  Icon
-                </button>
+                <button
+                  class="undefined undefined
+  undefined undefined
+  undefined "
+                  style="background-color: transparent; padding: 0px;"
+                  type="button"
+                />
                 <input
                   accept=".png,.jpeg"
                   hidden=""
@@ -111,9 +139,13 @@ exports[`Form component Match snapshot 1`] = `
                   placeholder="Enter text..."
                   type="file"
                 />
-                <button>
-                  Icon
-                </button>
+                <button
+                  class="undefined undefined
+  undefined undefined
+  undefined "
+                  style="background-color: transparent; padding: 0px;"
+                  type="button"
+                />
               </div>
               <p>
                 duong
@@ -144,11 +176,21 @@ exports[`Form component Match snapshot 1`] = `
           </div>
         </div>
         <div>
-          <button>
-            Icon
+          <button
+            class="undefined undefined
+  undefined undefined
+  undefined "
+            type="button"
+          >
+            Cancel
           </button>
-          <button>
-            Icon
+          <button
+            class="undefined undefined
+  undefined undefined
+  undefined "
+            type="submit"
+          >
+            Save
           </button>
         </div>
       </section>

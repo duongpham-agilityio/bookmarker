@@ -33,6 +33,7 @@ const Pagination = ({
             size="small"
             key={index}
             onClick={handleChangePage}
+            data-testid="pagination"
           />
         );
       })}

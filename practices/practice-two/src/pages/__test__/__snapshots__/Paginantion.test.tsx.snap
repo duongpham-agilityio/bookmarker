@@ -7,6 +7,7 @@ exports[`Pagination Match to snapshot 1`] = `
       class="undefined undefined
   function small() { [native code] } undefined
   undefined "
+      data-testid="pagination"
       type="button"
     >
       1
@@ -15,6 +16,7 @@ exports[`Pagination Match to snapshot 1`] = `
       class="undefined undefined
   function small() { [native code] } undefined
   undefined "
+      data-testid="pagination"
       type="button"
     >
       2
@@ -23,6 +25,7 @@ exports[`Pagination Match to snapshot 1`] = `
       class="undefined undefined
   function small() { [native code] } undefined
   undefined "
+      data-testid="pagination"
       type="button"
     >
       3
