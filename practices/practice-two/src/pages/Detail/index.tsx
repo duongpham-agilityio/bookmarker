@@ -23,6 +23,7 @@ import PenCilIcon from 'assets/icons/pencil.svg';
 
 // Helpers
 import { convertDateTimeToTimeString, convertTimeToDate } from 'helpers';
+import { MESSAGES } from '@constants';
 
 const Detail = ({ dispatchAction }: WithUseFormProps) => {
   const { data, error, isLoading, deleteBook } = useBook();
@@ -32,6 +33,7 @@ const Detail = ({ dispatchAction }: WithUseFormProps) => {
   const [isShortCut, setIsShortCut] = useState(true);
 
   const book = useMemo(() => {
+    if (!data) return null;
     const { publishDate, createdAt, updatedAt, ...rest } = data;
 
     const publishDateConvert = `${convertDateTimeToTimeString(
@@ -55,15 +57,19 @@ const Detail = ({ dispatchAction }: WithUseFormProps) => {
   }, [data]);
 
   const description = useMemo(() => {
+    if (!data) return null;
+
+    const { description } = data;
+
     return (
       <>
         {isShortCut ? (
-          <span>{data.description.substring(0, 140)}</span>
+          <span>{description.substring(0, 140)}</span>
         ) : (
-          <span>{data.description}</span>
+          <span>{description}</span>
         )}
 
-        {data.description.length > 150 && (
+        {`${description}`.length > 150 && (
           <>
             {isShortCut ? (
               <span
@@ -84,12 +90,13 @@ const Detail = ({ dispatchAction }: WithUseFormProps) => {
         )}
       </>
     );
-  }, [isShortCut, data.description]);
+  }, [isShortCut, data]);
 
   const navigate = useCallback(() => redirect(-1), [redirect]);
 
   const editHandler = useCallback(
     () =>
+      data &&
       dispatchAction({
         formData: data,
         title: 'Edit book',
@@ -101,6 +108,13 @@ const Detail = ({ dispatchAction }: WithUseFormProps) => {
   if (error) {
     return <Error />;
   }
+
+  if (!data || !book)
+    return (
+      <main>
+        <p>{MESSAGES.EMPTY_FIELD_DESCRIPTION}</p>
+      </main>
+    );
 
   return (
     <main className={containerStyles.container}>

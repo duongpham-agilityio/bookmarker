@@ -1,9 +1,23 @@
+//Mocks
+import 'components/__test__/mocks/image.test';
+
 import { renderHook } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
+
+// Contexts
+import { PopupProvider } from 'contexts';
+
+// Hooks
 import { useBook } from 'hooks/useBook';
 
+jest.mock('hooks', () => ({
+  usePopupContext: () => ({
+    dispatch: jest.fn(),
+  }),
+}));
+
 jest.mock('swr', () => ({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  default: jest.fn((_endpoint: string) => ({
+  default: () => ({
     data: {
       name: 'HTML/CSS Ebook 1',
       description: 'Description of some book will displayed here',
@@ -16,7 +30,8 @@ jest.mock('swr', () => ({
       publishDate: 1680158351376,
       id: 1,
     },
-  })),
+    mutate: jest.fn(),
+  }),
 }));
 
 const data = {
@@ -33,9 +48,25 @@ const data = {
 };
 
 describe('useBook', () => {
-  it('render', () => {
-    const { result } = renderHook(() => useBook());
+  it('Render', () => {
+    const {
+      result: {
+        current: { data: res, deleteBook },
+      },
+    } = renderHook(useBook, {
+      wrapper: PopupProvider,
+    });
 
-    expect(result.current.data).toEqual(data);
+    expect(res).toEqual(data);
+
+    act(() => {
+      deleteBook();
+    });
+
+    const buttons = document.querySelectorAll('button');
+
+    act(() => {
+      buttons[1].click();
+    });
   });
 });

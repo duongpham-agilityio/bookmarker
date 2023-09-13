@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popup component Match to snapshot 1`] = `
+<div>
+  <section>
+    <div>
+      <h2
+        class="undefined undefined "
+      />
+      <p />
+      <div>
+        <button
+          class="undefined undefined
+  undefined undefined
+  undefined "
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          class="undefined undefined
+  undefined undefined
+  undefined "
+          type="button"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+`;

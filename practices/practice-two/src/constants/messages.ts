@@ -13,4 +13,5 @@ export const MESSAGES = {
   DELETE_TITLE: 'Are you sure to deleted this book',
   DELETE_DESCRIPTION:
     'This action can not undo, so please careful with this action',
+  CONTEXT_ERROR: 'Can not get context value',
 };

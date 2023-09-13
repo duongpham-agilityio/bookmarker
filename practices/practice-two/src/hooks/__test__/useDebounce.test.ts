@@ -20,4 +20,15 @@ describe('useDebounce', () => {
 
     expect(callback).toHaveBeenCalledWith('hello');
   });
+
+  it('should debounce', async () => {
+    const callback = jest.fn();
+    const { result } = setup(callback);
+
+    result.current('hello');
+    result.current('hello');
+    jest.runAllTimers();
+
+    expect(callback).toHaveBeenCalledWith('hello');
+  });
 });

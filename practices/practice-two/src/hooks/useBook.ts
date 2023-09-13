@@ -1,12 +1,6 @@
-import { useCallback, useContext } from 'react';
+import { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import useSWR from 'swr';
-
-// Contexts
-import { PopupContext } from 'contexts/Popup/context';
-
-// Mock data
-import { book } from 'mock-data';
 
 // Types
 import { Book } from 'types';
@@ -16,19 +10,16 @@ import { axiosConfig } from 'helpers';
 
 // Constants
 import { ENDPOINT } from '@constants';
+import { usePopupContext } from './usePopupContext';
 
 /**
  * Get the data of a book
  * @returns object containing properties and methods for interacting with a book
  */
 export const useBook = () => {
-  const { dispatch } = useContext(PopupContext);
+  const { dispatch } = usePopupContext();
   const { id } = useParams();
-  const {
-    data = book,
-    mutate,
-    ...rest
-  } = useSWR<Book>(`${ENDPOINT.BOOKS}/${id}`);
+  const { mutate, ...rest } = useSWR<Book>(`${ENDPOINT.BOOKS}/${id}`);
 
   const deleteBook = useCallback(() => {
     dispatch(() => {
@@ -44,10 +35,10 @@ export const useBook = () => {
 
       window.location.replace(`${ENDPOINT.BOOKS}`);
     });
-  }, []);
+  }, [dispatch, id, mutate]);
 
   return {
-    ...{ ...rest, data, mutate },
+    ...{ ...rest, mutate },
     deleteBook,
   };
 };

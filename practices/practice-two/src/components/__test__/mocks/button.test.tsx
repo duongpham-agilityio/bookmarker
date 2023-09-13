@@ -6,3 +6,7 @@ jest.mock('components/commons/Button', () => ({
     <button onClick={onClick}>Icon</button>
   ),
 }));
+
+test('mock button', () => {});
+
+export {};

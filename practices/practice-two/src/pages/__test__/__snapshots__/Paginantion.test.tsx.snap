@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination Match to snapshot 1`] = `
+<div>
+  <div>
+    <button
+      class="undefined undefined
+  function small() { [native code] } undefined
+  undefined "
+      type="button"
+    >
+      1
+    </button>
+    <button
+      class="undefined undefined
+  function small() { [native code] } undefined
+  undefined "
+      type="button"
+    >
+      2
+    </button>
+    <button
+      class="undefined undefined
+  function small() { [native code] } undefined
+  undefined "
+      type="button"
+    >
+      3
+    </button>
+  </div>
+</div>
+`;

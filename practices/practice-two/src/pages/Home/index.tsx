@@ -19,6 +19,8 @@ import { ENDPOINT, SORT, TITLE } from '@constants';
 // Styles
 import homeStyles from 'pages/Home/index.module.css';
 import commonStyles from 'styles/commons/index.module.css';
+
+// HOCs
 import { WithUseFormProps, withUseForm } from 'hocs';
 
 const Home = ({ dispatchAction }: WithUseFormProps) => {

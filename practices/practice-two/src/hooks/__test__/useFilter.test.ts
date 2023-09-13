@@ -1,8 +1,10 @@
 import { renderHook } from '@testing-library/react';
+
+// Hooks
 import { Filter, useFilter } from 'hooks/useFilter';
 
-// Types
-import { Book } from 'types';
+// Mocks data
+import { books } from 'mock-data';
 
 jest.mock('hooks', () => ({
   useSearchParam: jest.fn().mockReturnValue({
@@ -17,66 +19,45 @@ const defaultFilter: Filter = {
   sort: '',
 };
 
-const products: Book[] = [
-  {
-    name: 'HTML/CSS Ebook 1',
-    description: 'Description of some book will displayed here',
-    author: 'Duong.Pham',
-    imageURL:
-      'http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
-    createdAt: 1680158351376,
-    deletedAt: null,
-    updatedAt: 1680158351376,
-    publishDate: 1680158351376,
-    id: 1,
-  },
-  {
-    name: 'HTML/CSS Ebook 2',
-    description: 'Description of some book will displayed here',
-    author: 'Duong.Pham',
-    imageURL:
-      'http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
-    createdAt: 1680158351376,
-    deletedAt: null,
-    updatedAt: 1680158351376,
-    publishDate: 1680158351376,
-    id: 2,
-  },
-];
-
 describe('useFilter', () => {
   it('Run with default filter', () => {
-    const { result } = renderHook(() => useFilter(products, defaultFilter));
+    const {
+      result: {
+        current: { data },
+      },
+    } = renderHook(() => useFilter(books, defaultFilter));
 
-    expect(result.current.data.length).toBe(2);
+    expect(data.length).toBe(books.length);
   });
 
   it('Run with custom filter', () => {
-    const { result, rerender } = renderHook(
-      (option) => useFilter(products, option),
-      {
-        initialProps: defaultFilter,
-      }
-    );
+    const {
+      result: {
+        current: { data },
+      },
+      rerender,
+    } = renderHook((option) => useFilter(books, option), {
+      initialProps: defaultFilter,
+    });
 
-    expect(result.current.data.length).toBe(2);
+    expect(data.length).toBe(books.length);
 
-    // Filter with name
-    const filterWithBrand: Filter = {
+    rerender({
       name: 'HTML',
       sort: '',
-    };
+    });
+    expect(data.length).toBe(11);
 
-    rerender(filterWithBrand);
-    expect(result.current.data.length).toBe(2);
-
-    // Sorts Z-A
-    const filterWithSort: Filter = {
+    rerender({
       name: '',
       sort: 'descending',
-    };
+    });
+    expect(data.length).toBe(11);
 
-    rerender(filterWithSort);
-    expect(result.current.data.length).toBe(2);
+    rerender({
+      name: '',
+      sort: 'ascending',
+    });
+    expect(data.length).toBe(11);
   });
 });

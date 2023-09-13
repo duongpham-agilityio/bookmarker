@@ -1,4 +1,4 @@
-import { ReactNode, MouseEvent, useState, useMemo } from 'react';
+import { ReactNode, MouseEvent, useState, useMemo, useCallback } from 'react';
 
 // Components
 import { Popup } from 'components';
@@ -9,16 +9,16 @@ import { PopupContext } from 'contexts/Popup/context';
 // Constants
 import { MESSAGES } from '@constants';
 
-const initialState = {
-  isShown: false,
-  accepter: () => {},
-};
+// const initialState = {
+//   isShown: false,
+//   accepter: () => {},
+// };
 
 const PopupProvider = ({ children }: { children: ReactNode }) => {
   const [state, setState] = useState<{
     isShown: boolean;
     accepter: (_event: MouseEvent) => void;
-  }>(initialState);
+  } | null>(null);
 
   const props = useMemo(() => {
     return {
@@ -31,20 +31,25 @@ const PopupProvider = ({ children }: { children: ReactNode }) => {
     };
   }, []);
 
+  const onAccept = useCallback(
+    (event: MouseEvent) => {
+      state?.accepter(event);
+
+      setState(null);
+    },
+    [state]
+  );
+
   return (
     <PopupContext.Provider value={props}>
       {children}
 
-      {state.isShown && (
+      {state?.isShown && (
         <Popup
           title={MESSAGES.DELETE_TITLE}
           description={MESSAGES.DELETE_DESCRIPTION}
-          onCancel={() => setState(initialState)}
-          onAccept={(event: MouseEvent) => {
-            state.accepter(event);
-
-            setState(initialState);
-          }}
+          onCancel={() => setState(null)}
+          onAccept={onAccept}
         />
       )}
     </PopupContext.Provider>

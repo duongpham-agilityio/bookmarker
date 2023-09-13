@@ -17,9 +17,13 @@ const setup = () => {
 
 describe('useSearchParam', () => {
   it('Run with search params default', () => {
-    const { result } = setup();
+    const {
+      result: {
+        current: { param },
+      },
+    } = setup();
 
-    expect(result.current.param).toEqual({
+    expect(param).toEqual({
       page: 1,
       name: '',
       sort: '',
@@ -27,18 +31,34 @@ describe('useSearchParam', () => {
   });
 
   it('Run with setSearchParam', () => {
-    const { result } = setup();
+    const {
+      result: {
+        current: { param, setSearchParam },
+      },
+    } = setup();
 
-    expect(result.current.param).toEqual({
+    expect(param).toEqual({
       page: 1,
       name: '',
       sort: '',
     });
 
     act(() => {
-      result.current.setSearchParam('name', 'salt');
+      setSearchParam('name', 'salt');
     });
 
     expect(mockSetSearchParams).toHaveBeenCalled();
+  });
+
+  it('Run convertSearchParamsToString', () => {
+    const {
+      result: {
+        current: { convertSearchParamsToString },
+      },
+    } = setup();
+
+    const result = convertSearchParamsToString('name', 'duong');
+
+    console.log(result);
   });
 });

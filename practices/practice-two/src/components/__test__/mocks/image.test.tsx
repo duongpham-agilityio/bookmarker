@@ -44,4 +44,6 @@ jest.mock('assets/icons/Logo.jpg', () => ({
   default: 'assets/icons/Logo.jpg',
 }));
 
+test('mock images', () => {});
+
 export {};

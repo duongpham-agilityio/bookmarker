@@ -1,0 +1,245 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Books components Match to snapshot 1`] = `
+<div>
+  <div>
+    <div>
+      <a
+        href="/books/1"
+      >
+        <div>
+          <h2
+            class="undefined undefined "
+          >
+            HTML/CSS Ebook 1
+          </h2>
+          <p>
+            Description of some book will displayed here
+          </p>
+          <div>
+            <button
+              class="undefined undefined
+  undefined undefined
+  undefined "
+              type="button"
+            >
+              <img
+                alt="This is the left icon for the button"
+                src="assets/icons/next.svg"
+              />
+            </button>
+            <button
+              class="undefined undefined
+  undefined undefined
+  undefined "
+              type="button"
+            >
+              <img
+                alt="This is the left icon for the button"
+                src="assets/icons/trash.svg"
+              />
+            </button>
+          </div>
+        </div>
+        <div>
+          <p>
+            1:39 PM
+          </p>
+          <img
+            alt="HTML/CSS Ebook 1"
+            src="http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+          />
+        </div>
+      </a>
+      <a
+        href="/books/3"
+      >
+        <div>
+          <h2
+            class="undefined undefined "
+          >
+            HTML/CSS Ebook dd 
+          </h2>
+          <p>
+            Description of some book will displayed hereDescription of some book will displayed hereDescription of some book will displayed hereDescription of some book will displayed heresdssdsdsdsdDescription of some book will displayed hereDescription of some book will displayed hereDescription of some book will displayed hereDescription of some book will displayed here
+          </p>
+          <div>
+            <button
+              class="undefined undefined
+  undefined undefined
+  undefined "
+              type="button"
+            >
+              <img
+                alt="This is the left icon for the button"
+                src="assets/icons/next.svg"
+              />
+            </button>
+            <button
+              class="undefined undefined
+  undefined undefined
+  undefined "
+              type="button"
+            >
+              <img
+                alt="This is the left icon for the button"
+                src="assets/icons/trash.svg"
+              />
+            </button>
+          </div>
+        </div>
+        <div>
+          <p>
+            1:39 PM
+          </p>
+          <img
+            alt="HTML/CSS Ebook dd "
+            src="http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+          />
+        </div>
+      </a>
+      <a
+        href="/books/4"
+      >
+        <div>
+          <h2
+            class="undefined undefined "
+          >
+            HTML/CSS Ebook 4
+          </h2>
+          <p>
+            Description of some book will displayed here ds s ssss   sss    
+          </p>
+          <div>
+            <button
+              class="undefined undefined
+  undefined undefined
+  undefined "
+              type="button"
+            >
+              <img
+                alt="This is the left icon for the button"
+                src="assets/icons/next.svg"
+              />
+            </button>
+            <button
+              class="undefined undefined
+  undefined undefined
+  undefined "
+              type="button"
+            >
+              <img
+                alt="This is the left icon for the button"
+                src="assets/icons/trash.svg"
+              />
+            </button>
+          </div>
+        </div>
+        <div>
+          <p>
+            1:39 PM
+          </p>
+          <img
+            alt="HTML/CSS Ebook 4"
+            src="http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+          />
+        </div>
+      </a>
+      <a
+        href="/books/7"
+      >
+        <div>
+          <h2
+            class="undefined undefined "
+          >
+            HTML/CSS Ebook 6
+          </h2>
+          <p>
+            Description of some book will displayed here
+          </p>
+          <div>
+            <button
+              class="undefined undefined
+  undefined undefined
+  undefined "
+              type="button"
+            >
+              <img
+                alt="This is the left icon for the button"
+                src="assets/icons/next.svg"
+              />
+            </button>
+            <button
+              class="undefined undefined
+  undefined undefined
+  undefined "
+              type="button"
+            >
+              <img
+                alt="This is the left icon for the button"
+                src="assets/icons/trash.svg"
+              />
+            </button>
+          </div>
+        </div>
+        <div>
+          <p>
+            1:39 PM
+          </p>
+          <img
+            alt="HTML/CSS Ebook 6"
+            src="http://books.google.com/books/content?id=KzzXzqLzXi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+          />
+        </div>
+      </a>
+      <a
+        href="/books/10"
+      >
+        <div>
+          <h2
+            class="undefined undefined "
+          >
+            LIFE
+          </h2>
+          <p>
+            LIFE Magazine is the treasured photographic magazine that chronicled the 20th Century. It now lives on at LIFE.com, the largest, most amazing collection of professional photography on the internet. Users can browse, search and view photos of today’s people and events. They have free access to share, print and post images for personal use.
+          </p>
+          <div>
+            <button
+              class="undefined undefined
+  undefined undefined
+  undefined "
+              type="button"
+            >
+              <img
+                alt="This is the left icon for the button"
+                src="assets/icons/next.svg"
+              />
+            </button>
+            <button
+              class="undefined undefined
+  undefined undefined
+  undefined "
+              type="button"
+            >
+              <img
+                alt="This is the left icon for the button"
+                src="assets/icons/trash.svg"
+              />
+            </button>
+          </div>
+        </div>
+        <div>
+          <p>
+            5:22 PM
+          </p>
+          <img
+            alt="LIFE"
+            src="http://books.google.com/books/content?id=Mz8EAAAAMBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+          />
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notification component Match to snapshot 1`] = `
+<div>
+  <section
+    class="undefined undefined undefined"
+  >
+    <div>
+      <h2
+        class="undefined undefined "
+      >
+        Success
+      </h2>
+      <p>
+        Send request success
+      </p>
+    </div>
+    <button
+      class="undefined undefined
+  undefined undefined
+  undefined "
+      type="button"
+    >
+      <img
+        alt="This is the left icon for the button"
+        src="assets/icons/x-letter.svg"
+      />
+    </button>
+  </section>
+</div>
+`;

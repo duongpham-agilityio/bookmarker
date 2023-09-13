@@ -31,4 +31,14 @@ describe('Input', () => {
 
     expect(mockOnChange).toHaveBeenCalled();
   });
+
+  it('Render with textArea', () => {
+    const { getByTestId } = render(
+      <Input variant="area" data-testid="custom-element" />
+    );
+
+    const textArea = getByTestId('custom-element');
+
+    expect(textArea).toBeInTheDocument();
+  });
 });

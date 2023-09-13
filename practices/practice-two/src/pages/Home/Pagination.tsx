@@ -7,14 +7,14 @@ import { Button } from 'components/commons';
 // Styles
 import homeStyles from 'pages/Home/index.module.css';
 
-interface PaginationProps {
+export interface PaginationProps {
   currentPage: number;
   pagination: number[];
   onChangePage: (page: number) => void;
 }
 
 const Pagination = ({
-  pagination = [],
+  pagination,
   currentPage,
   onChangePage,
 }: PaginationProps) => {

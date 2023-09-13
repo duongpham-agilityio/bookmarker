@@ -17,13 +17,13 @@ import homeStyles from 'pages/Home/index.module.css';
 // Types
 import { Book } from 'types';
 
-interface BooksProps {
+export interface BooksProps {
   books: Book[];
   onDeleteBook: (id: number) => void;
   children?: ReactNode;
 }
 
-const Books = ({ books = [], children, onDeleteBook }: BooksProps) => {
+const Books = ({ books, children, onDeleteBook }: BooksProps) => {
   const renderBook = useCallback(
     (book: Book) => {
       const { id, name, description, createdAt, imageURL } = book;

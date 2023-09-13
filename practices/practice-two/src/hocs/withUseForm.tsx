@@ -1,19 +1,8 @@
-import {
-  FC,
-  Suspense,
-  lazy,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from 'react';
+import { FC, Suspense, lazy, useCallback, useMemo, useState } from 'react';
 import useMutation from 'swr/mutation';
 
 // Hooks
-import { FormData } from 'hooks';
-
-// Contexts
-import { ToastContext } from 'contexts/Toast/context';
+import { FormData, useToastContext } from 'hooks';
 
 // Components
 const Form = lazy(() => import('components/Form'));
@@ -42,7 +31,7 @@ export interface WithUseFormProps {
 
 export const withUseForm = <T extends WithUseFormProps>(Component: FC<T>) => {
   const FormHOC = (props: Omit<T, keyof WithUseFormProps>) => {
-    const { setNotification } = useContext(ToastContext);
+    const { setNotification } = useToastContext();
     const [form, setForm] = useState<StateType | null>(null);
     const [formStatus, setFormStatus] = useState<FormStatus>('create');
     const { trigger: triggerAddBook } = useMutation(

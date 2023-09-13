@@ -4,11 +4,13 @@ import {
   ChangeEvent,
   FormEvent,
   useCallback,
-  useContext,
   useMemo,
   useRef,
   useState,
 } from 'react';
+
+// Hook
+import { useToastContext } from 'hooks';
 
 // Helpers
 import {
@@ -23,9 +25,6 @@ import { uploadImage } from 'services';
 
 // Constants
 import { MESSAGES, TIMEOUT_DEBOUNCE } from '@constants';
-
-// Contexts
-import { ToastContext } from 'contexts/Toast/context';
 
 // Mock data
 import { book } from 'mock-data';
@@ -51,7 +50,7 @@ export const useBookForm = (
   type: 'create' | 'update',
   submitHandler: (data: FormData) => Promise<void>
 ) => {
-  const { setNotification } = useContext(ToastContext);
+  const { setNotification } = useToastContext();
   const [state, setState] = useState<FormData & { imageName: string }>({
     ...data,
     imageName: '',

@@ -1,5 +1,4 @@
-import { act, fireEvent, render } from '@testing-library/react';
-import React, { RefObject } from 'react';
+import { fireEvent, render } from '@testing-library/react';
 
 // Hooks
 import * as hooks from 'hooks';
@@ -10,6 +9,7 @@ import './mocks/image.test';
 
 // Components
 import Form, { FormProps } from 'components/Form';
+import { RefObject } from 'react';
 
 jest.mock('hooks');
 
@@ -62,11 +62,9 @@ describe('Form component', () => {
   });
 
   it('Render with props', () => {
-    const useRefSpy = jest.spyOn(React, 'useRef').mockReturnValueOnce({
-      current: document.createElement('input'),
-    });
     jest.spyOn(hooks, 'useBookForm').mockReturnValue({
       ...mockUseBookFormValue,
+      isUpload: true,
       booksRecommended: [
         {
           description:
@@ -80,19 +78,19 @@ describe('Form component', () => {
         ...mockUseBookFormValue.value,
         imageName: '',
       },
-      refImage: useRefSpy,
+      refImage: {
+        current: {
+          click: jest.fn(),
+        },
+      } as unknown as RefObject<HTMLInputElement>,
     });
     const { getByText, getByTestId } = setup(mockProps);
 
     const button = getByText('Upload');
     const formEl = getByTestId('book-form');
 
-    act(() => {
-      fireEvent.click(button);
-    });
+    fireEvent.click(button);
 
-    act(() => {
-      fireEvent.click(formEl);
-    });
+    fireEvent.click(formEl);
   });
 });

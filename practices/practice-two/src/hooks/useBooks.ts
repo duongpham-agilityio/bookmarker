@@ -1,10 +1,12 @@
-import { useCallback, useContext } from 'react';
+import { useCallback } from 'react';
 import useSWR from 'swr';
-import { useFilter, usePagination, useSearchParam } from 'hooks';
-
-// Context
-import { PopupContext } from 'contexts/Popup/context';
-import { ToastContext } from 'contexts/Toast/context';
+import {
+  useFilter,
+  usePagination,
+  usePopupContext,
+  useSearchParam,
+  useToastContext,
+} from 'hooks';
 
 // Helpers
 import { axiosConfig } from 'helpers';
@@ -20,8 +22,8 @@ import { ENDPOINT, MESSAGES } from '@constants';
  * @returns object containing properties and methods for interacting with a books
  */
 export const useBooks = () => {
-  const { dispatch } = useContext(PopupContext);
-  const { setNotification } = useContext(ToastContext);
+  const { dispatch } = usePopupContext();
+  const { setNotification } = useToastContext();
   const swr = useSWR<Book[]>(`${ENDPOINT.BOOKS}${ENDPOINT.SORT}`);
   const {
     param: { name, sort, page },
@@ -56,7 +58,7 @@ export const useBooks = () => {
         });
       }
     },
-    [swr.data]
+    [dispatch, setNotification, swr]
   );
 
   return {
