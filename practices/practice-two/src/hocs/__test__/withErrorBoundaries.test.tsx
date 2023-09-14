@@ -10,9 +10,9 @@ import { MESSAGES } from '@constants';
 import { withErrorBoundaries } from 'hocs/withErrorBoundaries';
 
 const RejectComponent = () => {
-  const isCondition = 1 > 2;
+  const isCondition = true;
 
-  if (!isCondition) throw new Error(MESSAGES.ERROR_DESCRIPTION);
+  if (isCondition) throw new Error(MESSAGES.ERROR_DESCRIPTION);
 
   return <p>Reject</p>;
 };
