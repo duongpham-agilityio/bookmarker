@@ -24,27 +24,28 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> &
     rightIconClick?: (_event: MouseEvent) => void;
   };
 
-const InputIcon = memo(function Icon({
-  icon,
-  ...rest
-}: {
-  icon?: string;
-  onClick?: (_event: MouseEvent) => void;
-}) {
-  return (
-    <Button
-      label=""
-      leftIcon={icon}
-      style={{
-        backgroundColor: 'transparent',
-        padding: '0',
-        width: 'fit-content',
-        height: 'fit-content',
-      }}
-      {...rest}
-    />
-  );
-});
+// const InputIcon = memo(function Icon({
+//   icon,
+//   ...rest
+// }: {
+//   icon?: string;
+//   onClick?: (_event: MouseEvent) => void;
+// }) {
+//   return (
+//     <Button
+//       label=""
+//       leftIcon={icon}
+//       style={{
+//         backgroundColor: 'transparent',
+//         padding: '0',
+//         width: 'fit-content',
+//         height: 'fit-content',
+//       }}
+//       {...rest}
+//       aria-label=""
+//     />
+//   );
+// });
 
 const TextArea = (props: Omit<InputProps, 'variant'>) => {
   const { value = '', className = '', ...rest } = props;
@@ -73,7 +74,18 @@ const Input = (props: Omit<InputProps, 'variant'>) => {
 
   return (
     <div className={`${inputStyles.input} ${className}`}>
-      <InputIcon icon={leftIcon} onClick={leftIconClick} />
+      <Button
+        label=""
+        leftIcon={leftIcon}
+        style={{
+          backgroundColor: 'transparent',
+          padding: '0',
+          width: 'fit-content',
+          height: 'fit-content',
+        }}
+        onClick={leftIconClick}
+        aria-label="Search button"
+      />
 
       <input
         className={inputStyles.value}
@@ -83,7 +95,18 @@ const Input = (props: Omit<InputProps, 'variant'>) => {
         {...rest}
       />
 
-      <InputIcon icon={rightIcon} onClick={rightIconClick} />
+      <Button
+        label=""
+        leftIcon={rightIcon}
+        style={{
+          backgroundColor: 'transparent',
+          padding: '0',
+          width: 'fit-content',
+          height: 'fit-content',
+        }}
+        onClick={rightIconClick}
+        aria-label="The right button"
+      />
     </div>
   );
 };
