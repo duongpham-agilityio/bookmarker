@@ -15,7 +15,6 @@ jest.mock('hooks');
 const setup = (props: FormProps) => render(<Form {...props} />);
 
 const onSubmit = jest.fn();
-const chooseImage = jest.fn();
 const mockProps: FormProps = {
   onSubmit,
   value: {
@@ -49,7 +48,7 @@ const mockUseBookFormValue: ReturnType<typeof hooks.useBookForm> = {
   onSubmit: jest.fn(),
   refImage: {
     current: {
-      click: chooseImage,
+      click: null,
     },
   } as unknown as RefObject<HTMLInputElement>,
 };
@@ -97,6 +96,8 @@ describe('Form component', () => {
   });
 
   it('Choose image', () => {
+    const chooseImage = jest.fn();
+
     jest.spyOn(hooks, 'useBookForm').mockReturnValue({
       ...mockUseBookFormValue,
       isUpload: false,
@@ -105,6 +106,11 @@ describe('Form component', () => {
         ...mockUseBookFormValue.value,
         imageName: '',
       },
+      refImage: {
+        current: {
+          click: chooseImage,
+        },
+      } as unknown as RefObject<HTMLInputElement>,
     });
 
     const { getByTestId } = setup(mockProps);

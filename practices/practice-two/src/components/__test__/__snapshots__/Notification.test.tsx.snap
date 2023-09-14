@@ -11,7 +11,9 @@ exports[`Notification component Match to snapshot 1`] = `
       >
         Success
       </h2>
-      <p>
+      <p
+        data-testid="notify-message"
+      >
         Send request success
       </p>
     </div>

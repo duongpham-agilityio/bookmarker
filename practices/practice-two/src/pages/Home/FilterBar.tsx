@@ -18,7 +18,7 @@ export interface SortOption {
   title: string;
 }
 
-interface FilterBarProps {
+export interface FilterBarProps {
   searchValue: string;
   sortOptions: SortOption[];
   onChangeSearch: (value: string) => void;
@@ -27,7 +27,7 @@ interface FilterBarProps {
 
 const FilterBar = ({
   searchValue,
-  sortOptions = [],
+  sortOptions,
   onChangeSearch,
   onAddBook,
 }: FilterBarProps) => {

@@ -120,7 +120,5 @@ describe('Home page', () => {
     act(() => {
       fireEvent.click(buttons[1]);
     });
-
-    console.log(mockData.param.page);
   });
 });

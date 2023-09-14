@@ -26,12 +26,9 @@ import { convertDateTimeToTimeString, convertTimeToDate } from 'helpers';
 import { MESSAGES } from '@constants';
 
 const Detail = ({ dispatchAction }: WithUseFormProps) => {
-  const { data, error, isLoading, deleteBook } = useBook();
-
-  const redirect = useNavigate();
-
   const [isShortCut, setIsShortCut] = useState(true);
-
+  const { data, error, isLoading, deleteBook } = useBook();
+  const redirect = useNavigate();
   const book = useMemo(() => {
     if (!data) return null;
     const { publishDate, createdAt, updatedAt, ...rest } = data;
@@ -132,6 +129,7 @@ const Detail = ({ dispatchAction }: WithUseFormProps) => {
                   variant="danger"
                   className={styles.btn}
                   onClick={deleteBook}
+                  data-testid="delete-btn"
                 />
                 <Button
                   label=""
@@ -139,6 +137,7 @@ const Detail = ({ dispatchAction }: WithUseFormProps) => {
                   variant="primary"
                   className={styles.btn}
                   onClick={navigate}
+                  data-testid="back-btn"
                 />
                 <Button
                   label="Edit"
@@ -147,6 +146,7 @@ const Detail = ({ dispatchAction }: WithUseFormProps) => {
                   width="w-lg"
                   border="b-lg"
                   onClick={editHandler}
+                  data-testid="edit-btn"
                 />
               </div>
             </div>

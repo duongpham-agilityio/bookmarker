@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withUseForm Create action 1`] = `
+<div>
+  <button
+    data-testid="create-btn"
+  >
+    Create
+  </button>
+  <button
+    data-testid="update-btn"
+  >
+    Update
+  </button>
+</div>
+`;
+
+exports[`withUseForm Match to snapshot 1`] = `
+<div>
+  <button
+    data-testid="create-btn"
+  >
+    Create
+  </button>
+  <button
+    data-testid="update-btn"
+  >
+    Update
+  </button>
+</div>
+`;

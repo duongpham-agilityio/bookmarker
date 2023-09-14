@@ -23,7 +23,9 @@ const Notification = (props: NotificationProps) => {
     >
       <div className={styles.content}>
         <Heading label={title} />
-        <p className={styles.message}>{message}</p>
+        <p className={styles.message} data-testid="notify-message">
+          {message}
+        </p>
       </div>
       <Button label="" leftIcon={CloseIcon} className={styles.icon} />
     </section>
