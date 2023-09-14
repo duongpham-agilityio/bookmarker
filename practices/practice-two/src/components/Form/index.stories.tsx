@@ -2,6 +2,8 @@ import { Meta, Story } from '@storybook/react';
 
 // Components
 import Form, { FormProps } from 'components/Form';
+
+// Types
 import { FormData } from 'hooks';
 
 export const Template: Story<FormProps> = () => (
