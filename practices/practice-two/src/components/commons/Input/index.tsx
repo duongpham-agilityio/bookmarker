@@ -24,29 +24,6 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> &
     rightIconClick?: (_event: MouseEvent) => void;
   };
 
-// const InputIcon = memo(function Icon({
-//   icon,
-//   ...rest
-// }: {
-//   icon?: string;
-//   onClick?: (_event: MouseEvent) => void;
-// }) {
-//   return (
-//     <Button
-//       label=""
-//       leftIcon={icon}
-//       style={{
-//         backgroundColor: 'transparent',
-//         padding: '0',
-//         width: 'fit-content',
-//         height: 'fit-content',
-//       }}
-//       {...rest}
-//       aria-label=""
-//     />
-//   );
-// });
-
 const TextArea = (props: Omit<InputProps, 'variant'>) => {
   const { value = '', className = '', ...rest } = props;
 

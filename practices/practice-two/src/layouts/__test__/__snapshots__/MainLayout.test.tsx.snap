@@ -8,7 +8,9 @@ exports[`MainLayout Match to snapshot 1`] = `
     >
       <img
         alt="logo"
+        height="60px"
         src="assets/icons/Logo.jpg"
+        width="100px"
       />
     </a>
     <h2

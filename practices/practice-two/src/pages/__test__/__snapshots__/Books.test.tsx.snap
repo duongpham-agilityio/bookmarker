@@ -25,7 +25,9 @@ exports[`Books components Match to snapshot 1`] = `
             >
               <img
                 alt="This is the left icon for the button"
+                height="25px"
                 src="assets/icons/next.svg"
+                width="22px"
               />
             </button>
             <button
@@ -36,7 +38,9 @@ exports[`Books components Match to snapshot 1`] = `
             >
               <img
                 alt="This is the left icon for the button"
+                height="25px"
                 src="assets/icons/trash.svg"
+                width="22px"
               />
             </button>
           </div>
@@ -72,7 +76,9 @@ exports[`Books components Match to snapshot 1`] = `
             >
               <img
                 alt="This is the left icon for the button"
+                height="25px"
                 src="assets/icons/next.svg"
+                width="22px"
               />
             </button>
             <button
@@ -83,7 +89,9 @@ exports[`Books components Match to snapshot 1`] = `
             >
               <img
                 alt="This is the left icon for the button"
+                height="25px"
                 src="assets/icons/trash.svg"
+                width="22px"
               />
             </button>
           </div>
@@ -119,7 +127,9 @@ exports[`Books components Match to snapshot 1`] = `
             >
               <img
                 alt="This is the left icon for the button"
+                height="25px"
                 src="assets/icons/next.svg"
+                width="22px"
               />
             </button>
             <button
@@ -130,7 +140,9 @@ exports[`Books components Match to snapshot 1`] = `
             >
               <img
                 alt="This is the left icon for the button"
+                height="25px"
                 src="assets/icons/trash.svg"
+                width="22px"
               />
             </button>
           </div>
@@ -166,7 +178,9 @@ exports[`Books components Match to snapshot 1`] = `
             >
               <img
                 alt="This is the left icon for the button"
+                height="25px"
                 src="assets/icons/next.svg"
+                width="22px"
               />
             </button>
             <button
@@ -177,7 +191,9 @@ exports[`Books components Match to snapshot 1`] = `
             >
               <img
                 alt="This is the left icon for the button"
+                height="25px"
                 src="assets/icons/trash.svg"
+                width="22px"
               />
             </button>
           </div>
@@ -213,7 +229,9 @@ exports[`Books components Match to snapshot 1`] = `
             >
               <img
                 alt="This is the left icon for the button"
+                height="25px"
                 src="assets/icons/next.svg"
+                width="22px"
               />
             </button>
             <button
@@ -224,7 +242,9 @@ exports[`Books components Match to snapshot 1`] = `
             >
               <img
                 alt="This is the left icon for the button"
+                height="25px"
                 src="assets/icons/trash.svg"
+                width="22px"
               />
             </button>
           </div>

@@ -25,7 +25,9 @@ exports[`Notification component Match to snapshot 1`] = `
     >
       <img
         alt="This is the left icon for the button"
+        height="25px"
         src="assets/icons/x-letter.svg"
+        width="22px"
       />
     </button>
   </section>

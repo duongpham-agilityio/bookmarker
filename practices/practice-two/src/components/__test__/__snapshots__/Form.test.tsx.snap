@@ -26,6 +26,7 @@ exports[`Form component Match snapshot 1`] = `
               class="undefined "
             >
               <button
+                aria-label="Search button"
                 class="undefined undefined
   undefined undefined
   undefined "
@@ -40,6 +41,7 @@ exports[`Form component Match snapshot 1`] = `
                 value="LIFE23333"
               />
               <button
+                aria-label="The right button"
                 class="undefined undefined
   undefined undefined
   undefined "
@@ -58,6 +60,7 @@ exports[`Form component Match snapshot 1`] = `
               class="undefined "
             >
               <button
+                aria-label="Search button"
                 class="undefined undefined
   undefined undefined
   undefined "
@@ -71,6 +74,7 @@ exports[`Form component Match snapshot 1`] = `
                 value="dddd"
               />
               <button
+                aria-label="The right button"
                 class="undefined undefined
   undefined undefined
   undefined "
@@ -91,6 +95,7 @@ exports[`Form component Match snapshot 1`] = `
               class="undefined "
             >
               <button
+                aria-label="Search button"
                 class="undefined undefined
   undefined undefined
   undefined "
@@ -104,6 +109,7 @@ exports[`Form component Match snapshot 1`] = `
                 value="1955-08-15"
               />
               <button
+                aria-label="The right button"
                 class="undefined undefined
   undefined undefined
   undefined "
@@ -125,6 +131,7 @@ exports[`Form component Match snapshot 1`] = `
                 class="undefined "
               >
                 <button
+                  aria-label="Search button"
                   class="undefined undefined
   undefined undefined
   undefined "
@@ -140,6 +147,7 @@ exports[`Form component Match snapshot 1`] = `
                   type="file"
                 />
                 <button
+                  aria-label="The right button"
                   class="undefined undefined
   undefined undefined
   undefined "

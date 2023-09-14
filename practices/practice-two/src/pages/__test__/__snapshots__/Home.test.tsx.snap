@@ -9,6 +9,7 @@ exports[`Home page Match to snapshot 1`] = `
           class="undefined function search() { [native code] }"
         >
           <button
+            aria-label="Search button"
             class="undefined undefined
   undefined undefined
   undefined "
@@ -17,7 +18,9 @@ exports[`Home page Match to snapshot 1`] = `
           >
             <img
               alt="This is the left icon for the button"
+              height="25px"
               src="assets/icons/search.svg"
+              width="22px"
             />
           </button>
           <input
@@ -26,6 +29,7 @@ exports[`Home page Match to snapshot 1`] = `
             value=""
           />
           <button
+            aria-label="The right button"
             class="undefined undefined
   undefined undefined
   undefined "
@@ -59,7 +63,9 @@ exports[`Home page Match to snapshot 1`] = `
         >
           <img
             alt="This is the left icon for the button"
+            height="25px"
             src="assets/icons/add.svg"
+            width="22px"
           />
           Create
         </button>
@@ -87,7 +93,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/next.svg"
+                    width="22px"
                   />
                 </button>
                 <button
@@ -98,7 +106,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/trash.svg"
+                    width="22px"
                   />
                 </button>
               </div>
@@ -134,7 +144,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/next.svg"
+                    width="22px"
                   />
                 </button>
                 <button
@@ -145,7 +157,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/trash.svg"
+                    width="22px"
                   />
                 </button>
               </div>
@@ -181,7 +195,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/next.svg"
+                    width="22px"
                   />
                 </button>
                 <button
@@ -192,7 +208,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/trash.svg"
+                    width="22px"
                   />
                 </button>
               </div>
@@ -228,7 +246,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/next.svg"
+                    width="22px"
                   />
                 </button>
                 <button
@@ -239,7 +259,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/trash.svg"
+                    width="22px"
                   />
                 </button>
               </div>
@@ -275,7 +297,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/next.svg"
+                    width="22px"
                   />
                 </button>
                 <button
@@ -286,7 +310,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/trash.svg"
+                    width="22px"
                   />
                 </button>
               </div>
@@ -322,7 +348,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/next.svg"
+                    width="22px"
                   />
                 </button>
                 <button
@@ -333,7 +361,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/trash.svg"
+                    width="22px"
                   />
                 </button>
               </div>
@@ -369,7 +399,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/next.svg"
+                    width="22px"
                   />
                 </button>
                 <button
@@ -380,7 +412,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/trash.svg"
+                    width="22px"
                   />
                 </button>
               </div>
@@ -416,7 +450,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/next.svg"
+                    width="22px"
                   />
                 </button>
                 <button
@@ -427,7 +463,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/trash.svg"
+                    width="22px"
                   />
                 </button>
               </div>
@@ -463,7 +501,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/next.svg"
+                    width="22px"
                   />
                 </button>
                 <button
@@ -474,7 +514,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/trash.svg"
+                    width="22px"
                   />
                 </button>
               </div>
@@ -510,7 +552,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/next.svg"
+                    width="22px"
                   />
                 </button>
                 <button
@@ -521,7 +565,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/trash.svg"
+                    width="22px"
                   />
                 </button>
               </div>
@@ -557,7 +603,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/next.svg"
+                    width="22px"
                   />
                 </button>
                 <button
@@ -568,7 +616,9 @@ exports[`Home page Match to snapshot 1`] = `
                 >
                   <img
                     alt="This is the left icon for the button"
+                    height="25px"
                     src="assets/icons/trash.svg"
+                    width="22px"
                   />
                 </button>
               </div>
