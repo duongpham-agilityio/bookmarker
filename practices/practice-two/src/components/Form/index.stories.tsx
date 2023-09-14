@@ -1,7 +1,8 @@
 import { Meta, Story } from '@storybook/react';
 
 // Components
-import { Form, FormProps } from 'components';
+import Form, { FormProps } from 'components/Form';
+import { FormData } from 'hooks';
 
 export const Template: Story<FormProps> = () => (
   <Form
@@ -12,7 +13,9 @@ export const Template: Story<FormProps> = () => (
       imageURL: '',
       publishDate: new Date().getTime(),
     }}
-    handleSubmit={() => {}}
+    onSubmit={async (book: FormData) => {
+      Promise.resolve(book);
+    }}
   />
 );
 
