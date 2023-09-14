@@ -26,7 +26,14 @@ const Icon = ({
   subTitle?: string;
 }) =>
   icon ? (
-    <img src={icon} alt={subTitle} className={buttonStyles.icon} {...rest} />
+    <img
+      src={icon}
+      alt={subTitle}
+      className={buttonStyles.icon}
+      {...rest}
+      width="22px"
+      height="25px"
+    />
   ) : null;
 
 const ButtonIcon = memo(Icon);

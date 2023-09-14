@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <header className={headerStyles.mainHeader}>
       <Link to="/">
-        <img src={Logo} alt="logo" />
+        <img src={Logo} alt="logo" width="100px" height="60px" />
       </Link>
       <Heading
         label="Hello! Welcome to the Book Marker"
